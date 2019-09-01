@@ -1,0 +1,33 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.u-f20 {font-size: 20rpx;}
+.u-f22 {font-size: 22rpx;}
+.u-f24 {font-size: 24rpx;}
+.u-f26 {font-size: 26rpx;}
+.u-f28 {font-size: 28rpx;}
+.u-f30 {font-size: 30rpx;}
+.u-f32 {font-size: 32rpx;}
+.u-f34 {font-size: 34rpx;}
+.u-f36 {font-size: 36rpx;}
+.u-f38 {font-size: 38rpx;}
+.u-f40 {font-size: 40rpx;}
+
+.u-c-white        {color: #ffffff;}
+.u-c-black        {color: #000000;}
+.u-c-35           {color: #353535;}
+.u-c-lgrey        {color: #d7cfcf;}
+.u-c-888          {color: #888888;}
+
+.u-bg-theme       {background-color: rgb(19, 109, 184)}
+
+.u-border         {border: 1rpx solid #434343;}
+

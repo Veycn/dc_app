@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="container">
+  <s-button btn-text="确定" font-color="#fff" bg-color="#cccccc"></s-button>
+</view>
