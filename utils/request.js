@@ -1,16 +1,34 @@
-const BASE = ''
-
+const BASE = 'https://www.shenfu.online/sfeduWx/api'
+const header = {
+  'content-type': 'application/json'
+}
 
 function request (url, method, data, callback) {
-  wx.request({
-    url: BASE + url,
-    method,
-    data,
-    success: res => {
-      if (res.status === 0) {
-        callback(res.data)
-      }
+  wx.showLoading()
+  getHeader().then(token => {
+    if (token) {
+      header.Authorization = 'Bearer ' + token                            
+    } else {
+      return console.error("token get faild!")
     }
+    wx.request({
+      url: BASE + url,
+      method: method,
+      data: data,
+      header: header,
+      success: result => { 
+        wx.hideLoading()
+        if(result.status === 0){
+          callback(result.data)
+        } else {
+          wx.showToast({
+            title: result.msg,
+            icon: 'none',
+            mask: true
+          })
+        }
+      }
+    })
   })
 }
 
@@ -26,7 +44,8 @@ function getHeader () {
   })
 }
 
-module.exports.getHeader = getHeader
-module.exports.request = request
-
+module.exports = {
+  getHeader: getHeader,
+  request: request
+}
 
