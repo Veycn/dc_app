@@ -1,13 +1,38 @@
 {
   "pages": [
+    "pages/detect/index",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/customize/index",
+    "pages/mycourse/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/detect/index",
+        "text": "认知检测",
+        "iconPath": "assets/icon/a.png",
+        "selectIconPath": "assets/icon/a.png"
+      },
+      {
+        "pagePath": "pages/customize/index",
+        "text": "定制课程",
+        "iconPath": "assets/icon/c.png",
+        "selectIconPath": "assets/icon/c_active.png"
+      },
+      {
+        "pagePath": "pages/mycourse/index",
+        "text": "我的课程",
+        "iconPath": "assets/icon/b.png",
+        "selectIconPath": "assets/icon/b_active.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }
