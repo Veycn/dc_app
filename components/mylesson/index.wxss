@@ -1,0 +1,58 @@
+/* components/mylesson/index.wxss */
+.lesson {
+  width: 696rpx;
+  height: 340rpx;
+  margin: 10rpx auto;
+  border: 1px dashed #ccc;
+  position: relative;
+}
+.edi {
+  position: absolute;
+  left: 0;
+  top:0;
+  font-size: 20rpx;
+}
+.edi>text {
+  display: block;
+  width: 79rpx;
+  height: 32rpx;
+  text-align: center;
+  background-color: #A4D3EE;
+}
+.title {
+  width: 664rpx;
+  margin: 40rpx auto;
+  font-size: 36rpx;
+}
+.desc {
+  display: flex;
+  justify-content: space-between;
+  width: 484rpx;
+  margin: 20rpx auto 0;
+  align-items:center;
+}
+.desc image {
+  width: 82rpx;
+  height: 82rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid red;
+}
+.study {
+  display: flex;
+  width: 664rpx;
+  margin: 10px auto 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.study text:first-child {
+  color: #B5B5B5;
+  font-size: 24rpx;
+}
+.study text:last-child {
+  background-color:  #A4D3EE;
+  width: 166rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  text-align: center;
+}

@@ -1,2 +1,4 @@
 <!--pages/mycourse/index.wxml-->
-<text>pages/mycourse/index.wxml</text>
+<s-mylesson  name="马云" num="18" pic="/assets/icon/pic.png"/>
+<s-grcourse  name="马云" num="18" pic="/assets/icon/pic.png"/>
+
