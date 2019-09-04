@@ -1,0 +1,5 @@
+/* pages/gotoclass/index.wxss */
+video {
+  width: 100%;
+  height: 381rpx;
+}
