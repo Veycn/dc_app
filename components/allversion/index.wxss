@@ -1,0 +1,27 @@
+/* components/allversion/index.wxss */
+.all-wrap {
+  width: 645rpx;
+  min-height: 40rpx;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start; */
+}
+.all-item {
+  float: left;
+  width: 200rpx;
+  line-height: 60rpx;
+  margin-top: 18rpx;
+  text-align: center;
+  border: 1rpx dashed #ccc;
+}
+.all-item-left {
+  margin-left: 42rpx;
+}
+.all-item-right {
+  margin-left: 188rpx;
+}
+.active {
+  background-color: rgb(19, 109, 184);
+  color: #ffffff;
+}

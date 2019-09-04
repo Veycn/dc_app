@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/cgrade/index",
     "pages/detect/index",
     "pages/index/index",
     "pages/logs/logs",

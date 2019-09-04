@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "s-tag": "/components/tag/index",
+    "s-allgrades": "/components/allgrades/index",
+    "s-allsubjects": "/components/allsubjects/index",
+    "s-allversion": "/components/allversion/index"
+  },
+  "disableScroll":true
+}
