@@ -37,3 +37,7 @@ page {
 
 .u-border         {border: 1rpx solid #434343;}
 
+.active {
+  background-color: rgb(19, 109, 184);
+  color: #ffffff;
+}

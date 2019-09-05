@@ -1,1 +1,14 @@
 /* pages/customize/index.wxss */
+.desc {
+  width: 538rpx;
+  margin: 50rpx auto;
+}
+.desc>text {
+  text-align: center;
+  width:100%;
+  display: block;
+}
+swiper image {
+  width: 100%;
+  height: 392rpx;
+}

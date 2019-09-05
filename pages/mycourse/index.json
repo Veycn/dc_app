@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "s-mylesson":"/components/mylesson/index",
+    "s-grcourse":"/components/grcourse/index"
+  },
+  "navigationBarTitleText":"我的课程"
 }

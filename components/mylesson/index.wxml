@@ -1,0 +1,15 @@
+<!--components/mylesson/index.wxml-->
+<view class='lesson' bindtap='toclass'>
+  <view class='edi'>
+    <text>必修一</text>
+  </view>
+  <view class='title'>一元一次方程解法与一元二次方程解法的比较分析</view>
+  <view class='desc'>
+  <image src='{{pic}}'></image>{{name}}
+    <text>{{num}} 课时</text>
+  </view>
+  <view class='study'>
+  <text>2.1指数函数</text>
+  <text>进入学习</text>
+  </view>
+</view>
