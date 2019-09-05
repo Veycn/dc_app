@@ -3,3 +3,18 @@ video {
   width: 100%;
   height: 381rpx;
 }
+.classnum {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+.classnum text {
+  padding-left: 20rpx;
+  width: 270rpx;
+  height: 124rpx;
+  border: 1px solid #ccc;
+  border-radius:10rpx;
+  line-height: 124rpx;
+  margin: 30rpx;
+}

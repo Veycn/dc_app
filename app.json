@@ -5,11 +5,12 @@
     "pages/logs/logs",
     "pages/customize/index",
     "pages/mycourse/index",
-    "pages/gotoclass/index"
+    "pages/gotoclass/index",
+    "pages/buycourse/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#4682B4",
+    "navigationBarBackgroundColor": "#0f6bac",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },

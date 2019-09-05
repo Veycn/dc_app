@@ -1,28 +1,27 @@
 <!--components/grcourse/index.wxml拼课-->
-<view class='lesson'>
+<view class='lesson' bindtap="buycourse">
   <view class='edi'>
-    <text>必修一</text>
+    <text>{{edi}}</text>
   </view>
-  <view class='title'>一元一次方程解法与一元二次方程解法的比较分析</view>
+  <view class='title'>{{title}}</view>
   <view class='desc'>
-  <image src='{{pic}}'></image>{{name}}
+    <image src='{{tx}}'></image>{{name}}
     <text>{{num}} 课时</text>
   </view>
   <view class='study'>
-  <text>2.1指数函数</text>
-  <text bindtap='cancel'>取消课程</text>
+    <text>{{point}}</text>
+    <text catchtap="{{cancel}}">{{lesscancel}}</text>
   </view>
   <view class='{{mask}}'>
-  <view class='courecancel'>
-  <image src='/assets/icon/cuowu.png' bindtap='cancelpic'></image>
-  <text class='hint'>是否取消课程</text>
-  <text class='confirm' bindtap='confirm'>是</text>
-  <text class='deny' bindtap='cancelpic'>否</text>
+    <view class='courecancel'>
+      <image src='/assets/icon/cuowu.png' catchtap='cancelpic'></image>
+      <text class='hint'>是否取消课程</text>
+      <text class='confirm' catchtap='confirm'>是</text>
+      <text class='deny' catchtap='cancelpic'>否</text>
+    </view>
   </view>
-  </view>
-  <view class='time'>
-  <text>剩余<text class='red'>12:11:53:9</text></text>
-   <text>还差<text class='red'>1</text>人拼团成功</text>
+  <view class='{{time}}'>
+    <text>剩余<text class='red'>{{retime}}</text></text>
+    <text>还差<text class='red'>{{groupneed}}</text>人拼团成功</text>
   </view>
 </view>
-
