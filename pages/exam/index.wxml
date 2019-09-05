@@ -1,0 +1,53 @@
+<!--pages/exam/index.wxml-->
+<view class="clock-container">
+	<view class="{{ isShowExitModal ? 'show':'hide' }}">
+		<s-exitmodal bindhideExitModal="hideExitModal" />
+	</view>
+	<block wx:if="{{ isShowAnswerCard }}">
+		<s-answercard bindhideAnswerCard="hideAnswerCard">
+			<s-topicsbtn
+			 slot="scantron"
+			 isFinshed="{{ userAnswers }}"
+			 bindrediretTopic="rediretTopic"
+			 scantron-list="{{ topicsList }}"
+			/>
+		</s-answercard>
+	</block>
+
+	<view class="clock-list">
+		<view class="timer">
+			<s-countdown initDuration='30' />
+		</view>
+		<view class="answer-card" bindtap="showAnswerCard">
+			({{ currentTopicIndex+1 }}/{{ topicsLength }})
+			<text>答题卡</text>
+		</view>
+		<button class="pass" hover-class="button-hover" bindtap="passCurrentTopic">
+			pass
+		</button>
+	</view>
+
+	<view class="topic-wrap">
+		<swiper bindchange="nextTopic" current="{{ currentTopicIndex }}">
+			<block wx:for="{{ topicsList }}" wx:key="{{ index }}">
+				<swiper-item>
+					<view>
+						<view class="topic-img">
+							<image mode="widthFix" src="{{ item.path }}" />
+						</view>
+						<view class="btn-wrap">
+							<block wx:for="{{ answerLists }}" wx:key="{{ index }}">
+								<view class="btn-item {{ choosedTopicIndex===index?'active':'' }}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
+							</block>
+						</view>
+					</view>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+
+	<view bindtap="submitUserAnswer" class="submit u-bg-theme u-c-white {{ isLastTopic ? 'show' : 'hide'}}">
+		提交
+	</view>
+</view>
+
