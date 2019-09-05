@@ -41,3 +41,10 @@ page {
   background-color: rgb(19, 109, 184);
   color: #ffffff;
 }
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}

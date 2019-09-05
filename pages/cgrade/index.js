@@ -64,6 +64,18 @@ Page({
     if(this.data.isStartStudy) {
       console.log(`选中的信息是:`)
       console.log(this.data.choosedList)
+      wx.navigateTo({
+        url: '../exam/index',
+        success: function(res){
+          // success
+        },
+        fail: function() {
+          // fail
+        },
+        complete: function() {
+          // complete
+        }
+      })
     }
   },
 

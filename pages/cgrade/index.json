@@ -1,4 +1,6 @@
 {
+  "navigationBarTitleText": "深辅",
+  "navigationBarBackgroundColor": "#136DB8",
   "usingComponents": {
     "s-tag": "/components/tag/index",
     "s-allgrades": "/components/allgrades/index",

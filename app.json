@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/cgrade/index",
-    "pages/detect/index",
+    "pages/exam/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/customize/index",
-    "pages/mycourse/index"
+    "pages/mycourse/index",
+    "pages/detect/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
