@@ -1,17 +1,14 @@
 {
   "pages": [
+    "pages/exam/index",
     "pages/graph/index",
     "pages/cgrade/index",
-    "pages/exam/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/customize/index",
     "pages/mycourse/index",
-<<<<<<< HEAD
-    "pages/gotoclass/index"
-=======
+    "pages/gotoclass/index",
     "pages/detect/index"
->>>>>>> feature-exam
   ],
   "window": {
     "backgroundTextStyle": "light",
