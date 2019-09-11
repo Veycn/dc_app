@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/pay/index",
     "pages/exam/index",
     "pages/graph/index",
     "pages/cgrade/index",

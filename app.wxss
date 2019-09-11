@@ -26,19 +26,21 @@ page {
 .u-f36 {font-size: 36rpx;}
 .u-f38 {font-size: 38rpx;}
 .u-f40 {font-size: 40rpx;}
+.u-f50 {font-size: 50rpx;}
 
 .u-c-white        {color: #ffffff;}
 .u-c-black        {color: #000000;}
 .u-c-35           {color: #353535;}
 .u-c-lgrey        {color: #d7cfcf;}
 .u-c-888          {color: #888888;}
+.u-c-b5           {color: #b5b5b5;}
 
 .u-bg-theme       {background-color: rgb(19, 109, 184)}
 
 .u-border         {border: 1rpx solid #434343;}
 
 .active {
-  background-color: rgb(19, 109, 184);
+  background-color: rgb(19, 109, 184)!important;
   color: #ffffff;
 }
 .show {

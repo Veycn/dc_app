@@ -1,2 +1,5 @@
 <!--pages/detect/index.wxml-->
-<text>pages/detect/index.wxml</text>
+
+<view class="detect">
+    <view class="chapter">第一章</view>
+</view>
