@@ -7,7 +7,6 @@ let allSubjects = {
   first_pro: ['数学', '语文', '英语','化学'],
   second_pro: ['数学', '语文', '英语'],
   third_pro: ['数学', '语文', '英语', '化学', '物理'],
-
 }
 let allVersion = ['必修一人教A版', '必修二人教A版', '必修三人教A版']
 

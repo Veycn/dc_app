@@ -6,10 +6,48 @@
     position: relative;
 }
 
-
-
 .detect .chapter{
     position: absolute;
     width: 200rpx;
-    height: 200rpx;
+    height: 400rpx;
+    border: 2rpx solid #ccc;
+    border-left: none;
+    border-bottom-right-radius: 200rpx;
+    border-top-right-radius: 200rpx;
+    line-height: 400rpx;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.detect .point {
+    width: 160rpx;
+    height: 160rpx;
+    border: 2rpx solid #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 160rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(80rpx);
+}
+
+
+@keyframes wave {
+    0% {
+
+    }
+    25% {
+
+    }
+    50% {
+        
+    }
+    75% {
+        
+    }
+    100% {
+        
+    }
 }

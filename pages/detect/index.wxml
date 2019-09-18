@@ -1,5 +1,10 @@
 <!--pages/detect/index.wxml-->
 
 <view class="detect">
-    <view class="chapter">第一章</view>
+    <view class="chapter" catchtap="changeChapter">
+        <text>第<br />一<br />章</text>
+        <view class="point" wx:for="{{list}}" wx:key="" catchtap="toDetect" data-type="{{item}}"
+            style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">{{item.name}}
+        </view>
+    </view>
 </view>
