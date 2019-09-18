@@ -17,12 +17,13 @@
   width: 79rpx;
   height: 32rpx;
   text-align: center;
-  background-color: #A4D3EE;
+  background-color: #78b5cf;
 }
 .title {
   width: 664rpx;
   margin: 40rpx auto;
   font-size: 36rpx;
+  height: 90rpx;
 }
 .desc {
   display: flex;
@@ -50,7 +51,7 @@
   font-size: 24rpx;
 }
 .study text:last-child {
-  background-color:  #A4D3EE;
+  background-color:  #78b5cf;
   width: 166rpx;
   height: 62rpx;
   line-height: 62rpx;
