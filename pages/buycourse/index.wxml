@@ -3,31 +3,26 @@
   <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400"
     controls></video>
 </view>
-<view class="introduce">
+<view class="introduce" wx:for="{{list}}" wx:key="{{index}}">
   <view class="title">
-    <text>课程介绍</text>
+    <text>{{item.title}}</text>
   </view>
-  <text>本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍
-  本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍
-  本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍
-  本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍
-  本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍
-  本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍</text>
+  <text>{{item.desc}}</text>
 </view>
-<view class="price">
+<view class="price" wx:for="{{list}}" wx:key="{{index}}">
  <view class="individual">
- 单独购买 <text class="black">9.8</text>元
+ 单独购买 <text class="black">{{item.indivi}}</text>元
  </view>
  <view class="group">
  <view class="pinke">
-  拼课 <text class="black">1.9</text>元
+  拼课 <text class="black">{{item.group}}</text>元
  </view>
 
 <view class="remain">
- 还差<text class="black">3</text>人
+ 还差<text class="black">{{item.groupneed}}</text>人
 </view>
 <view class="time">
-倒计时<text class="black">24:00:00</text>
+倒计时<text class="black">{{item.time}}</text>
 </view>
  
  </view>

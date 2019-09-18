@@ -1,5 +1,5 @@
 <!--components/grcourse/index.wxml拼课-->
-<view class='lesson' bindtap="buycourse">
+<view class='lesson' catchtap="{{buycourse}}">
   <view class='edi'>
     <text>{{edi}}</text>
   </view>

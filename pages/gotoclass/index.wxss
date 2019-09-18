@@ -1,7 +1,12 @@
 /* pages/gotoclass/index.wxss */
+swiper {
+  width: 100%;
+  height: 400rpx;
+}
+
 video {
   width: 100%;
-  height: 381rpx;
+  height: 400rpx;
 }
 .classnum {
   display: flex;
