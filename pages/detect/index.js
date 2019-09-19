@@ -21,6 +21,11 @@ Page({
    */
   onLoad: function (options) {
     this.calculatePos()
+    wx.getUserInfo({
+      success: res => {
+        console.log(res)
+      }
+    })
   },
 
   calculatePos: function () {
@@ -35,7 +40,7 @@ Page({
       res.push(pos)
     }
     console.log(res)
-     this.setData({pos: res})
+    this.setData({pos: res})
   },
   toDetect: function (e) {
     console.log(e)

@@ -1,4 +1,29 @@
-<!--index.wxml-->
-<view class="container">
-  <s-button btn-text="确定" font-color="#fff" bg-color="#cccccc"></s-button>
+<!--pages/cgrade/index.wxml-->
+<view class='cg-wrap'>
+	<view class="tag-grade">
+		<s-tag tagText="年级" />
+		<view class="ctext u-f24 {{choosed !== -1 ? 'hide' : ''}}">
+			<image src="../../assets/icon/c_grade.png" />
+			请选择你的年级
+		</view>
+		<view class="allgrades">
+			<s-allgrades bindchoosedType="changeGrade" />
+		</view>
+	</view>
+	<view class="tag-subject">
+		<s-tag tagText="科目" />
+		<view class="allgrades">
+			<s-allsubjects bindchoosedSubject="choosedSubject" currentSubjects="{{ currentSubjects }}" isTap="{{isChoosed.subject}}" />
+		</view>
+	</view>
+	<view class="tag-book">
+		<s-tag tagText="教材" />
+    <view class="allgrades u-f28">
+			<s-allversion bindchoosedVersion="choosedVersion" isTap="{{isChoosed.version}}"/>
+		</view>
+	</view>
+  <view class="start-study {{ isStartStudy?'active':'' }}" bindtap="startStudy">
+    开启学习之旅
+  </view>
 </view>
+

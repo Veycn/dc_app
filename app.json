@@ -1,17 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/login/index",
     "pages/detect/index",
     "pages/pay/index",
     "pages/exam/index",
     "pages/graph/index",
-    "pages/cgrade/index",
-    
     "pages/logs/logs",
     "pages/customize/index",
     "pages/mycourse/index",
     "pages/gotoclass/index"
-    ],
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#4682B4",
