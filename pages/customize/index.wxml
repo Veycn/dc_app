@@ -1,12 +1,6 @@
 <!--pages/customize/index.wxml-->
-<<<<<<< HEAD
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}" wx:key="index.id">
-=======
-<swiper indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
->>>>>>> feature-lessons
     <swiper-item>
       <image src="{{item}}" class="slide-image" />
     </swiper-item>

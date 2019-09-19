@@ -9,11 +9,7 @@
     "pages/customize/index",
     "pages/mycourse/index",
     "pages/gotoclass/index",
-<<<<<<< HEAD
     "pages/detect/index"
-=======
-    "pages/buycourse/index"
->>>>>>> feature-lessons
   ],
   "window": {
     "backgroundTextStyle": "light",
