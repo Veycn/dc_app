@@ -5,19 +5,50 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    list: [
+      {id: 1, name: '1.1 xxxx'},
+      {id: 2, name: '1.2 xxxx'},
+      {id: 3, name: '1.3 xxxx'},
+      {id: 4, name: '1.4 xxxx'},
+      {id: 4, name: '1.5 xxxx'},
+      {id: 4, name: '1.6 xxxx'},
+    ],
+    pos: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.calculatePos()
   },
 
+  calculatePos: function () {
+    const { list } = this.data, base = 450, rate = 0.017453293, res = []
+    let len = list.length, deg = 180 / (len + 1)
+    console.log(deg)
+    if(len === 1) {return this.setData({pos: [{x: 450, y: 0}]})}
+    for (var i = 0; i < len; i++) {
+      let pos = {}
+      pos.x = Math.ceil(base * Math.cos(deg * rate * i - 45))
+      pos.y = Math.ceil(base * Math.sin(deg * rate * i - 45))
+      res.push(pos)
+    }
+    console.log(res)
+     this.setData({pos: res})
+  },
+  toDetect: function (e) {
+    console.log(e)
+    wx.navigateTo({
+      url: "/pages/exam/index"
+    })
+  },
+  changeChapter: function () {
+    
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
-   */
+   */ 
   onReady: function () {
 
   },

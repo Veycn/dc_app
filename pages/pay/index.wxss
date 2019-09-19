@@ -1,0 +1,62 @@
+/* pages/pay/index.wxss */
+
+.pay {
+    height: 100%;
+}
+.pay .main {
+    width: 646rpx;
+    height: 265rpx;
+    border: 1rpx solid #ccc;
+    margin: 64rpx auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price {
+		text-align: center;
+		padding-top: 20rpx;
+}
+
+.course-info {
+    padding: 36rpx;
+    box-sizing: border-box;
+}
+
+.course-info .content{
+    display: flex;
+		justify-content: space-between;
+		margin-top: 28rpx;
+}
+
+.label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.label .line{
+	width: 157rpx;
+	height: 2rpx;
+	background: #b5b5b5;
+}
+.label .payway-tip{
+	margin: 0 10rpx;
+}
+.pay-way {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 100rpx;
+}
+.pay-way .way{
+	width: 230rpx;
+	height: 80rpx;
+	margin: 10px;
+	background-color: #fff;
+	line-height: 80rpx;
+}
+.btn {
+	position: absolute;
+	bottom: 0;
+}

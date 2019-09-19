@@ -1,7 +1,12 @@
 {
   "pages": [
-    "pages/detect/index",
     "pages/index/index",
+    "pages/detect/index",
+    "pages/pay/index",
+    "pages/exam/index",
+    "pages/graph/index",
+    "pages/cgrade/index",
+    
     "pages/logs/logs",
     "pages/customize/index",
     "pages/mycourse/index",

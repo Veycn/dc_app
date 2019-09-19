@@ -1,0 +1,16 @@
+/* components/coudown/index.wxss */
+.img{
+	width: 34rpx;
+}
+.item-one{
+	width: 120rpx;
+	line-height: 34rpx;
+	display:flex;
+	justify-content: flex-start;
+}
+.item-text{
+	width: 57rpx;
+	line-height: 34rpx;
+	color:#626262;
+	margin-left: 8rpx;
+}

@@ -1,0 +1,21 @@
+/* components/allgrades/index.wxss */
+.all-wrap {
+  width: 645rpx;
+  min-height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.all-item {
+  width: 160rpx;
+  line-height: 60rpx;
+  margin-top: 18rpx;
+  margin-left: 49rpx;
+  text-align: center;
+  border: 1rpx dashed #ccc;
+}
+.active {
+  background-color: rgb(19, 109, 184);
+  color: #ffffff;
+}

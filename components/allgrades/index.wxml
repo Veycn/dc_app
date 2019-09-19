@@ -1,0 +1,9 @@
+<!--components/allgrades/index.wxml-->
+<view class="all-wrap">
+	<block wx:for="{{ allGrades }}" wx:key="index">
+		<view bindtap="chooseGrade" data-index="{{ index }}" class="all-item {{ choosed === index ? 'active' : '' }}">
+			{{ item }}
+		</view>
+	</block>
+</view>
+

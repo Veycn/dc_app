@@ -1,0 +1,9 @@
+<!--components/allsubjects/index.wxml-->
+<view class="all-wrap">
+  <block wx:for="{{ currentSubjects }}"  wx:key="index">
+    <view class="all-item {{ choosed === index ? 'active' : '' }}" bindtap="chooseSubject" data-index="{{ index }}">
+      {{ item }}
+    </view>
+  </block>
+</view>
+

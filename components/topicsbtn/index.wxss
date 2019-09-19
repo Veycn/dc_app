@@ -1,0 +1,27 @@
+/* components/topicsbtn/index.wxss */
+.container{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 50rpx;
+}
+.container .default {
+  display: inline-block;
+  width: 100rpx;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 36rpx;
+  line-height: 100rpx;
+  margin: 0 15rpx;
+  margin-bottom: 20rpx;
+  font-family: 'Adobe Heiti Std R';
+  border: 1px solid rgba(230,230,230,1);
+}
+.init {
+  background-color: #ffffff;
+  color: #626262;
+}
+
+.active {
+  background-color: rgb(19, 109, 184);
+  color: #ffffff;
+}

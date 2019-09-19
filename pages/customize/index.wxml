@@ -8,6 +8,5 @@
   </block>
 </swiper>
 <view class='desc u-f30'>
-<text>检测后，深辅会为你推荐免费的定制课程快去检测吧</text>
+  <text>检测后，深辅会为你推荐免费的定制课程快去检测吧</text>
 </view>
-
