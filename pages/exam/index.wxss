@@ -46,7 +46,7 @@
 }
 .topic-wrap {
 	width: 100%;
-	height: 888rpx;
+	height: 1334rpx;
 }
 .topic-wrap swiper {
 	height: 100%;
@@ -58,7 +58,7 @@
 	width: 640rpx;
 	height: 120rpx;
 	display: flex;
-	margin: 454rpx auto 0;
+	margin: 50rpx auto 0;
 	justify-content: space-between;
 	align-items: center;
 }

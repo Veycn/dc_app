@@ -31,6 +31,9 @@
     left: 0;
     top: 0;
     transform: translateY(80rpx);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 

@@ -9,7 +9,8 @@
     "pages/logs/logs",
     "pages/customize/index",
     "pages/mycourse/index",
-    "pages/gotoclass/index"
+    "pages/gotoclass/index",
+    "pages/buycourse/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

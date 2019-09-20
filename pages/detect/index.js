@@ -7,27 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [
-      {id: 1, name: '1.1 xxxx'},
-      {id: 2, name: '1.2 xxxx'},
-      {id: 3, name: '1.3 xxxx'},
-      {id: 4, name: '1.4 xxxx'},
-      {id: 4, name: '1.5 xxxx'},
-      {id: 4, name: '1.6 xxxx'},
-    ],
+    list: [],
     pos: [],
     isToastShow: false,
     chapters: [],
     activeChapter: '',
-    activeChapterId: 0
+    activeChapterId: 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.calculatePos()
-    request('')
+    // request('')
     request('api/textbook/getTextbookByGradeIdAndSubjectId', 'get', {gradeId: 1, subjectId: 1}, res => {
       console.log(res)
     })
@@ -35,6 +27,7 @@ Page({
       console.log(res)
       this.setData({chapters: res.data, activeChapter: res.data[0].chapter.substring(0, 3)})
     })
+    this.getSections()
   },
   
   calculatePos: function () {
@@ -53,9 +46,8 @@ Page({
   },
   toDetect: function (e) {
     console.log(e)
-    wx.navigateTo({
-      url: "/pages/exam/index"
-    })
+    let { id } = e.currentTarget.dataset.type
+    wx.navigateTo({url: `/pages/exam/index?id=${id}`})
   },
   changeChapter: function (e) {
     console.log(e)
@@ -72,7 +64,8 @@ Page({
   getSections () {
     request('api/section/getSectionOfUser', 'get', {chapterId: +this.data.activeChapterId}, res => {
       console.log(res)
-      this.setData({sections: res.data})
+      this.setData({list: res.data})
+      this.calculatePos()
     }, 'form')
   },
   /**

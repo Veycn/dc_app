@@ -2,17 +2,17 @@
 
 <view class="detect">
     <view class="chapter" catchtap="changeChapter">
-        <text catchtap="openToast">{{activeChapter}}</text>
-        <view class="point" wx:for="{{list}}" wx:key="" catchtap="toDetect" data-type="{{item}}"
-            style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">{{item.name}}
+        <text catchtap="openToast" class="u-f30">{{activeChapter}}</text>
+        <view class="point u-f20" wx:for="{{list}}" wx:key="index" catchtap="toDetect" data-type="{{item}}"
+            style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">{{item.section}}
         </view>
     </view>
     <view class="toast" hidden="{{!isToastShow}}">
         <view class="content">
             <image class="close" src="/assets/icon/exit.png" catchtap="closeToast"></image>
             <view class="list">
-                <block wx:for="{{chapters}}"> 
-                    <view class="list-item " wx:key="index" catchtap="changeChapter" data-c="{{item.chapter}}" data-i="{{item.id}}">{{item.chapter}}</view>
+                <block wx:for="{{chapters}}" wx:key="index"> 
+                    <view class="list-item u-f30"  catchtap="changeChapter" data-c="{{item.chapter}}" data-i="{{item.id}}">{{item.chapter}}</view>
                 </block>
             </view>
         </view>

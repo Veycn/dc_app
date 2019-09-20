@@ -3,6 +3,16 @@ const header = {
   'content-type': 'application/json'
 }
 
+
+/**
+ * 
+ * @param {string}   url          请求地址: 'api/...'
+ * @param {string}   method       'get' or 'post'
+ * @param {object}   data         请求参数, {a:"", b:1} 的形式
+ * @param {function} callback     数据返回回调函数
+ * @param {string}   type         数据提交类型: 如果需要以form形式提交, 传递参数 'form' 即可, json 格式不需要传递此参数
+ */
+
 function request (url, method, data, callback, type='json') {
   wx.showLoading()
   getHeader().then(token => {
@@ -31,6 +41,10 @@ function request (url, method, data, callback, type='json') {
             mask: true
           })
         }
+      },
+      // 防止请求不成功一直 loading
+      complete: () => {
+        wx.hideLoading()
       }
     })
   }) 

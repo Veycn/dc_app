@@ -1,4 +1,6 @@
 // pages/exam/index.js
+const { request } = require('../../utils/request.js')
+
 Page({
 
   /**
@@ -61,13 +63,13 @@ Page({
       choosedTopicIndex
     })
 
-    let userAnswer = this.data.answerLists[choosedTopicIndex]
+    // let userAnswer = this.data.answerLists[choosedTopicIndex]
     let currentTopicIndex = this.data.currentTopicIndex
 
     let submitAnswer = this.data.submitAnswer
     let obj = {}
-    obj.id = currentTopicIndex
-    obj.userAnswer = userAnswer
+    obj.questionId = currentTopicIndex
+    obj.userAnswer = choosedTopicIndex + 1
     submitAnswer.push(obj)
     this.setData({
       submitAnswer
@@ -106,6 +108,8 @@ Page({
   submitUserAnswer() {
     let submitAnswer = this.data.submitAnswer
     console.log(submitAnswer)
+    // dealtype 2
+    // request("", 'post', )
   },
   // 滑动至下一题或上一题
   nextTopic(e) {
@@ -148,32 +152,21 @@ Page({
     })
   },
   // 得到题目集合
-  getTopicsList() {
-    let topicsList = [
-      {
-        path: "../../assets/icon/topic.jpg"
-      },
-      {
-        path: "../../assets/icon/topic.jpg"
-      },
-      {
-        path: "../../assets/icon/topic.jpg"
-      },
-      {
-        path: "../../assets/icon/topic.jpg"
-      }
-    ]
-    let topicsLength = topicsList.length
-    this.setData({
-      topicsList,
-      topicsLength
-    })
+  getTopicsList(id) {
+      request('api/exam/getExamOfUser', 'get', {knowledgeId: id}, res => {
+      console.log(res.data)
+      this.setData({
+        topicsList: res.data.questionList,
+        topicsLength: res.data.questionList.length
+      })
+    }, 'form')
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getTopicsList()
+    console.log(options)
+    this.getTopicsList(options.id)
   },
 
   /**
