@@ -64,13 +64,11 @@ Page({
     })
     Promise.all([codeP, userInfoP]).then(() => {
       this.userLogin()
-      console.log(111)
     })
   },
   userLogin: function () {
     const { code } = this.data
     const { nickName, gender, city, province, country, avatarUrl	} = this.data.userInfo
-    console.log(2222)
     // request('api/userAccount/login', 'post', {
     //   code, nickName, gender, city, province, country, avatarUrl
     // }, (res) => {
