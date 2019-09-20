@@ -64,25 +64,48 @@ Page({
     })
     Promise.all([codeP, userInfoP]).then(() => {
       this.userLogin()
+      console.log(111)
     })
   },
   userLogin: function () {
     const { code } = this.data
     const { nickName, gender, city, province, country, avatarUrl	} = this.data.userInfo
-    request('api/userAccount/login', 'post', {
-      code, nickName, gender, city, province, country, avatarUrl
-    }, (res) => {
-      console.log(res)
-      if(res.status === 200){
-        wx.setStorage({
-          key: 'userToken',
-          data: res.data.token
-        })
-        this.setData({loginInfo: res.data})
+    console.log(2222)
+    // request('api/userAccount/login', 'post', {
+    //   code, nickName, gender, city, province, country, avatarUrl
+    // }, (res) => {
+    //   console.log(res)
+    //   if(res.status === 200){
+    //     wx.setStorage({
+    //       key: 'userToken',
+    //       data: res.data.token
+    //     })
+    //     this.setData({loginInfo: res.data})
+    //   }
+    //   setTimeout(() => {
+    //     wx.navigateTo({url: '/pages/index/index'})
+    //   }, 1500)
+    // })
+    wx.request({
+      url: "https://www.shenfu.online/sfeduWx/api/userAccount/login",
+      method: 'POST',
+      data: {code, nickName, gender, city, province, country, avatarUrl},
+      success: res => {
+        console.log(res)
+        if(res.statusCode === 200){
+          wx.showToast({title: '登录成功!', icon: 'none'})
+          wx.setStorage({ 
+            key: 'userToken',
+            data: res.data.data.token
+          })
+          this.setData({loginInfo: res.data})
+          setTimeout(() => {
+            wx.navigateTo({url: '/pages/index/index'})
+          }, 1500)
+        }else {
+          wx.showToast({title: '登录失败!', icon: 'none'})
+        }
       }
-      setTimeout(() => {
-        wx.navigateTo({url: '/pages/index/index'})
-      }, 1500)
     })
   },
   getUserInfo: function (e) {
@@ -92,5 +115,6 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+    
   }
 })

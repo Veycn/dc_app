@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/detect/index",
     "pages/index/index",
-    "pages/login/index",
     "pages/pay/index",
     "pages/exam/index",
     "pages/graph/index",

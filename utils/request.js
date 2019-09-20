@@ -19,11 +19,12 @@ function request (url, method, data, callback, type='json') {
     if (token) {
       header.token = token                            
     } else {
-      return console.error("token get faild!")
+       console.error("token get faild!")
     }
     if(type === 'form'){
       header['content-type'] = 'application/x-www-form-urlencoded'
     }
+    console.log(1111)
     wx.request({
       url: BASE + url,
       method: method,
