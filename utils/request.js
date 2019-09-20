@@ -3,13 +3,16 @@ const header = {
   'content-type': 'application/json'
 }
 
-function request (url, method, data, callback) {
+function request (url, method, data, callback, type='json') {
   wx.showLoading()
   getHeader().then(token => {
     if (token) {
       header.token = token                            
     } else {
       return console.error("token get faild!")
+    }
+    if(type === 'form'){
+      header['content-type'] = 'application/x-www-form-urlencoded'
     }
     wx.request({
       url: BASE + url,
@@ -23,7 +26,7 @@ function request (url, method, data, callback) {
         } else {
           console.log(result)
           wx.showToast({
-            title: result.data.msg || '请求异常',
+            title: result.data.message || '请求异常',
             icon: 'none',
             mask: true
           })

@@ -2,9 +2,19 @@
 
 <view class="detect">
     <view class="chapter" catchtap="changeChapter">
-        <text>第<br />一<br />章</text>
+        <text catchtap="openToast">{{activeChapter}}</text>
         <view class="point" wx:for="{{list}}" wx:key="" catchtap="toDetect" data-type="{{item}}"
             style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">{{item.name}}
+        </view>
+    </view>
+    <view class="toast" hidden="{{!isToastShow}}">
+        <view class="content">
+            <image class="close" src="/assets/icon/exit.png" catchtap="closeToast"></image>
+            <view class="list">
+                <block wx:for="{{chapters}}"> 
+                    <view class="list-item " wx:key="index" catchtap="changeChapter" data-c="{{item.chapter}}" data-i="{{item.id}}">{{item.chapter}}</view>
+                </block>
+            </view>
         </view>
     </view>
 </view>
