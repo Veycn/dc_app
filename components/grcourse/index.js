@@ -6,14 +6,23 @@ Component({
   properties: {
     num: Number,
     name: String,
-    pic: String
+    tx: String,
+    edi:String,
+    retime:String,
+    title: String,
+    groupneed:Number,
+    point:String
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-      mask:"mask-hidden"
+      mask:"mask-hidden",
+      lesscancel:"取消课程",
+      time:"time",
+      cancel: "cancel",
+      buycourse:"buycourse"
   },
 
   /**
@@ -22,18 +31,35 @@ Component({
   methods: {
     cancel:function(){
       this.setData({
-        mask:"mask"
+        mask:"mask",
+        buycourse:null
       })
     },
     cancelpic(){
       this.setData({
-        mask:"mask-hidden"
+        mask:"mask-hidden",
+        buycourse: "buycourse"
       })
     },
     confirm(){
       this.setData({
         mask: "mask-hidden",
-        
+        lesscancel: "退款中",
+        time:"time-hidden",
+        cancel:null,
+        buycourse: "buycourse"
+      })
+      wx.showToast({
+        title: '24小时内退款',
+        icon:"none",
+        success(){
+          console.log("取消成功")
+        }
+      })
+    },
+    buycourse(){
+      wx.navigateTo({
+        url: '../../pages/buycourse/index'
       })
     }
   }

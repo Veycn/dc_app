@@ -1,4 +1,10 @@
 <!--pages/mycourse/index.wxml-->
-<s-mylesson  name="马云" num="18" pic="/assets/icon/pic.png"/>
-<s-grcourse  name="马云" num="18" pic="/assets/icon/pic.png"/>
+<block wx:for="{{myList}}" wx:key="{{index}}">
+  <s-mylesson name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" edi="{{item.edi}}" point="{{item.point}}" />
+</block>
+
+<block wx:for="{{groupList}}" wx:key="{{index}}">
+  <s-grcourse name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" point="{{item.point}}" edi="{{item.edi}}" groupneed="{{item.groupneed}}" retime="{{item.retime}}" />
+</block>
+
 

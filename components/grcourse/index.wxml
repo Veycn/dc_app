@@ -1,9 +1,9 @@
 <!--components/grcourse/index.wxml拼课-->
-<view class='lesson'>
+<view class='lesson' catchtap="{{buycourse}}">
   <view class='edi'>
-    <text>必修一</text>
+    <text>{{edi}}</text>
   </view>
-  <view class='title'>一元一次方程解法与一元二次方程解法的比较分析</view>
+  <view class='title'>{{title}}</view>
   <view class='desc'>
     <image src='{{pic}}'></image>{{name}}
     <text>{{num}} 课时</text>

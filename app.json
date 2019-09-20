@@ -2,9 +2,6 @@
   "pages": [
     "pages/detect/index",
     "pages/index/index",
-
-    
-    
     "pages/login/index",
     "pages/pay/index",
     "pages/exam/index",
@@ -16,7 +13,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#4682B4",
+    "navigationBarBackgroundColor": "#0f6bac",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },

@@ -5,7 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    groupList: [{
+      courseId:1,
+      num: 18,
+      name: "马云",
+      tx: "/assets/icon/pic.png",
+      edi: "必修一",
+      retime: "24:00:00",
+      title: "一元一次方程解法与一元二次方程解法的比较分析",
+      groupneed: 2,
+      point: "2.1指数函数"
+    }, {
+    courseId: 2,
+      num: 10,
+      name: "俞敏洪",
+      tx: "/assets/icon/pic.png",
+      edi: "必修一",
+      retime: "07:00:00",
+      title: "集合的交，并，补集",
+      groupneed: 5,
+      point: "2.1指数函数"
+    }],
+    myList: [{
+      courseId:3,
+      num: 12,
+      name: "马云",
+      tx: "/assets/icon/pic.png",
+      edi: "必修一",
+      title: "一元一次方程解法与一元二次方程解法的比较分析",
+      point: "2.1指数函数"
+    }]
   },
 
   /**

@@ -6,7 +6,10 @@ Component({
   properties: {
     num: Number,
     name: String,
-    pic: String
+    tx: String,
+    title:String,
+    edi:String,
+    point:String
   },
 
   /**
