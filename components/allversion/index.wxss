@@ -2,6 +2,7 @@
 .all-wrap {
   width: 645rpx;
   min-height: 40rpx;
+  overflow: hidden;
   /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -9,7 +10,7 @@
 }
 .all-item {
   float: left;
-  width: 200rpx;
+  width: 210rpx;
   line-height: 60rpx;
   margin-top: 18rpx;
   text-align: center;
@@ -19,7 +20,7 @@
   margin-left: 42rpx;
 }
 .all-item-right {
-  margin-left: 188rpx;
+  margin-left: 130rpx;
 }
 .active {
   background-color: rgb(19, 109, 184);

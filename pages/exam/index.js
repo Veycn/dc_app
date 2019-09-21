@@ -17,7 +17,19 @@ Page({
     choosedTopicIndex: -1,
     count: [],                // 用来记录用户做过题的数量
     userAnswers: [],          // 记录用户做过的题目
-    submitAnswer: []
+    examTemp: {
+      "dealType": 0,
+      "examId": 0,
+      "examItemTempList": [
+        {
+          "questionId": 0,
+          "userAnswer": 0
+        }
+      ],
+      "examTimes": 0,
+      "knowledgePointId": 0,
+      "timeSpend": 0
+    }
   },
   // 显示退出检测的模态框
   showExitModal() {
@@ -66,14 +78,27 @@ Page({
     // let userAnswer = this.data.answerLists[choosedTopicIndex]
     let currentTopicIndex = this.data.currentTopicIndex
 
-    let submitAnswer = this.data.submitAnswer
+    let submitAnswer = this.data.examTemp.examItemTempList
+    let len = submitAnswer.length
     let obj = {}
     obj.questionId = currentTopicIndex
     obj.userAnswer = choosedTopicIndex + 1
-    submitAnswer.push(obj)
-    this.setData({
-      submitAnswer
-    })
+    for (let i = 0; i < len; ++i) {
+      if (submitAnswer[i].questionId === obj.questionId) {
+        submitAnswer[i].userAnswer = obj.userAnswer
+        this.setData({
+          ['examTemp.examItemTempList']: submitAnswer
+        })
+        break
+      }
+      if (i == len - 1) {
+        submitAnswer.push(obj)
+        this.setData({
+          ['examTemp.examItemTempList']: submitAnswer
+        })
+      }
+    }
+
 
     if (userAnswers.length === 0) {
       let arrLength = this.data.topicsLength
@@ -106,7 +131,7 @@ Page({
   },
   // 提交答案
   submitUserAnswer() {
-    let submitAnswer = this.data.submitAnswer
+    let submitAnswer = this.data.examTemp
     console.log(submitAnswer)
     // dealtype 2
     // request("", 'post', )
@@ -115,7 +140,7 @@ Page({
   nextTopic(e) {
     let userAnswers = this.data.userAnswers
     let currentTopicIndex = e.detail.current
-    if(userAnswers.length !== 0) {
+    if (userAnswers.length !== 0) {
       let choosedTopicIndex = userAnswers[currentTopicIndex]
       this.setData({
         choosedTopicIndex
@@ -144,7 +169,7 @@ Page({
   },
   // 跳过当前题目
   passCurrentTopic() {
-    let currentTopicIndex = this.data.currentTopicIndex+1
+    let currentTopicIndex = this.data.currentTopicIndex + 1
     let length = this.data.topicsLength
     currentTopicIndex = currentTopicIndex < length ? currentTopicIndex : length - 1
     this.setData({
@@ -153,7 +178,7 @@ Page({
   },
   // 得到题目集合
   getTopicsList(id) {
-      request('api/exam/getExamOfUser', 'get', {knowledgeId: id}, res => {
+    request('api/exam/getExamOfUser', 'get', { knowledgeId: id }, res => {
       console.log(res.data)
       this.setData({
         topicsList: res.data.questionList,

@@ -1,6 +1,5 @@
 // pages/cgrade/index.js
 const app = getApp()
-// const { allSubjects, allGrades, allVersion } = require('../../utils/gradesubject.js')
 const { request } = require('../../utils/request.js')
 Page({
 
@@ -11,18 +10,13 @@ Page({
     code: '',
     currentSubjects: [],
     choosed: -1,
-    isChoosed: {
-      grade: true,
-      subject: false,
-      version: false
+    isChoosed: false,
+    getversion: {
+      gradeId: -1,
+      subjectId: -1,
+      textbookId: -1
     },
-    choosedList: {
-      grade: '',
-      subject: '',
-      version: ''
-    },
-    allSubjects: [], 
-    allGrades: [], 
+    allGrades: [],
     allVersion: [],
     isStartStudy: false,
     hasUserInfo: false,
@@ -30,69 +24,61 @@ Page({
     userInfo: {}
   },
 
-  changeGrade: function (e) {
-    let choosed = e.detail.choosed
-    this.choosedGrade(choosed)
-    let currentSubjects = Object.values(this.data.allSubjects).find((value, index) => {
-      return index === choosed ? value : ''
-    })
-    this.setData({
-      currentSubjects,
-      choosed
-    })
-  },
+
   choosedSubject(e) {
-    let choosedSubject = e.detail.choosedSubject
-    let ischoosed = this.data.isChoosed.subject
-    if (ischoosed) {
+    console.log(e)
+    let choosedSubjectId = e.detail.id
+    this.setData({
+      ['getversion.subjectId']: choosedSubjectId
+    })
+    request('api/textbook/getTextbookByGradeIdAndSubjectId', 'get', { gradeId: this.data.getversion.gradeId, subjectId: this.data.getversion.subjectId }, res => {
       this.setData({
-        ['choosedList.subject']: choosedSubject,
-        ['isChoosed.version']: true
+        allVersion: res.data
       })
-    }
+    })
+
   },
   choosedGrade(value) {
-    let choosedGrade = this.data.allGrades[value]
+    console.log(value.detail.id)
+    console.log(value.detail.choosed)
     this.setData({
-      ['choosedList.grade']: choosedGrade,
-      ['isChoosed.subject']: true
+      isChoosed: true,
+      choosed: value.detail.choosed,
+      ['getversion.gradeId']: value.detail.id
     })
   },
   choosedVersion(e) {
-    let index = e.detail.choosed
-    let choosedVersion = allVersion[index]
-    let ischoosed = this.data.isChoosed.version
-    if (ischoosed) {
-      this.setData({
-        ['choosedList.version']: choosedVersion,
-        isStartStudy: true
-      })
-    }
+    this.setData({
+      ['getversion.textbookId']: e.detail.id,
+      isStartStudy: true
+    })
   },
   startStudy() {
-    if(this.data.isStartStudy) {
+    if (this.data.isStartStudy) {
       console.log(`选中的信息是:`)
-      console.log(this.data.choosedList)
-      wx.switchTab({url: '../detect/index',})
+      console.log(this.data.getversion)
+      app.globalData.requestMsg = this.data.getversion
+      wx.switchTab({ url: '../detect/index' })
     }
   },
 
-  getCourseInfo () {
+  getCourseInfo() {
     request('api/userInfo/getGradeAndSubjectList', 'get', {}, res => {
       console.log(res)
+      this.setData({
+        allGrades: res.data.gradeList,
+        currentSubjects: res.data.subjectList
+      })
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { allSubjects } = this.data
-    this.setData({
-      currentSubjects: allSubjects['first']
-    })
     this.getCourseInfo()
   },
-  getUserInfo: function(e) {
+
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -103,11 +89,13 @@ Page({
 
   userLogin: function () {
     const { code } = this.data
-    const { nickName, gender, city, province, country, avatarUrl	} = this.data.userInfo
+    const { nickName, gender, city, province, country, avatarUrl } = this.data.userInfo
     console.log(code, nickName, gender, city, province, country, avatarUrl)
-    request('api/userAccount/login', 'post', {wxUserInfo: {
-      code, nickName, gender, city, province, country, avatarUrl
-    }}, function (res) {
+    request('api/userAccount/login', 'post', {
+      wxUserInfo: {
+        code, nickName, gender, city, province, country, avatarUrl
+      }
+    }, function (res) {
       console.log(res)
     })
   },

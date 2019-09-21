@@ -62,7 +62,8 @@ Page({
         })
       }
     })
-    Promise.all([codeP, userInfoP]).then(() => {
+    Promise.all([codeP, userInfoP]).then((res) => {
+      console.log(res)
       this.userLogin()
     })
   },
