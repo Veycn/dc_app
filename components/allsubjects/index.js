@@ -21,22 +21,25 @@ Component({
    */
   data: {
     allSubjects: [],
-    choosed: -1
+    choosed: -1,
+    id: -1
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    chooseSubject(e) {
+    choosedSubject(e) {
       let index = e.currentTarget.dataset.index
+      let id = e.currentTarget.dataset.idx
+      console.log(index, id)
       if (this.data.isTap) {
         this.setData({
-          choosed: index
+          choosed: index,
+          id
         })
+        this.triggerEvent('choosedSubject', { id:this.data.id })
       }
-      let choosedSubject = this.data.currentSubjects[this.data.choosed]
-      this.triggerEvent('choosedSubject', { choosedSubject })
     }
   }
 })

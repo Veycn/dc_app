@@ -1,5 +1,4 @@
 // components/allversion/index.js
-let { allVersion } = require('../../utils/gradesubject.js')
 Component({
   /**
    * 组件的属性列表
@@ -8,6 +7,10 @@ Component({
     isTap: {
       type: Boolean,
       value: false
+    },
+    allVersion: {
+      type: Array,
+      value: []
     }
   },
 
@@ -15,30 +18,30 @@ Component({
    * 组件的初始数据
    */
   data: {
-    allVersion: [],
-    choosed: -1
+    // allVersion: [],
+    choosed: -1,
+    id: -1
   },
   attached() {
-    this.getAllVersion()
+
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    getAllVersion() {
-      this.setData({
-        allVersion
-      })
-    },
+    
     chooseVersion(e) {
+      console.log(e)
       let choosed = e.currentTarget.dataset.index
+      let id = e.currentTarget.dataset.idx
       if(this.data.isTap) {
         this.setData({
-          choosed
+          choosed,
+          id
         })
       }
-      this.triggerEvent('choosedVersion', {choosed})
+      this.triggerEvent('choosedVersion', {choosed, id})
     }
   }
 })

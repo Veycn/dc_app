@@ -1,40 +1,40 @@
 // components/allgrades/index.js
-let { allGrades } = require('../../utils/gradesubject.js')
+// let { allGrades } = require('../../utils/gradesubject.js')
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    allGrades: {
+      type: Array,
+      value: []
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    allGrades: [],
-    choosed: -1
+    choosed: -1,
+    id: -1
   },
 
   attached() {
-    this.getAllGrades()
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    getAllGrades() {
-      this.setData({
-        allGrades
-      })
-    },
     chooseGrade(e) {
+      console.log(e)
       let index = e.currentTarget.dataset.index
+      let id = e.currentTarget.dataset.idx
       this.setData({
-        choosed: index
+        choosed: index,
+        id
       })
-      this.triggerEvent("choosedType",{ choosed: this.data.choosed })
+      this.triggerEvent("choosedType",{ choosed: this.data.choosed, id: this.data.id })
     }
   }
 })

@@ -7,19 +7,19 @@
 			请选择你的年级
 		</view>
 		<view class="allgrades">
-			<s-allgrades bindchoosedType="changeGrade" />
+			<s-allgrades bindchoosedType="choosedGrade" allGrades="{{ allGrades }}" />
 		</view>
 	</view>
 	<view class="tag-subject">
 		<s-tag tagText="科目" />
 		<view class="allgrades">
-			<s-allsubjects bindchoosedSubject="choosedSubject" currentSubjects="{{ currentSubjects }}" isTap="{{isChoosed.subject}}" />
+			<s-allsubjects bindchoosedSubject="choosedSubject" currentSubjects="{{ currentSubjects }}" isTap="{{isChoosed}}" />
 		</view>
 	</view>
 	<view class="tag-book">
 		<s-tag tagText="教材" />
     <view class="allgrades u-f28">
-			<s-allversion bindchoosedVersion="choosedVersion" isTap="{{isChoosed.version}}"/>
+			<s-allversion bindchoosedVersion="choosedVersion" allVersion="{{ allVersion }}" isTap="{{isChoosed}}"/>
 		</view>
 	</view>
   <view class="start-study {{ isStartStudy?'active':'' }}" bindtap="startStudy">
