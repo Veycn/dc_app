@@ -1,0 +1,13 @@
+<!--pages/coursedesign/index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{video}}" wx:key="{{item.courseId}}">
+    <swiper-item >
+        <image id="myVideo{{item.courseId}}" src="{{item.courseCoverUrl}}"  data-index="{{item.courseId}}"  bindtap="publicInfo"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<block wx:for="{{list}}" wx:key="{{item.courseId}}">
+<s-descourse name="{{item.teacherName}}" title="{{item.courseName}}" money="{{item.coursePrice}}" point="{{item.knowledgePoint}}" tx="{{item.teacherAvatar}}" bindtap="courseInfo" data-index="{{item.courseId}}"/>
+</block>

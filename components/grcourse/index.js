@@ -1,4 +1,5 @@
 // components/grcourse/index.js
+const {request}=require("../../utils/request.js")
 Component({
   /**
    * 组件的属性列表
@@ -11,7 +12,8 @@ Component({
     retime:String,
     title: String,
     groupneed:Number,
-    point:String
+    point:String,
+    courseId:Number
   },
 
   /**
@@ -42,6 +44,9 @@ Component({
       })
     },
     confirm(){
+      request("api/userCourse/cancelCourse", "get", { courseId:this.properties.courseId},res=>{
+        console.log(res)
+      })
       this.setData({
         mask: "mask-hidden",
         lesscancel: "退款中",
@@ -54,12 +59,13 @@ Component({
         icon:"none",
         success(){
           console.log("取消成功")
+ 
         }
       })
     },
     buycourse(){
       wx.navigateTo({
-        url: '../../pages/buycourse/index'
+        url: `../../pages/buycourse/index?id=${this.properties.courseId}`
       })
     }
   }

@@ -10,7 +10,9 @@
     "pages/customize/index",
     "pages/mycourse/index",
     "pages/gotoclass/index",
-    "pages/buycourse/index"
+    "pages/buycourse/index",
+    "pages/coursedesign/index",
+    "pages/publicinfo/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

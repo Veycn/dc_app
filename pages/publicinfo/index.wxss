@@ -1,0 +1,23 @@
+/* pages/courseinfo/index.wxss */
+
+video {
+  width: 100%;
+  height: 381rpx;
+}
+
+.introduce {
+  margin-top: 40rpx;
+    padding: 0 5px;
+}
+
+.introduce text {
+  color: #b2b2b2;
+  font-size: 37rpx;
+
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+

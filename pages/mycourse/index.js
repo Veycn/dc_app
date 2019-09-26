@@ -1,4 +1,5 @@
 // pages/mycourse/index.js
+const { request } = require('../../utils/request.js')
 Page({
 
   /**
@@ -16,7 +17,7 @@ Page({
       groupneed: 2,
       point: "2.1指数函数"
     }, {
-    courseId: 2,
+      courseId: 2,
       num: 10,
       name: "俞敏洪",
       tx: "/assets/icon/pic.png",
@@ -48,7 +49,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    request('api/userCourse/getMyCourseList', 'get', {}, res => {
+      console.log(res)
+    })
   },
 
   /**

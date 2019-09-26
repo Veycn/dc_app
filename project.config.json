@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -68,6 +68,28 @@
 					"id": -1,
 					"name": "pages/buycourse/index",
 					"pathName": "pages/buycourse/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/coursedesign/index",
+					"pathName": "pages/coursedesign/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exam/index",
+					"pathName": "pages/exam/index",
+					"query": "",
 					"scene": null
 				}
 			]

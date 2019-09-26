@@ -3,8 +3,8 @@
   <s-mylesson name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" edi="{{item.edi}}" point="{{item.point}}" />
 </block>
 
-<block wx:for="{{groupList}}" wx:key="{{index}}">
-  <s-grcourse name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" point="{{item.point}}" edi="{{item.edi}}" groupneed="{{item.groupneed}}" retime="{{item.retime}}" />
+<block wx:for="{{groupList}}" wx:key="{{item.courseId}}">
+  <s-grcourse name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" point="{{item.point}}" edi="{{item.edi}}" groupneed="{{item.groupneed}}" courseId="{{item.courseId}}" retime="{{item.retime}}" />
 </block>
 
 

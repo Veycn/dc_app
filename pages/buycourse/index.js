@@ -1,25 +1,32 @@
 // pages/buycourse/index.js
+const {request}=require("../../utils/request.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{
-      title: "课程介绍",
-      desc: "本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍 本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍 本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍本课程介绍",
-      time: "24:00:00",
-      groupneed: "2",
-      indivi: "9.8",
-      group: "1.6"
-    }]
+    list: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+      console.log(options)
+    request("api/recommendCourse/getPrivateCourseInfo", "get", { courseId:options.id},
+    res=>{
+      console.log(res.data)
+         var arr=[]
+         arr.push(res.data)
+       this.setData({
+         list:arr
+       })
+    })
+    request("api/recommendCourse/getPublicVideoList", "get", { courseId: options.id},
+    res=>{
+      console.log(res.data)
+    })
   },
 
   /**
