@@ -31,27 +31,59 @@
     left: 0;
     top: 0;
     transform: translateY(80rpx);
+    overflow: hidden;
+    
+}
+.detect .point .text{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    /* transform: translate(0 -50%); */
+    color: #000;
+    text-align: center;
+    z-index: 1000;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    line-height: 1;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.detect .point .wrapper{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.detect .point .water {
+    position: absolute;
+    left: -20rpx;
+    top: 0;
+    border-radius: 70rpx;
+    width: 200rpx;
+    height: 200rpx;
+    background: rgba(54, 142, 224, 0.4);
+    z-index: 100;
+}
 
+.w1 {
+    animation: wave 10s 0s infinite;
+}
+.w2 {
+    animation: wave 10s 0.4s infinite;
+}
+.w3 {
+    animation: wave 10s 0.8s infinite;
+}
 
 @keyframes wave {
-    0% {
-
+    from {
+        transform: rotate(0deg);
     }
-    25% {
-
-    }
-    50% {
-        
-    }
-    75% {
-        
-    }
-    100% {
-        
+    to {
+        transform: rotate(360deg);    
     }
 }
 
@@ -109,4 +141,17 @@
     line-height: 120rpx;
     border: 1px solid #fff;
     border-radius: 10rpx;
+}
+
+
+.btn {
+    width: 200rpx;
+    height: 60rpx;
+    position: absolute;
+    right: 32rpx;
+    bottom: 32rpx;
+    border-radius: 8rpx;
+    text-align: center;
+    line-height: 60rpx;
+    color: #fff;
 }

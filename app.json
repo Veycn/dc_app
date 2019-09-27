@@ -5,12 +5,12 @@
     "pages/index/index",
     "pages/pay/index",
     "pages/exam/index",
-    "pages/graph/index",
     "pages/logs/logs",
     "pages/customize/index",
     "pages/mycourse/index",
     "pages/gotoclass/index",
-    "pages/buycourse/index"
+    "pages/buycourse/index",
+    "pages/test/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
