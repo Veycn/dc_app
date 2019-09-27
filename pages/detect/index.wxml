@@ -4,7 +4,13 @@
     <view class="chapter" catchtap="changeChapter">
         <text catchtap="openToast" class="u-f30">{{activeChapter}}</text>
         <view class="point u-f20" wx:for="{{list}}" wx:key="index" catchtap="toDetect" data-type="{{item}}"
-            style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">{{item.section}}
+            style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
+            <text class="text">{{item.section}}</text>
+            <view class="wrapper" style="top: {{index * 20}}rpx">
+                <view class="water w1"></view>
+                <view class="water w2"></view>
+                <view class="water w3"></view>
+            </view>
         </view>
     </view>
     <view class="toast" hidden="{{!isToastShow}}">
@@ -17,4 +23,5 @@
             </view>
         </view>
     </view>
+    <view class="btn u-f28 u-bg-theme" wx:if="{{hasDetected}}" catchtap="onCustomTap">定制课程</view>
 </view>

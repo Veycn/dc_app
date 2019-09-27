@@ -25,7 +25,6 @@ Page({
       wx.login({
         success: res => {
           this.setData({code: res.code})
-          console.log(res)
           resolve(1)
         }
       })
@@ -63,7 +62,6 @@ Page({
       }
     })
     Promise.all([codeP, userInfoP]).then((res) => {
-      console.log(res)
       this.userLogin()
     })
   },
@@ -90,7 +88,6 @@ Page({
       method: 'POST',
       data: {code, nickName, gender, city, province, country, avatarUrl},
       success: res => {
-        console.log(res)
         if(res.statusCode === 200){
           wx.showToast({title: '登录成功!', icon: 'none'})
           wx.setStorage({ 
@@ -108,7 +105,6 @@ Page({
     })
   },
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
