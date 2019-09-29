@@ -131,10 +131,11 @@ Page({
   },
   // 提交答案
   submitUserAnswer() {
+    this.setData({
+      isShowAnswerCard: true,
+      ['examTemp.dealType']: 2
+    })
     let submitAnswer = this.data.examTemp
-    console.log(submitAnswer)
-    // dealtype 2
-    // request("", 'post', )
   },
   // 滑动至下一题或上一题
   nextTopic(e) {
@@ -191,6 +192,9 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    this.setData({
+      ['examTemp.knowledgePointId']: options.id
+    })
     this.getTopicsList(options.id)
   },
 
