@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/login/index",
-    "pages/detect/index",
     "pages/index/index",
+    "pages/detect/index",
     "pages/pay/index",
     "pages/exam/index",
     "pages/logs/logs",
@@ -11,7 +11,8 @@
     "pages/gotoclass/index",
     "pages/buycourse/index",
     "pages/coursedesign/index",
-    "pages/publicinfo/index"
+    "pages/publicinfo/index",
+    "pages/test/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
