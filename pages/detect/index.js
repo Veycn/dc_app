@@ -82,8 +82,10 @@ Page({
       }
     }
   },
-  onCustomTap () {
-    wx.switchTab({url: '/pages/customize/index'})
+  onCustomTap (e) {
+    wx.reLaunch({
+      url: `/pages/customize/index?hascustomize=${e.currentTarget.dataset.hascustomize}`,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

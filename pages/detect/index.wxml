@@ -23,5 +23,5 @@
             </view>
         </view>
     </view>
-    <view class="btn u-f28 u-bg-theme" wx:if="{{hasDetected}}" catchtap="onCustomTap">定制课程</view>
+    <view class="btn u-f28 u-bg-theme" wx:if="{{hasDetected}}" catchtap="onCustomTap" data-hascustomize="true">定制课程</view>
 </view>
