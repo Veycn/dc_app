@@ -35,6 +35,7 @@ Page({
       }
     })
   },
+
   stopTouchMove: function () {
     return false;
   },

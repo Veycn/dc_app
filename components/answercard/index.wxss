@@ -35,3 +35,13 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.tip {
+  width: 640rpx;
+  line-height: 80rpx;
+  background-color:#ccc;
+  border-radius: 12rpx;
+  margin: 190rpx auto 0;
+  text-align: center;
+  color: #353535;
+  font-size: 28rpx;
+}

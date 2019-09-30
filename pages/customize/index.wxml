@@ -1,12 +1,27 @@
 <!--pages/customize/index.wxml-->
+<view wx:if="{{customize}}" class="customize">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}"    duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='desc u-f30'>
+    <text>检测后，深辅会为你推荐免费的定制课程快去检测吧</text>
+  </view>
+</view>
+<view wx:if="{{hasCustomize}}" class="customized">
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-    <swiper-item>
-      <image src="{{item}}" class="slide-image" />
+  <block wx:for="{{video}}" wx:key="{{item.courseId}}">
+    <swiper-item >
+        <image id="myVideo{{item.courseId}}" src="{{item.courseCoverUrl}}"  data-index="{{item.courseId}}"  bindtap="publicInfo"></image>
     </swiper-item>
   </block>
 </swiper>
-<view class='desc u-f30'>
-  <text>检测后，深辅会为你推荐免费的定制课程快去检测吧</text>
+
+<block wx:for="{{list}}" wx:key="{{item.courseId}}">
+<s-descourse name="{{item.teacherName}}" title="{{item.courseName}}" money="{{item.coursePrice}}" point="{{item.knowledgePoint}}" tx="{{item.teacherAvatar}}" bindtap="courseInfo" data-index="{{item.courseId}}"/>
+</block>
 </view>

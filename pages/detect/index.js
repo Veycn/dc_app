@@ -21,6 +21,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(options.hasDetected) {
+      this.setData({hasDetected: options.hasDetected})
+    }
     const { gradeId, subjectId, textbookId } = app.globalData.requestMsg
     request('api/textbook/getTextbookByGradeIdAndSubjectId', 'get', { gradeId, subjectId }, res => {
     })
@@ -79,8 +82,10 @@ Page({
       }
     }
   },
-  onCustomTap () {
-    wx.switchTab({url: '/pages/customize/index'})
+  onCustomTap (e) {
+    wx.reLaunch({
+      url: `/pages/customize/index?hascustomize=${e.currentTarget.dataset.hascustomize}`,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
