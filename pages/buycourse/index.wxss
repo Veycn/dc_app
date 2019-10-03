@@ -7,9 +7,12 @@ video {
 
 .introduce {
   margin-top: 40rpx;
+  padding: 0 20rpx;
 }
 
 .introduce text {
+  display: block;
+  width: 100%;
   color: #b2b2b2;
   font-size: 37rpx;
 }

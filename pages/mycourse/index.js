@@ -1,11 +1,14 @@
 // pages/mycourse/index.js
 const { request } = require('../../utils/request.js')
+import { formatTime, countDown, clearTimeOut } from "../../utils/retime.js" 
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    remainTime: 3600,
+    clock: formatTime(3600),
     groupList: [{
       courseId:1,
       num: 18,
@@ -49,6 +52,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    clearTimeOut()
+    if (this.data.remainTime) {
+      countDown(this)
+    }
     request('api/userCourse/getMyCourseList', 'get', {}, res => {
       console.log(res)
     })

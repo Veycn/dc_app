@@ -31,27 +31,8 @@ Page({
     duration: 1000,
      pageNum: 1,
     pageSize: 5,
-    list: [{
-      "courseDuration": 0,
-      "courseId": 1,
-      "courseName": "一次一次方程的解法于一元二次方程解法的比较分析",
-      "coursePrice": "6.6",
-      "courseType": 0,
-      "knowledgePoint": "2.1指数函数",
-      "teacherAvatar": "/assets/icon/pic.png",
-      "teacherName": "马云"
-    },
-    {
-      "courseDuration": 0,
-      "courseId": 2,
-      "courseName": "一次一次方程的解法与集合的交并补集",
-      "coursePrice": "9.9",
-      "courseType": 0,
-      "knowledgePoint": "3.1指数函数",
-      "teacherAvatar": "/assets/icon/pic.png",
-      "teacherName": "雨果"
-    }
-    ]
+    hasMore:true,
+    list: []
   },
   courseInfo(e) {
     console.log(e.target.dataset.index)
@@ -62,6 +43,23 @@ Page({
   publicInfo(e) {
     wx.navigateTo({
       url: `../../pages/publicinfo/index?id=${e.target.dataset.index}`
+    })
+  },
+  //加载更多
+  loadMore() {
+    if (!this.data.hasMore) return;
+    request("api/recommendCourse/getPrivateCourseSimple", "get", {
+      pageNum: this.data.pageNum,
+      pageSize: ++this.data.pageSize
+    }, res => {
+      var data = res.data;
+      var size = res.data.size;
+      var flag = this.data.pageNum * this.data.pageSize < size;
+      var newList = this.data.list.concat(data.list);
+      this.setData({
+        list: newList,
+        hasMore: flag
+      })
     })
   },
 
@@ -91,17 +89,19 @@ Page({
       this.setData({
         // video:res.data
       })
-    })
-    request("api/recommendCourse/getPrivateCourseSimple", "get", {
-      pageNum: this.data.pageNum,
-      pageSize: ++this.data.pageSize
-    }, res => {
-      console.log("请求定制课程列表");
-      console.log(res);
-      this.setData({
-        list: res.data.list
-      })
-    })
+    })  
+    this.loadMore();
+  //   request("api/recommendCourse/getPrivateCourseSimple", "get", {
+  //     pageNum: this.data.pageNum,
+  //     pageSize: ++this.data.pageSize
+  //   }, res => {
+  //     console.log("请求定制课程列表");
+  //     console.log(res);
+  //     this.setData({
+  //       list: res.data.list
+  //     })
+  //   })
+
   },
 
   /**
@@ -136,7 +136,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+ this.loadMore()
   },
 
   /**

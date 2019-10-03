@@ -1,5 +1,6 @@
 // pages/buycourse/index.js
 const {request}=require("../../utils/request.js")
+import {formatTime,countDown,clearTimeOut} from "../../utils/retime.js" 
 Page({
 
   /**
@@ -7,6 +8,8 @@ Page({
    */
   data: {
     list: [],
+    remainTime:3600,
+    clock:formatTime(3600)
   },
 
   /**
@@ -33,6 +36,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+    clearTimeOut()
+    if (this.data.remainTime) {
+      countDown(this)
+    }
 
   },
 

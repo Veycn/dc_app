@@ -80,13 +80,6 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/coursedesign/index",
-					"pathName": "pages/coursedesign/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "pages/exam/index",
 					"pathName": "pages/exam/index",
 					"query": "",
@@ -96,6 +89,14 @@
 					"id": -1,
 					"name": "pages/customize/index",
 					"pathName": "pages/customize/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exam/index",
+					"pathName": "pages/exam/index",
+					"query": "",
 					"scene": null
 				}
 			]
