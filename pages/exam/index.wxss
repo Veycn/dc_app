@@ -54,6 +54,9 @@
 .topic-wrap swiper image {
 	width: 100%;
 }
+.topic-img {
+  height:700rpx;
+}
 .btn-wrap {
 	width: 640rpx;
 	height: 120rpx;

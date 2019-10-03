@@ -8,13 +8,14 @@ video {
 .introduce {
   margin-top: 40rpx;
   padding: 0 20rpx;
+  font-size: 26rpx;
 }
 
 .introduce text {
   display: block;
   width: 100%;
   color: #b2b2b2;
-  font-size: 37rpx;
+  font-size: 26rpx;
 }
 
 .title {
@@ -37,7 +38,8 @@ video {
   background-color: #8cc4ec;
   text-align: center;
   flex: 5;
-    line-height: 102rpx;
+  line-height: 102rpx;
+   font-size: 26rpx;
 }
 
 .black {
@@ -49,21 +51,21 @@ video {
   flex: 5;
   position: relative;
   padding-left: 20rpx;
+  font-size: 26rpx;
 }
 .pinke {
   line-height: 102rpx;
 }
 .remain {
   position: absolute;
-  right: 5rpx;
-  top: 10rpx;
+  right: 10rpx;
+  top: 15rpx;
   font-size: 24rpx;
 }
 
 .time {
   position: absolute;
-  right: 5rpx;
-  bottom: 20rpx;
+  right:10rpx;
+  bottom: 10rpx;
   font-size: 24rpx;
-  height: 22rpx;
 }

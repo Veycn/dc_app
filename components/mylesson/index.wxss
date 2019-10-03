@@ -21,11 +21,13 @@
 }
 .title {
   width: 664rpx;
-  margin: 40rpx auto;
-  font-size: 36rpx;
+  margin: 40rpx auto 20rpx;
+  font-size: 28rpx;
   height: 90rpx;
+  line-height: 90rpx;
 }
 .desc {
+  font-size: 28rpx;
   display: flex;
   justify-content: space-between;
   width: 484rpx;
@@ -33,27 +35,28 @@
   align-items:center;
 }
 .desc image {
-  width: 82rpx;
-  height: 82rpx;
+  width: 76rpx;
+  height: 76rpx;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid red;
+  border: 1px solid black;
 }
 .study {
   display: flex;
   width: 664rpx;
-  margin: 10px auto 0;
+  margin: 40rpx auto 0;
   justify-content: space-between;
   align-items: center;
 }
 .study text:first-child {
   color: #B5B5B5;
-  font-size: 24rpx;
+  font-size: 20rpx;
 }
 .study text:last-child {
   background-color:  #78b5cf;
   width: 166rpx;
   height: 62rpx;
   line-height: 62rpx;
-  text-align: center;
+  text-align: center; 
+   font-size: 24rpx;
 }

@@ -10,10 +10,10 @@
   <text>{{item.courseIntro}}</text>
 </view>
 <view class="price" wx:for="{{list}}" wx:key="{{item.courseId}}">
- <view class="individual">
+ <view class="individual" bindtap="onetoPay">
  单独购买 <text class="black">{{item.courseGroupPrice}}</text>元
  </view>
- <view class="group">
+ <view class="group" bindtap="manytoPay">
  <view class="pinke">
   拼课 <text class="black">{{item.courseGroupPrice}}</text>元
  </view>
