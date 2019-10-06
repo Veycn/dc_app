@@ -14,7 +14,7 @@ const header = {
  */
 
 function request (url, method, data, callback, type='json') {
-  wx.showLoading()
+  wx.showLoading({title: '加载中...', icon: 'none'})
   getHeader().then(token => {
     if (token) {
       header.token = token                            
