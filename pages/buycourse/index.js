@@ -1,5 +1,6 @@
 // pages/buycourse/index.js
 const {request}=require("../../utils/request.js")
+import {formatTime,countDown,clearTimeOut} from "../../utils/retime.js" 
 Page({
 
   /**
@@ -7,6 +8,19 @@ Page({
    */
   data: {
     list: [],
+    remainTime:3600,
+    clock:formatTime(3600),
+    courseId:Number
+  },
+  onetoPay(){
+wx.navigateTo({
+  url: `/pages/pay/index?id=${this.data.courseId}&&isGroup=${0}`
+})
+  },
+  manytoPay(){
+    wx.navigateTo({
+      url: `/pages/pay/index?id=${this.data.courseId}&&isGroup=${1}`
+    })
   },
 
   /**
@@ -14,6 +28,9 @@ Page({
    */
   onLoad: function(options) {
       console.log(options)
+      this.setData({
+        courseId:options.id
+      })
     request("api/recommendCourse/getPrivateCourseInfo", "get", { courseId:options.id},
     res=>{
       console.log(res.data)
@@ -33,6 +50,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+    clearTimeOut()
+    if (this.data.remainTime) {
+      countDown(this)
+    }
 
   },
 

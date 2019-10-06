@@ -24,4 +24,9 @@
 <block wx:for="{{list}}" wx:key="{{item.courseId}}">
 <s-descourse name="{{item.teacherName}}" title="{{item.courseName}}" money="{{item.coursePrice}}" point="{{item.knowledgePoint}}" tx="{{item.teacherAvatar}}" bindtap="courseInfo" data-index="{{item.courseId}}"/>
 </block>
+
+<!-- 加载更多区域 -->
+<view class='loadmore loading'  wx:if="{{hasMore}}">正在加载...</view>
+<view class='loadmore '  wx:else>已经到底了</view>
 </view>
+
