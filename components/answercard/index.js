@@ -66,6 +66,11 @@ Component({
           url: `/pages/detect/index?hasDetected=true`
         })
       })
+      wx.request({
+        url: '/api/exam/dealExam',
+        method: 'post',
+        
+      })
     }
   }
 })

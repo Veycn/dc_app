@@ -179,7 +179,7 @@ Page({
   },
   // 得到题目集合
   getTopicsList(id) {
-    request('api/exam/getExamOfUser', 'get', { knowledgeId: id }, res => {
+    request('api/exam/getSectionExamOfUser', 'get', { sectionId: id }, res => {
       console.log(res.data)
       this.setData({
         topicsList: res.data.questionList,

@@ -23,6 +23,8 @@ function request (url, method, data, callback, type='json') {
     }
     if(type === 'form'){
       header['content-type'] = 'application/x-www-form-urlencoded'
+      console.log(type)
+
     }
     wx.request({
       url: BASE + url,

@@ -26,26 +26,19 @@ Page({
 
 
   choosedSubject(e) {
-    console.log(e)
     let choosedSubjectId = e.detail.id
     this.setData({
       ['getversion.subjectId']: choosedSubjectId
     })
-    request('api/textbook/getTextbookByGradeIdAndSubjectId', 'get', { gradeId: this.data.getversion.gradeId, subjectId: this.data.getversion.subjectId }, res => {
-      this.setData({
-        allVersion: res.data
-      })
-    })
-
+    this.getTextBooks(choosedSubjectId)
   },
   choosedGrade(value) {
-    console.log(value.detail.id)
-    console.log(value.detail.choosed)
     this.setData({
       isChoosed: true,
       choosed: value.detail.choosed,
       ['getversion.gradeId']: value.detail.id
     })
+    this.getSubjects(value.detail.id)
   },
   choosedVersion(e) {
     this.setData({
@@ -62,20 +55,27 @@ Page({
     }
   },
 
-  getCourseInfo() {
-    request('api/userInfo/getGradeAndSubjectList', 'get', {}, res => {
-      console.log(res)
-      this.setData({
-        allGrades: res.data.gradeList,
-        currentSubjects: res.data.subjectList
-      })
+  getAllGrades () {
+    request('api/userInfo/getGradeList', 'get', {}, res => {
+      this.setData({allGrades: res.data})
+    })
+  },
+  getSubjects (id) {
+    request('api/userInfo/getSubjectList', 'get', {gradeId: id}, res => {
+      this.setData({currentSubjects: res.data})
+    })
+  },
+  getTextBooks (id) {
+    request('api/textbook/getTextbookBySubjectId', 'get', {subjectId: id}, res => {
+      this.setData({allVersion: res.data})
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCourseInfo()
+    // this.getCourseInfo()
+    this.getAllGrades()
   },
 
   getUserInfo: function (e) {

@@ -21,17 +21,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData)
     if(options.hasDetected) {
       this.setData({hasDetected: options.hasDetected})
     }
     const { gradeId, subjectId, textbookId } = app.globalData.requestMsg
-    request('api/textbook/getTextbookByGradeIdAndSubjectId', 'get', { gradeId, subjectId }, res => {
-    })
     request('api/chapter/getChapterList', 'get', { textbookId }, res => {
       console.log(res)
-      this.setData({ chapters: res.data, activeChapter: res.data[0].chapter && res.data[0].chapter.substring(0, 3) })
+      this.setData({ 
+        chapters: res.data, 
+        activeChapter: res.data[0].chapter && res.data[0].chapter.substring(0, 3),
+        activeChapterId: res.data[0].id
+      })
+      this.getSections()
     })
-    this.getSections()
+    
   },
 
   calculatePos: function () {
