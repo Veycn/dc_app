@@ -53,9 +53,9 @@ Page({
       pageSize: ++this.data.pageSize
     }, res => {
       var data = res.data;
-      var size = res.data.size;
+      var size = data && data.size;
       var flag = this.data.pageNum * this.data.pageSize < size;
-      var newList = this.data.list.concat(data.list);
+      var newList = this.data.list && this.data.list.concat(data.list);
       this.setData({
         list: newList,
         hasMore: flag
