@@ -4,12 +4,13 @@
 		<s-exitmodal bindhideExitModal="hideExitModal" />
 	</view>
 	<block wx:if="{{ isShowAnswerCard }}">
-		<s-answercard bindhideAnswerCard="hideAnswerCard" submitAnswer="{{examTemp}}">
-			<s-topicsbtn
+		<s-answercard bindhideAnswerCard="hideAnswerCard">
+			<s-topicsbtn submitAnswer="{{examTemp}}"
 			 slot="scantron"
 			 isFinshed="{{ userAnswers }}"
 			 bindrediretTopic="rediretTopic"
 			 scantron-list="{{ topicsList }}"
+			 bindhideAnswerCard="hideAnswerCard"
 			/>
 		</s-answercard>
 	</block>

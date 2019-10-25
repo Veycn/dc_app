@@ -8,10 +8,10 @@ Component({
     multipleSlots: true
   },
   properties: {
-    submitAnswer: {
-      type: Object,
-      value: {}
-    }
+    // submitAnswer: {
+    //   type: Object,
+    //   value: {}
+    // }
   },
 
   /**
@@ -57,20 +57,20 @@ Component({
       }, 300)
     },
     // 提交并查看结果
-    watchResult() {
-      this.onClose()
-      console.log(this.data.submitAnswer)
-      request('/api/exam/dealExam', 'post', this.data.submitAnswer, res => {
-        console.log(res)
-        wx.reLaunch({
-          url: `/pages/detect/index?hasDetected=true`
-        })
-      })
-      wx.request({
-        url: '/api/exam/dealExam',
-        method: 'post',
+    // watchResult() {
+    //   this.onClose()
+    //   console.log(this.data.submitAnswer)
+    //   request('/api/exam/dealExam', 'post', this.data.submitAnswer, res => {
+    //     console.log(res)
+    //     wx.reLaunch({
+    //       url: `/pages/detect/index?hasDetected=true`
+    //     })
+    //   })
+    //   wx.request({
+    //     url: '/api/exam/dealExam',
+    //     method: 'post',
         
-      })
-    }
+    //   })
+    // }
   }
 })
