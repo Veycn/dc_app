@@ -35,7 +35,7 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.tip {
+/* .tip {
   width: 640rpx;
   line-height: 80rpx;
   background-color:#ccc;
@@ -44,4 +44,4 @@
   text-align: center;
   color: #353535;
   font-size: 28rpx;
-}
+} */
