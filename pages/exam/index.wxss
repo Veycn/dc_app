@@ -55,7 +55,7 @@
 	width: 100%;
 }
 .topic-img {
-  height:800rpx;
+  height:840rpx;
 }
 .btn-wrap {
 	width: 640rpx;
