@@ -3,16 +3,17 @@
 	width: 682rpx;
 	height: 84rpx;
 	margin: 0 auto;
-	display:flex;
-	flex-direction:row;
+	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	color:#626262;
+	color: #626262;
 }
+
 .clock-list button {
 	border-radius: 4rpx;
-	padding:0rpx;
-	margin:0rpx;
+	padding: 0rpx;
+	margin: 0rpx;
 	display: inline-block;
 	line-height: 44rpx;
 	width: 96rpx;
@@ -20,43 +21,54 @@
 	text-align: center;
 	border: 1rpx solid #ccc;
 }
-.clock-list button::after { 
-	border:none;
+
+.clock-list button::after {
+	border: none;
 }
+
 .pass {
-	background-color:#ffffff;
-	color:#626262;
+	background-color: #ffffff;
+	color: #626262;
 }
-.button-hover{ 
-	color:#fff;
+
+.button-hover {
+	color: #fff;
 	background-color: rgb(19, 109, 184);
 }
-.timer{
+
+.timer {
 	font-size: 34rpx;
 	display: table-cell;
 }
+
 .answer-card {
 	width: 240rpx;
 	line-height: 44rpx;
 	text-align: center;
 	font-size: 30rpx;
 }
+
 .answer-card text {
 	margin-left: 8rpx;
 }
+
 .topic-wrap {
 	width: 100%;
 	height: 1334rpx;
 }
+
 .topic-wrap swiper {
 	height: 100%;
 }
+
 .topic-wrap swiper image {
 	width: 100%;
 }
+
 .topic-img {
-  height:700rpx;
+	height: 700rpx;
 }
+
 .btn-wrap {
 	width: 640rpx;
 	height: 120rpx;
@@ -65,6 +77,7 @@
 	justify-content: space-between;
 	align-items: center;
 }
+
 .btn-item {
 	width: 118rpx;
 	line-height: 118rpx;
@@ -72,6 +85,7 @@
 	border-radius: 50%;
 	border: 1rpx solid #ccc;
 }
+
 .submit {
 	width: 650rpx;
 	line-height: 94rpx;
@@ -83,4 +97,13 @@
 	border-radius: 6rpx;
 	font-size: 34rpx;
 	font-family: "Adobe Heiti Std R";
+}
+
+
+.sans {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
 }

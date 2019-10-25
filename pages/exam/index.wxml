@@ -4,7 +4,7 @@
 		<s-exitmodal bindhideExitModal="hideExitModal" />
 	</view>
 	<block wx:if="{{ isShowAnswerCard }}">
-		<s-answercard bindhideAnswerCard="hideAnswerCard" submitAnswer="{{examTemp}}">
+		<s-answercard bindhideAnswerCard="hideAnswerCard" submitAnswer="{{examTemp}}" class="sans">
 			<s-topicsbtn
 			 slot="scantron"
 			 isFinshed="{{ userAnswers }}"
