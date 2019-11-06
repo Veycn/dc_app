@@ -1,27 +1,39 @@
-<!--pages/detect/index.wxml-->
-
+<!-- pages/detect/index.wxml -->
 <view class="detect">
     <view class="chapter" catchtap="changeChapter">
         <text catchtap="openToast" class="u-f30">{{activeChapter}}</text>
-        <view class="point u-f20" wx:for="{{list}}" wx:key="index" catchtap="toDetect" data-type="{{item}}"
-            style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
-            <text class="text">{{item.section}}</text>
-            <view class="wrapper" wx:if="{{flag}}" style="top: {{index * 20}}rpx">
-                <view class="water w1"></view>
-                <view class="water w2"></view>
-                <view class="water w3"></view>
+        <block wx:for="{{list}}">
+            <view class="point u-f20" wx:if="{{item['submitStatus'] === 0}}" wx:key="index" catchtap="toDetect" data-type="{{item}}" style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
+                <text class="text">{{item.section}}</text>
+                <view class="wrapper" wx:if="{{flag}}" style="top: {{index * 20}}rpx">
+                    <view class="water w1"></view>
+                    <view class="water w2"></view>
+                    <view class="water w3"></view>
+                </view>
             </view>
-        </view>
+            <view class="point u-f20" wx:if="{{item['submitStatus'] === 1}}" wx:key="index" catchtap="toPoints" data-type="{{item}}" style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
+                <text class="text">{{item.section}}</text>
+                <view class="wrapper" style="top: {{(1 - item.ratio) * 160}}rpx">
+                    <view class="water w1"></view>
+                    <view class="water w2"></view>
+                    <view class="water w3"></view>
+                </view>
+            </view>
+        </block>
     </view>
     <view class="toast" hidden="{{!isToastShow}}">
         <view class="content">
             <image class="close" src="/assets/icon/exit.png" catchtap="closeToast"></image>
             <view class="list">
-                <block wx:for="{{chapters}}" wx:key="index"> 
-                    <view class="list-item u-f30"  catchtap="changeChapter" data-c="{{item.chapter}}" data-i="{{item.id}}">{{item.chapter}}</view>
+                <block wx:for="{{chapters}}" wx:key="index">
+                    <view class="list-item u-f30" catchtap="changeChapter" data-c="{{item.chapter}}" data-i="{{item.id}}">
+                        {{item.chapter}}
+                    </view>
                 </block>
             </view>
         </view>
     </view>
-    <view class="btn u-f28 u-bg-theme" wx:if="{{hasDetected}}" catchtap="onCustomTap" data-hascustomize="true">定制课程</view>
+    <!-- <view class="btn u-f28 u-bg-theme" wx:if="{{hasDetected}}" catchtap="onCustomTap" data-hascustomize="true">
+        定制课程
+    </view> -->
 </view>

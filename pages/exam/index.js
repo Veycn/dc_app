@@ -15,6 +15,8 @@ Page({
     isShowAnswerCard: false,
     isShowExitModal: false,
     choosedTopicIndex: -1,
+    type: '',
+    isK: false,
     count: [],                // 用来记录用户做过题的数量
     userAnswers: [],          // 记录用户做过的题目
     examTemp: {
@@ -26,9 +28,8 @@ Page({
           "userAnswer": 0
         }
       ],
-      "examTimes": 0,
-      "knowledgePointId": 0,
-      "timeSpend": 0
+      "timeSecond": 0,
+      "timeWay": 0
     }
   },
   // 显示退出检测的模态框
@@ -179,19 +180,65 @@ Page({
   },
   // 得到题目集合
   getTopicsList(id) {
-    request('api/exam/getSectionExamOfUser', 'get', { sectionId: id }, res => {
-      console.log(res.data)
-      this.setData({
-        topicsList: res.data.questionList,
-        topicsLength: res.data.questionList.length
-      })
-    }, 'form')
+    if(this.data.type === 'knowledgePointId'){
+      request('api/exam/getKnowledgeExamOfUser', 'get', {knowledgePointId: id}, res => {
+        let tempArr = [], ans = []
+        let {id, questionList, timeSecond, timeWay} = res.data
+        for (var i = 0; i < questionList.length; i++){
+          tempArr.push({
+            questionId: questionList[i].id,
+            userAnswer: questionList[i].userAnswer
+          })
+          ans.push(questionList[i].userAnswer)
+        }
+        this.setData({
+          userAnswers: ans,
+          topicsList: questionList,
+          topicsLength: questionList.length,
+          examTemp: {
+            "dealType": 2,
+            "examId": id,
+            "examItemTempList": tempArr,
+            "knowledgePointId": questionList[0].knowledgePointId,
+            "timeSecond": timeSecond,
+            "timeWay": timeWay
+          }
+        })
+      }, 'form')
+    }else {
+      request('api/exam/getSectionExamOfUser', 'get', { sectionId: id }, res => {
+        console.log(res.data)
+        let tempArr = []
+        let {id, questionList, timeSecond, timeWay} = res.data
+        for (var i = 0; i < questionList.length; i++){
+          tempArr.push({
+            questionId: questionList[i].id,
+            userAnswer: 5
+          })
+        }
+        this.setData({
+          topicsList: questionList,
+          topicsLength: questionList.length,
+          examTemp: {
+            "dealType": 2,
+            "examId": id,
+            "examItemTempList": tempArr,
+            "timeSecond": timeSecond,
+            "timeWay": timeWay
+          }
+        })
+      }, 'form')
+    }
+   
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log(options)
+    if(options.type){
+      this.setData({type: 'knowledgePointId', isK: true})
+    }
     this.setData({
       ['examTemp.knowledgePointId']: options.id
     })

@@ -48,33 +48,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 4,
 			"list": [
-				{
-					"id": -1,
-					"name": "cust",
-					"pathName": "pages/customize/index",
-					"query": "",
-					"scene": null
-				},
 				{
 					"id": -1,
 					"name": "course",
 					"pathName": "pages/mycourse/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/buycourse/index",
-					"pathName": "pages/buycourse/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				},
@@ -100,9 +79,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/pay/index",
-					"pathName": "pages/pay/index",
+					"id": 4,
+					"name": "pages/points/index",
+					"pathName": "pages/points/index",
+					"query": "id=26&section=1.1集合",
 					"scene": null
 				}
 			]

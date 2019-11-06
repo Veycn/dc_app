@@ -12,7 +12,8 @@
     "pages/buycourse/index",
     "pages/coursedesign/index",
     "pages/publicinfo/index",
-    "pages/test/index"
+    "pages/test/index",
+    "pages/points/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

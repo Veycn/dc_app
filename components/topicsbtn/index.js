@@ -1,4 +1,5 @@
 // components/topicsbtn/index.js
+const { request } = require('../../utils/request.js')
 Component({
   /**
    * 组件的属性列表
@@ -11,6 +12,14 @@ Component({
     isFinshed: {
       type: Array,
       value: []
+    },
+    submitAnswer: {
+      type: Object,
+      value: {}
+    },
+    isK: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -28,6 +37,44 @@ Component({
     rediretTopic(e) {
       let currentIndex = e.currentTarget.dataset.index
       this.triggerEvent('rediretTopic', { currentIndex })
+    },
+    onClose() {
+      setTimeout(() => {
+        this.triggerEvent('hideAnswerCard')
+      }, 300)
+    },
+    // 提交并查看结果
+    watchResult() {
+      this.onClose()
+      let data = this.data.submitAnswer, url = ''
+      console.log(this.data.isK)
+      if(this.data.isK){
+        url = 'https://www.shenfu.online/sfeduWx/api/exam/dealKnowledgeExam'
+      }else {
+        url = 'https://www.shenfu.online/sfeduWx/api/exam/dealSectionExam'
+      }
+      wx.getStorage({
+        key: 'userToken',
+        success: res => {
+          console.log(res)
+          let header = {
+            'content-type': 'application/json',
+            token: res.data
+          }
+          wx.request({
+            url,
+            method: 'post',
+            header,
+            data: data,
+            success: res => {
+              console.log(res)
+              wx.reLaunch({
+                url: `/pages/detect/index?hasDetected=true`
+              })
+            }
+          })
+        }
+      }) 
     }
   }
 })

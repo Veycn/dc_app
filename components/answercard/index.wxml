@@ -8,7 +8,7 @@
 		<view class="btn">
 			<slot name="btn" />
 		</view>
-		<view class="tip" bindtap="watchResult">交卷并查看结果</view>
+		<!-- <view class="tip" bindtap="watchResult">交卷并查看结果</view> -->
 	</view>
 </view>
 

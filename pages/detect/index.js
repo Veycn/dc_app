@@ -21,10 +21,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData)
-    if(options.hasDetected) {
-      this.setData({hasDetected: options.hasDetected})
-    }
+    // console.log(app.globalData)
+    // if(options.hasDetected) {
+    //   this.setData({hasDetected: options.hasDetected})
+    // }
     const { gradeId, subjectId, textbookId } = app.globalData.requestMsg
     request('api/chapter/getChapterList', 'get', { textbookId }, res => {
       console.log(res)
@@ -51,9 +51,15 @@ Page({
     this.setData({ pos: res })
   },
   toDetect: function (e) {
-    let { id } = e.currentTarget.dataset.type
+    let { id, section } = e.currentTarget.dataset.type
     wx.navigateTo({ url: `/pages/exam/index?id=${id}` })
   },
+  toPoints: function(e){
+    let { id, section } = e.currentTarget.dataset.type
+    console.log(e)
+    wx.navigateTo({ url: `/pages/points/index?id=${id}&section=${section}` })
+  },
+
   changeChapter: function (e) {
     let { c, i } = e.currentTarget.dataset
     this.setData({ activeChapter: c.substring(0, 3), activeChapterId: i, isToastShow: false })
@@ -81,8 +87,8 @@ Page({
   hasDetected () {
     const { list } = this.data;
     for(var i = 0; i < list.length; i++){
-      if(list[i].ratio > 0){
-        return this.setData({flag: true})
+      if(list[i].submitStatus > 0){
+        return this.setData({hasDetected: true})
       }
     }
   },

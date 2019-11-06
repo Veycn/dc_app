@@ -4,12 +4,14 @@
 		<s-exitmodal bindhideExitModal="hideExitModal" />
 	</view>
 	<block wx:if="{{ isShowAnswerCard }}">
-		<s-answercard bindhideAnswerCard="hideAnswerCard" submitAnswer="{{examTemp}}" class="sans">
-			<s-topicsbtn
+		<s-answercard bindhideAnswerCard="hideAnswerCard">
+			<s-topicsbtn submitAnswer="{{examTemp}}"
 			 slot="scantron"
 			 isFinshed="{{ userAnswers }}"
 			 bindrediretTopic="rediretTopic"
 			 scantron-list="{{ topicsList }}"
+			 is-k="{{isK}}"
+			 bindhideAnswerCard="hideAnswerCard"
 			/>
 		</s-answercard>
 	</block>
@@ -29,15 +31,15 @@
 
 	<view class="topic-wrap">
 		<swiper bindchange="nextTopic" current="{{ currentTopicIndex }}">
-			<block wx:for="{{ topicsList }}" wx:key="{{ index }}">
+			<block wx:for="{{ topicsList }}" wx:for-item="items" wx:key="{{ index }}">
 				<swiper-item>
 					<view>
 						<view class="topic-img">
-							<image mode="widthFix" src="{{ item.url }}"/>
+							<image mode="widthFix" src="{{ items.url }}"/>
 						</view>
 						<view class="btn-wrap">
 							<block wx:for="{{ answerLists }}" wx:key="{{ index }}">
-								<view class="btn-item {{ choosedTopicIndex===index?'active':'' }}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
+								<view class="btn-item {{ choosedTopicIndex===index?'active':'' }} {{index+1 === items.userAnswer ?'active':''}}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
 							</block>
 						</view>
 					</view>

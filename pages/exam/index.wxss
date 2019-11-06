@@ -91,7 +91,7 @@
 	line-height: 94rpx;
 	text-align: center;
 	position: fixed;
-	bottom: 66rpx;
+	bottom: 52rpx;
 	left: 50%;
 	transform: translate(-50%);
 	border-radius: 6rpx;
