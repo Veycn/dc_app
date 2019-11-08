@@ -155,7 +155,7 @@ Page({
     })
     let stimer = setInterval(() => {
       let sign = "save"
-      this.subOrSaveReq('/api/exam/dealSectionExam', sign)
+      this.subOrSaveReq(sign)
     }, this.data.intervalTime)
     this.setData({
       stimer
@@ -191,8 +191,15 @@ Page({
       } else {
         console.error("token get faild!")
       }
+      let url = ''
+      console.log(this.data.isK)
+      if (this.data.isK) {
+        url = 'https://www.shenfu.online/sfeduWx/api/exam/dealKnowledgeExam'
+      } else {
+        url = 'https://www.shenfu.online/sfeduWx/api/exam/dealSectionExam'
+      }
       wx.request({
-        url: `https://www.shenfu.online/sfeduWx${api}`,
+        url: url,
         data: this.data.examTemp,
         method: 'post', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: header, // 设置请求的 header
@@ -201,6 +208,9 @@ Page({
             wx.hideLoading()
           }
           console.log(res)
+          wx.reLaunch({
+            url: `/pages/points/index?hasDetected=true`
+          })
         },
         fail: function () {
           // fail
@@ -221,7 +231,7 @@ Page({
     })
     let data = this.data.examTemp
     console.log(data)
-    this.subOrSaveReq('/api/exam/dealSectionExam')
+    this.subOrSaveReq()
 
   },
   // 得到用户的答案
@@ -246,6 +256,7 @@ Page({
     this.setData({
       userAnswers
     })
+    console.log(this.data.examTemp)
   },
   // 判断用户是否做完了所有题目
   isMakeAllTopic() {
@@ -319,11 +330,11 @@ Page({
   },
   // 得到题目集合
   getTopicsList(id) {
-    if(this.data.type === 'knowledgePointId'){
-      request('api/exam/getKnowledgeExamOfUser', 'get', {knowledgePointId: id}, res => {
+    if (this.data.type === 'knowledgePointId') {
+      request('api/exam/getKnowledgeExamOfUser', 'get', { knowledgePointId: id }, res => {
         let tempArr = [], ans = []
-        let {id, questionList, timeSecond, timeWay} = res.data
-        for (var i = 0; i < questionList.length; i++){
+        let { id, questionList, timeSecond, timeWay } = res.data
+        for (var i = 0; i < questionList.length; i++) {
           tempArr.push({
             questionId: questionList[i].id,
             userAnswer: questionList[i].userAnswer
@@ -344,7 +355,7 @@ Page({
           }
         })
       }, 'form')
-    }else {
+    } else {
       request('api/exam/getSectionExamOfUser', 'get', { sectionId: id }, res => {
         console.log(res.data)
         if (res.data.questionList) {
@@ -353,7 +364,7 @@ Page({
             topicsLength: res.data.questionList.length,
             ['examTemp.examSectionId']: res.data.examSectionId
           })
-  
+
           let len = this.data.topicsLength
           for (let i = 0; i < len; ++i) {
             let obj = {
@@ -364,19 +375,23 @@ Page({
             let tempArr = this.data.examTemp.examItemTempList
             tempArr.push(obj)
           }
-          let tempArr = new Array(len).fill(-1)
+          let arr = new Array(len).fill(-1)
+          let answerArr = this.data.examTemp.examItemTempList
           for (let j = 0; j < len; ++j) {
             let lastAnswer = this.data.topicsList[j].userAnswer
             if (lastAnswer !== 0) {
-              tempArr[j] = lastAnswer - 1
+              arr[j] = lastAnswer - 1
+              answerArr[j].userAnswer = lastAnswer
             }
           }
-          console.log(tempArr)
           this.setData({
-            userAnswers: tempArr
+            userAnswers: arr,
+            ['examTemp.examItemTempList']: answerArr
           })
-          if (tempArr[0] !== -1) {
-            let choosedTopicIndex = tempArr[0]
+          console.log(arr)
+          console.log(this.data.examTemp.examItemTempList)
+          if (arr[0] !== -1) {
+            let choosedTopicIndex = arr[0]
             this.setData({
               choosedTopicIndex
             })
@@ -385,15 +400,15 @@ Page({
         }
       }, 'form')
     }
-  
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log(options)
-    if(options.type){
-      this.setData({type: 'knowledgePointId', isK: true})
+    if (options.type) {
+      this.setData({ type: 'knowledgePointId', isK: true })
     }
     this.setData({
       ['examTemp.knowledgePointId']: options.id

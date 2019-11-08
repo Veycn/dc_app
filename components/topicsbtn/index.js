@@ -50,36 +50,36 @@ Component({
     },
     // 提交并查看结果
     watchResult() {
-      this.onClose()
-      let data = this.data.submitAnswer, url = ''
-      console.log(this.data.isK)
-      if (this.data.isK) {
-        url = 'https://www.shenfu.online/sfeduWx/api/exam/dealKnowledgeExam'
-      } else {
-        url = 'https://www.shenfu.online/sfeduWx/api/exam/dealSectionExam'
-      }
-      wx.getStorage({
-        key: 'userToken',
-        success: res => {
-          console.log(res)
-          let header = {
-            'content-type': 'application/json',
-            token: res.data
-          }
-          wx.request({
-            url,
-            method: 'post',
-            header,
-            data: data,
-            success: res => {
-              console.log(res)
-              wx.reLaunch({
-                url: `/pages/detect/index?hasDetected=true`
-              })
-            }
-          })
-        }
-      })
+      // this.onClose()
+      // let data = this.data.submitAnswer, url = ''
+      // console.log(this.data.isK)
+      // if (this.data.isK) {
+      //   url = 'https://www.shenfu.online/sfeduWx/api/exam/dealKnowledgeExam'
+      // } else {
+      //   url = 'https://www.shenfu.online/sfeduWx/api/exam/dealSectionExam'
+      // }
+      // wx.getStorage({
+      //   key: 'userToken',
+      //   success: res => {
+      //     console.log(res)
+      //     let header = {
+      //       'content-type': 'application/json',
+      //       token: res.data
+      //     }
+      //     wx.request({
+      //       url,
+      //       method: 'post',
+      //       header,
+      //       data: data,
+      //       success: res => {
+      //         console.log(res)
+      //         wx.reLaunch({
+      //           url: `/pages/detect/index?hasDetected=true`
+      //         })
+      //       }
+      //     })
+      //   }
+      // })
 
 
       let tempArr = this.data.submitAnswer.examItemTempList
