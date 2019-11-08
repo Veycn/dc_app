@@ -1,17 +1,31 @@
 // pages/exam/index.js
-const { request } = require('../../utils/request.js')
-
+const { request, getHeader } = require('../../utils/request.js')
+const header = {
+  'content-type': 'application/json'
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    szimg: "../../assets/icon/clock.png",
+    minutes: '00',
+    seconds: '00',
+    timer: null, // 倒计时 器
+    forwardtimer: null, //正向计时器
+    lasttime: 0,  // 过去的秒数
+    forwardtime: 0, // 正向计时
+    sinTime: 2.5,   // 预估每道题目所花的时间
+    timeWay: 0,
+
     answerLists: ['A', 'B', 'C', 'D'],
     isLastTopic: false,
+    isSubmit: false,
     currentTopicIndex: 0,
-    topicsLength: 3,
+    topicsLength: 1,
     topicsList: [],
+    spendTime: 0,
     isShowAnswerCard: false,
     isShowExitModal: false,
     choosedTopicIndex: -1,
@@ -21,17 +35,105 @@ Page({
     userAnswers: [],          // 记录用户做过的题目
     examTemp: {
       "dealType": 0,
-      "examId": 0,
-      "examItemTempList": [
-        {
-          "questionId": 0,
-          "userAnswer": 0
-        }
-      ],
+      "examItemTempList": [],
+      "examSectionId": 0,
       "timeSecond": 0,
       "timeWay": 0
-    }
+    },
+    intervalTime: 1000 * 60,   // 自动保存的间隔时间
+    stimer: null
   },
+
+  init: function () {
+    this.setData({
+      minutes: '00',
+      second: '00'
+    })
+  },
+  // 清除倒计时的计时器
+  clearTimer: function () {
+    clearInterval(this.data.timer)
+    this.setData({
+      timer: null
+    })
+    this.init()
+  },
+  // 清除正向计时器
+  clearForTimer: function () {
+    clearInterval(this.data.forwardtimer)
+    this.setData({
+      forwardtimer: null
+    })
+    this.init()
+  },
+  countDown: function (duration) {
+    if (duration <= 0) {
+      this.clearTimer()
+      var forwardtimer = setInterval(() => {
+        var forwardtime = this.data.forwardtime + 1;
+        this.setData({
+          forwardtime,
+          spendTime: forwardtime,
+          timeWay: 1
+        })
+        console.log(forwardtime)
+        var str = this.conversion(forwardtime).split(":")
+        this.setData({
+          minutes: str[0],
+          seconds: str[1]
+        })
+        if (this.data.isSubmit) {
+          this.setData({
+            isSubmit: false
+          })
+          this.spendAllTime()
+        }
+      }, 1000)
+      this.setData({
+        forwardtimer
+      })
+    }
+    return this.conversion(duration)
+
+  },
+  conversion: function (time) {
+    var seconds = this._format(time % 60)
+    var minutes = Math.floor(time / 60) < 10 ? `0${Math.floor(time / 60)}` : Math.floor(time / 60)
+    return `${minutes}:${seconds}`
+  },
+  _format: function (time) {
+    return time >= 10 ? time : `0${time}`
+  },
+  runCountDown: function (initDuration) {
+    console.log(`题目个数为${initDuration}`)
+    var timer = setInterval(() => {
+      var totalseconds = initDuration * 60 * this.data.sinTime;
+      var lasttime = this.data.spendTime + 1;
+      this.setData({
+        spendTime: lasttime
+      })
+      totalseconds = totalseconds - this.data.spendTime;
+      var str = this.countDown(totalseconds).split(":")
+      this.setData({
+        minutes: str[0],
+        seconds: str[1]
+      })
+      // 判断是否提交，如果提交计算做题花费总时间
+      if (this.data.isSubmit) {
+        this.setData({
+          isSubmit: false
+        })
+        this.spendAllTime()
+
+      }
+    }, 1000)
+    this.setData({
+      timer
+    })
+  },
+
+
+
   // 显示退出检测的模态框
   showExitModal() {
     this.setData({
@@ -46,6 +148,18 @@ Page({
     if (e.detail.isExitDetect) {
       // 退出时需要保存什么东西。。。
     }
+  },
+  autoSave() {
+    this.setData({
+      ['examTemp.dealType']: 1
+    })
+    let stimer = setInterval(() => {
+      let sign = "save"
+      this.subOrSaveReq('/api/exam/dealSectionExam', sign)
+    }, this.data.intervalTime)
+    this.setData({
+      stimer
+    })
   },
   // 显示答题卡
   showAnswerCard() {
@@ -67,6 +181,49 @@ Page({
       isShowAnswerCard: false
     })
   },
+  subOrSaveReq(api, sign = "submit") {
+    if (sign === "submit") {
+      wx.showLoading({ title: '加载中...', icon: 'none' })
+    }
+    getHeader().then(token => {
+      if (token) {
+        header.token = token
+      } else {
+        console.error("token get faild!")
+      }
+      wx.request({
+        url: `https://www.shenfu.online/sfeduWx${api}`,
+        data: this.data.examTemp,
+        method: 'post', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+        header: header, // 设置请求的 header
+        success: function (res) {
+          if (sign) {
+            wx.hideLoading()
+          }
+          console.log(res)
+        },
+        fail: function () {
+          // fail
+        },
+        // 防止请求不成功一直 loading
+        complete: () => {
+          wx.hideLoading()
+        }
+      })
+    })
+  },
+  spendAllTime() {
+    console.log(`${this.data.timeWay}计时,花费了${this.data.spendTime}s`)
+    this.setData({
+      ['examTemp.dealType']: 2,
+      ['examTemp.timeWay']: this.data.timeWay,
+      ['examTemp.timeSecond']: this.data.spendTime,
+    })
+    let data = this.data.examTemp
+    console.log(data)
+    this.subOrSaveReq('/api/exam/dealSectionExam')
+
+  },
   // 得到用户的答案
   getUserAnswer(e) {
     this.isMakeAllTopic()
@@ -75,45 +232,20 @@ Page({
     this.setData({
       choosedTopicIndex
     })
+    console.log(userAnswers)
+    console.log(choosedTopicIndex)
 
-    // let userAnswer = this.data.answerLists[choosedTopicIndex]
     let currentTopicIndex = this.data.currentTopicIndex
 
     let submitAnswer = this.data.examTemp.examItemTempList
-    let len = submitAnswer.length
-    let obj = {}
-    obj.questionId = currentTopicIndex
-    obj.userAnswer = choosedTopicIndex + 1
-    for (let i = 0; i < len; ++i) {
-      if (submitAnswer[i].questionId === obj.questionId) {
-        submitAnswer[i].userAnswer = obj.userAnswer
-        this.setData({
-          ['examTemp.examItemTempList']: submitAnswer
-        })
-        break
-      }
-      if (i == len - 1) {
-        submitAnswer.push(obj)
-        this.setData({
-          ['examTemp.examItemTempList']: submitAnswer
-        })
-      }
-    }
-
-
-    if (userAnswers.length === 0) {
-      let arrLength = this.data.topicsLength
-      let tempArr = new Array(arrLength).fill(-1)
-      tempArr[currentTopicIndex] = choosedTopicIndex
-      this.setData({
-        userAnswers: tempArr
-      })
-    } else {
-      userAnswers[currentTopicIndex] = choosedTopicIndex
-      this.setData({
-        userAnswers
-      })
-    }
+    submitAnswer[currentTopicIndex].userAnswer = choosedTopicIndex + 1
+    this.setData({
+      ['examTemp.examItemTempList']: submitAnswer
+    })
+    userAnswers[currentTopicIndex] = choosedTopicIndex
+    this.setData({
+      userAnswers
+    })
   },
   // 判断用户是否做完了所有题目
   isMakeAllTopic() {
@@ -130,13 +262,16 @@ Page({
       count
     })
   },
+  isSubmit() {
+    this.setData({
+      isSubmit: true
+    })
+  },
   // 提交答案
   submitUserAnswer() {
     this.setData({
-      isShowAnswerCard: true,
-      ['examTemp.dealType']: 2
+      isShowAnswerCard: true
     })
-    let submitAnswer = this.data.examTemp
   },
   // 滑动至下一题或上一题
   nextTopic(e) {
@@ -172,6 +307,10 @@ Page({
   // 跳过当前题目
   passCurrentTopic() {
     let currentTopicIndex = this.data.currentTopicIndex + 1
+    let submitAnswer = this.data.examTemp.examItemTempList
+    if (submitAnswer[currentTopicIndex - 1].userAnswer === 0) {
+      submitAnswer[currentTopicIndex - 1].userAnswer = 5
+    }
     let length = this.data.topicsLength
     currentTopicIndex = currentTopicIndex < length ? currentTopicIndex : length - 1
     this.setData({
@@ -208,28 +347,45 @@ Page({
     }else {
       request('api/exam/getSectionExamOfUser', 'get', { sectionId: id }, res => {
         console.log(res.data)
-        let tempArr = []
-        let {id, questionList, timeSecond, timeWay} = res.data
-        for (var i = 0; i < questionList.length; i++){
-          tempArr.push({
-            questionId: questionList[i].id,
-            userAnswer: 5
+        if (res.data.questionList) {
+          this.setData({
+            topicsList: res.data.questionList,
+            topicsLength: res.data.questionList.length,
+            ['examTemp.examSectionId']: res.data.examSectionId
           })
-        }
-        this.setData({
-          topicsList: questionList,
-          topicsLength: questionList.length,
-          examTemp: {
-            "dealType": 2,
-            "examId": id,
-            "examItemTempList": tempArr,
-            "timeSecond": timeSecond,
-            "timeWay": timeWay
+  
+          let len = this.data.topicsLength
+          for (let i = 0; i < len; ++i) {
+            let obj = {
+              "questionId": 0,
+              "userAnswer": 0
+            }
+            obj.questionId = this.data.topicsList[i].id
+            let tempArr = this.data.examTemp.examItemTempList
+            tempArr.push(obj)
           }
-        })
+          let tempArr = new Array(len).fill(-1)
+          for (let j = 0; j < len; ++j) {
+            let lastAnswer = this.data.topicsList[j].userAnswer
+            if (lastAnswer !== 0) {
+              tempArr[j] = lastAnswer - 1
+            }
+          }
+          console.log(tempArr)
+          this.setData({
+            userAnswers: tempArr
+          })
+          if (tempArr[0] !== -1) {
+            let choosedTopicIndex = tempArr[0]
+            this.setData({
+              choosedTopicIndex
+            })
+          }
+          this.runCountDown(this.data.topicsLength)
+        }
       }, 'form')
     }
-   
+  
   },
   /**
    * 生命周期函数--监听页面加载
@@ -256,19 +412,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.autoSave()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.stimer)
+    this.clearTimer()
+    this.clearForTimer()
+    console.log('exit...')
+    this.showExitModal()
   },
 
   /**
