@@ -192,19 +192,21 @@ Page({
         header: header, // 设置请求的 header
         success:  (res) => {
           console.log(res)
-
-          // let tempArr = this.data.examTemp.examItemTempList
-          // for (let i = 0; i < tempArr.length; ++i) {
-          //   let result = tempArr[i].userAnswer * 1
-          //   if (result === 0) {
-          //     console.log('还没做完')
-          //     this.setData({
-          //       isDone: false
-          //     })
-          //     break
-          //   }
-          // }
-          if (sign === 'submit') {
+          let tempArr = this.data.examTemp.examItemTempList
+          for (let i = 0; i < tempArr.length; ++i) {
+            let result = tempArr[i].userAnswer * 1
+            if (result === 0 && sign === "submit") {
+              console.log('还没做完')
+              this.setData({
+                isDone: false
+              })
+              wx.switchTab({
+                url:"/pages/detect/index"
+              })
+              break
+            }
+          }
+          if (sign === 'submit' && this.data.isDone) {
             wx.hideLoading()
             wx.reLaunch({
               url: `/pages/points/index?data=${JSON.stringify(res.data.data)}`
@@ -226,7 +228,7 @@ Page({
     console.log(`${this.data.examTemp.timeWay}计时,倒计时总时间为${this.data.examTemp.timeSecond}s`)
     this.setData({
       ['examTemp.dealType']: 2,
-      ['examTemp.timeWay']: this.data.timeWay
+      ['examTemp.timeWay']: this.data.examTemp.timeWay
     })
     let data = this.data.examTemp
     console.log(data)
