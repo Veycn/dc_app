@@ -15,9 +15,10 @@ Page({
     timer: null, // 倒计时 器
     forwardtimer: null, //正向计时器
     lasttime: 0,  // 过去的秒数
-    forwardtime: 0, // 正向计时
-    sinTime: 2.5,   // 预估每道题目所花的时间
-    timeWay: 0,
+    isDone: true,
+    // forwardtime: 0, // 正向计时
+    // sumTime: 0,   // 总时间
+    // timeWay: 0,
 
     answerLists: ['A', 'B', 'C', 'D'],
     isLastTopic: false,
@@ -25,7 +26,7 @@ Page({
     currentTopicIndex: 0,
     topicsLength: 1,
     topicsList: [],
-    spendTime: 0,
+    // spendTime: 0,
     isShowAnswerCard: false,
     isShowExitModal: false,
     choosedTopicIndex: -1,
@@ -40,7 +41,7 @@ Page({
       "timeSecond": 0,
       "timeWay": 0
     },
-    intervalTime: 1000 * 60,   // 自动保存的间隔时间
+    intervalTime: 1000 * 6,   // 自动保存的间隔时间
     stimer: null
   },
 
@@ -66,32 +67,33 @@ Page({
     })
     this.init()
   },
+  forwardCount() {
+    var forwardtimer = setInterval(() => {
+      var forwardtime = this.data.examTemp.timeSecond + 1;
+      this.setData({
+        ['examTemp.timeSecond']: forwardtime,
+        ['examTemp.timeWay']: 1
+      })
+      var str = this.conversion(forwardtime).split(":")
+      this.setData({
+        minutes: str[0],
+        seconds: str[1]
+      })
+      if (this.data.isSubmit) {
+        this.setData({
+          isSubmit: false
+        })
+        this.spendAllTime()
+      }
+    }, 1000)
+    this.setData({
+      forwardtimer
+    })
+  },
   countDown: function (duration) {
     if (duration <= 0) {
       this.clearTimer()
-      var forwardtimer = setInterval(() => {
-        var forwardtime = this.data.forwardtime + 1;
-        this.setData({
-          forwardtime,
-          spendTime: forwardtime,
-          timeWay: 1
-        })
-        console.log(forwardtime)
-        var str = this.conversion(forwardtime).split(":")
-        this.setData({
-          minutes: str[0],
-          seconds: str[1]
-        })
-        if (this.data.isSubmit) {
-          this.setData({
-            isSubmit: false
-          })
-          this.spendAllTime()
-        }
-      }, 1000)
-      this.setData({
-        forwardtimer
-      })
+      this.forwardCount()
     }
     return this.conversion(duration)
 
@@ -105,14 +107,15 @@ Page({
     return time >= 10 ? time : `0${time}`
   },
   runCountDown: function (initDuration) {
-    console.log(`题目个数为${initDuration}`)
+    console.log(`总时间为${initDuration}`)
     var timer = setInterval(() => {
-      var totalseconds = initDuration * 60 * this.data.sinTime;
-      var lasttime = this.data.spendTime + 1;
+      var totalseconds = initDuration;
+      var lasttime = this.data.lasttime + 1;
+      totalseconds = totalseconds - lasttime;
       this.setData({
-        spendTime: lasttime
+        lasttime,
+        ['examTemp.timeSecond']: totalseconds
       })
-      totalseconds = totalseconds - this.data.spendTime;
       var str = this.countDown(totalseconds).split(":")
       this.setData({
         minutes: str[0],
@@ -124,7 +127,6 @@ Page({
           isSubmit: false
         })
         this.spendAllTime()
-
       }
     }, 1000)
     this.setData({
@@ -132,29 +134,14 @@ Page({
     })
   },
 
-
-
-  // 显示退出检测的模态框
-  showExitModal() {
-    this.setData({
-      isShowExitModal: true
-    })
-  },
-  // 隐藏退出检测的模态框
-  hideExitModal(e) {
-    this.setData({
-      isShowExitModal: false
-    })
-    if (e.detail.isExitDetect) {
-      // 退出时需要保存什么东西。。。
-    }
-  },
   autoSave() {
-    this.setData({
-      ['examTemp.dealType']: 1
-    })
     let stimer = setInterval(() => {
       let sign = "save"
+      console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
+      this.setData({
+        ['examTemp.dealType']: 1
+        // ['examTemp.timeSecond']: this.data.spendTime
+      })
       this.subOrSaveReq(sign)
     }, this.data.intervalTime)
     this.setData({
@@ -181,7 +168,7 @@ Page({
       isShowAnswerCard: false
     })
   },
-  subOrSaveReq(api, sign = "submit") {
+  subOrSaveReq(sign = "submit") {
     if (sign === "submit") {
       wx.showLoading({ title: '加载中...', icon: 'none' })
     }
@@ -192,7 +179,7 @@ Page({
         console.error("token get faild!")
       }
       let url = ''
-      console.log(this.data.isK)
+      console.log(`isK的值是${this.data.isK}`)
       if (this.data.isK) {
         url = 'https://www.shenfu.online/sfeduWx/api/exam/dealKnowledgeExam'
       } else {
@@ -203,14 +190,27 @@ Page({
         data: this.data.examTemp,
         method: 'post', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: header, // 设置请求的 header
-        success: function (res) {
-          if (sign) {
-            wx.hideLoading()
-          }
+        success:  (res) => {
           console.log(res)
-          wx.reLaunch({
-            url: `/pages/points/index?hasDetected=true`
-          })
+
+          // let tempArr = this.data.examTemp.examItemTempList
+          // for (let i = 0; i < tempArr.length; ++i) {
+          //   let result = tempArr[i].userAnswer * 1
+          //   if (result === 0) {
+          //     console.log('还没做完')
+          //     this.setData({
+          //       isDone: false
+          //     })
+          //     break
+          //   }
+          // }
+          if (sign === 'submit') {
+            wx.hideLoading()
+            wx.reLaunch({
+              url: `/pages/points/index?data=${JSON.stringify(res.data.data)}`
+            })
+          }
+
         },
         fail: function () {
           // fail
@@ -223,11 +223,10 @@ Page({
     })
   },
   spendAllTime() {
-    console.log(`${this.data.timeWay}计时,花费了${this.data.spendTime}s`)
+    console.log(`${this.data.examTemp.timeWay}计时,倒计时总时间为${this.data.examTemp.timeSecond}s`)
     this.setData({
       ['examTemp.dealType']: 2,
-      ['examTemp.timeWay']: this.data.timeWay,
-      ['examTemp.timeSecond']: this.data.spendTime,
+      ['examTemp.timeWay']: this.data.timeWay
     })
     let data = this.data.examTemp
     console.log(data)
@@ -362,7 +361,9 @@ Page({
           this.setData({
             topicsList: res.data.questionList,
             topicsLength: res.data.questionList.length,
-            ['examTemp.examSectionId']: res.data.examSectionId
+            ['examTemp.examSectionId']: res.data.examSectionId,
+            ['examTemp.timeSecond']: res.data.timeSecond,
+            ['examTemp.timeWay']: res.data.timeWay
           })
 
           let len = this.data.topicsLength
@@ -396,7 +397,11 @@ Page({
               choosedTopicIndex
             })
           }
-          this.runCountDown(this.data.topicsLength)
+          if (this.data.examTemp.timeWay === 0) {
+            this.runCountDown(this.data.examTemp.timeSecond)
+          } else {
+            this.forwardCount()
+          }
         }
       }, 'form')
     }
@@ -407,11 +412,12 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    let id = Number(options.id)
     if (options.type) {
       this.setData({ type: 'knowledgePointId', isK: true })
     }
     this.setData({
-      ['examTemp.knowledgePointId']: options.id
+      ['examTemp.knowledgePointId']: id
     })
     this.getTopicsList(options.id)
   },
@@ -445,7 +451,6 @@ Page({
     this.clearTimer()
     this.clearForTimer()
     console.log('exit...')
-    this.showExitModal()
   },
 
   /**

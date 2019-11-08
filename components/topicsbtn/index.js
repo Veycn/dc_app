@@ -82,16 +82,16 @@ Component({
       // })
 
 
-      let tempArr = this.data.submitAnswer.examItemTempList
-      for (let i = 0; i < tempArr.length; ++i) {
-        if (tempArr[i].userAnswer === 0) {
-          console.log('还没做完，不能提交哦')
-          this.setData({
-            isDone: false
-          })
-          break
-        }
-      }
+      // let tempArr = this.data.submitAnswer.examItemTempList
+      // for (let i = 0; i < tempArr.length; ++i) {
+      //   if (tempArr[i].userAnswer === 0) {
+      //     console.log('还没做完，不能提交哦')
+      //     this.setData({
+      //       isDone: false
+      //     })
+      //     break
+      //   }
+      // }
       if (this.data.isDone) {
         this.triggerEvent("isSubmit")
       }
