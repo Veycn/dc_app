@@ -16,6 +16,10 @@ Component({
     submitAnswer: {
       type: Object,
       value: {}
+    },
+    spendTime: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -24,6 +28,7 @@ Component({
    */
   data: {
     // currentIndex: -1
+    isDone: true
   },
 
   /**
@@ -41,19 +46,21 @@ Component({
     },
     // 提交并查看结果
     watchResult() {
-      this.onClose()
-      console.log(this.data.submitAnswer)
-      request('/api/exam/dealExam', 'post', this.data.submitAnswer, res => {
-        console.log(res)
-        wx.reLaunch({
-          url: `/pages/detect/index?hasDetected=true`
-        })
-      })
-      wx.request({
-        url: '/api/exam/dealExam',
-        method: 'post',
-        
-      })
+      // this.onClose()
+      
+      let tempArr = this.data.submitAnswer.examItemTempList
+      for (let i = 0; i < tempArr.length; ++i) {
+        if (tempArr[i].userAnswer === 0) {
+          console.log('还没做完，不能提交哦')
+          this.setData({
+            isDone: false
+          })
+          break
+        }
+      }
+      if (this.data.isDone) {
+        this.triggerEvent("isSubmit")
+      }
     }
   }
 })

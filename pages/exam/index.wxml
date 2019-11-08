@@ -5,19 +5,18 @@
 	</view>
 	<block wx:if="{{ isShowAnswerCard }}">
 		<s-answercard bindhideAnswerCard="hideAnswerCard">
-			<s-topicsbtn submitAnswer="{{examTemp}}"
-			 slot="scantron"
-			 isFinshed="{{ userAnswers }}"
-			 bindrediretTopic="rediretTopic"
-			 scantron-list="{{ topicsList }}"
-			 bindhideAnswerCard="hideAnswerCard"
-			/>
+			<s-topicsbtn submitAnswer="{{examTemp}}" slot="scantron" isFinshed="{{ userAnswers }}"
+				bindrediretTopic="rediretTopic" scantron-list="{{ topicsList }}" bindhideAnswerCard="hideAnswerCard"
+				bindisSubmit="isSubmit" spendTime="{{spendTime}}" />
 		</s-answercard>
 	</block>
 
 	<view class="clock-list">
 		<view class="timer">
-			<s-countdown initDuration='30' />
+			<view class="item-one">
+				<image class="img" mode="widthFix" src="{{szimg}}" />
+				<text class="item-text">{{ minutes }}:{{ seconds }}</text>
+			</view>
 		</view>
 		<view class="answer-card" bindtap="showAnswerCard">
 			({{ currentTopicIndex+1 }}/{{ topicsLength }})
@@ -34,11 +33,12 @@
 				<swiper-item>
 					<view>
 						<view class="topic-img">
-							<image mode="widthFix" src="{{ item.url }}"/>
+							<image mode="widthFix" src="{{ item.url }}" />
 						</view>
 						<view class="btn-wrap">
 							<block wx:for="{{ answerLists }}" wx:key="{{ index }}">
-								<view class="btn-item {{ choosedTopicIndex===index?'active':'' }}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
+								<view class="btn-item {{ choosedTopicIndex===index?'active':'' }}" data-index="{{ index }}"
+									bindtap="getUserAnswer">{{ item }}</view>
 							</block>
 						</view>
 					</view>
@@ -51,4 +51,3 @@
 		提交
 	</view>
 </view>
-

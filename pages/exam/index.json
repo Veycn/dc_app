@@ -4,8 +4,7 @@
   "usingComponents": {
     "s-exitmodal": "/components/exitmodal/index",
     "s-topicsbtn": "/components/topicsbtn/index",
-    "s-answercard": "/components/answercard/index",
-    "s-countdown": "/components/coudown/index"
+    "s-answercard": "/components/answercard/index"
   },
   "disableScroll":true
 }
