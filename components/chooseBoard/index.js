@@ -22,7 +22,6 @@ Component({
    */
   methods: {
     itemChoosed(e){
-      console.log(e)
       let {item, index} = e.currentTarget.dataset
       this.setData({
         activeIndex: index

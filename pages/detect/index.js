@@ -14,7 +14,8 @@ Page({
     chapters: [],
     activeChapter: '',
     activeChapterId: 1,
-    hasDetected: false
+    hasDetected: false,
+    activeIndex: 0
   },
 
   /**
@@ -26,14 +27,14 @@ Page({
     //   this.setData({hasDetected: options.hasDetected})
     // }
     const { gradeId, subjectId, textbookId } = app.globalData.requestMsg
-    request('api/chapter/getChapterList', 'get', { textbookId }, res => {
+    request('api/chapter/getChapterList', 'get', { textbookId: 12 }, res => {
       console.log(res)
       this.setData({ 
         chapters: res.data, 
         activeChapter: res.data[0].chapter && res.data[0].chapter.substring(0, 3),
         activeChapterId: res.data[0].id
       })
-      this.getSections()
+      // this.getSections()
     })
     
   },
@@ -91,6 +92,12 @@ Page({
         return this.setData({hasDetected: true})
       }
     }
+  },
+
+  chapterTap (e) {
+    let { item, index} = e.currentTarget.dataset
+    console.log(item)
+    this.setData({activeIndex: index})
   },
   onCustomTap (e) {
     wx.reLaunch({

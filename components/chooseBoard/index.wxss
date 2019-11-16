@@ -37,15 +37,17 @@
 
 .content .item {
   display: inline-block;
-  width: 120rpx;
+  min-width: 120rpx;
   height: 60rpx;
   background: #ccc;
   text-align: center;
+  box-sizing: border-box;
   font-size: 30rpx;
   line-height: 60rpx;
   margin-left: 60rpx;
   margin-bottom: 25rpx;
   border-radius: 4rpx;
+  padding: 0 10rpx;
   color: #fff;
 }
 .content .item:nth-child(3n+1){

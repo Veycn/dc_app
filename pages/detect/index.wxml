@@ -1,39 +1,20 @@
-<!-- pages/detect/index.wxml -->
-<view class="detect">
-    <view class="chapter" catchtap="changeChapter">
-        <text catchtap="openToast" class="u-f30">{{activeChapter}}</text>
-        <block wx:for="{{list}}">
-            <view class="point u-f20"  wx:if="{{item['submitStatus'] === 0}}" wx:key="index" catchtap="toDetect" data-type="{{item}}" style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
-                <text class="text">{{item.section}}</text>
-                <view class="wrapper" wx:if="{{flag}}">
-                    <view class="water w1"></view>
-                    <view class="water w2"></view>
-                    <view class="water w3"></view>
-                </view>*-0
-            </view>
-            <view class="point u-f20" wx:if="{{item['submitStatus'] === 2}}" wx:key="index" catchtap="toPoints" data-type="{{item}}" style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
-                <text class="text">{{item.section}}</text>
-                <view class="wrapper" style="top: {{(1 - item.ratio) * 160}}rpx">
-                    <view class="water w1"></view>
-                    <view class="water w2"></view>
-                    <view class="water w3"></view>
-                </view>
-            </view>
-        </block>
-    </view>
-    <view class="toast" hidden="{{!isToastShow}}">
-        <view class="content">
-            <image class="close" src="/assets/icon/exit.png" catchtap="closeToast"></image>
-            <view class="list">
-                <block wx:for="{{chapters}}" wx:key="index">
-                    <view class="list-item u-f30" catchtap="changeChapter" data-c="{{item.chapter}}" data-i="{{item.id}}">
-                        {{item.chapter}}
-                    </view>
+<view class="p-container">
+    <view class="banner"></view>
+    <view class="header">
+        <view class="chapter">
+            <image class="img" src="../../assets/pic/Image.png" />
+            <text class="txt">人教A版本</text>
+            <view class="tip">欢迎使用深辅智能在线教育</view>
+        </view>
+        <view class="scroll">
+            <scroll-view class="scroller" enable-flex scroll-x="true" bindscroll="scroll" style="width: 100%">
+                <block wx:for="{{chapters}}" wx:key="{{index}}">
+                    <view id="" class="item {{activeIndex === index ? '_active' : ''}}" data-item="{{item}}" data-index="{{index}}" catchtap="chapterTap">第{{index+1}}章</view>
                 </block>
-            </view>
+            </scroll-view>
         </view>
     </view>
-    <!-- <view class="btn u-f28 u-bg-theme" wx:if="{{hasDetected}}" catchtap="onCustomTap" data-hascustomize="true">
-        定制课程
-    </view> -->
+    <view class="section-list">
+
+    </view>
 </view>

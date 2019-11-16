@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -89,6 +89,13 @@
 					"id": -1,
 					"name": "pages/index/index",
 					"pathName": "pages/index/index",
+					"query": "id=26&section=1.1集合",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/detect/index",
+					"pathName": "pages/detect/index",
 					"query": "id=26&section=1.1集合",
 					"scene": null
 				}
