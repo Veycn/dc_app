@@ -53,7 +53,8 @@ Page({
     this.setData({ pos: res })
   },
   toDetect: function (e) {
-    let { id, section } = e.currentTarget.dataset.type
+    console.log(e)
+    let { id, section } = e.currentTarget.dataset
     wx.navigateTo({ url: `/pages/exam/index?id=${id}` })
   },
   toPoints: function(e){
