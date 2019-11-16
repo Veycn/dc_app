@@ -1,4 +1,4 @@
-<!--pages/cgrade/index.wxml-->
+<!-- pages/cgrade/index.wxml
 <view class='cg-wrap'>
 	<view class="tag-grade">
 		<s-tag tagText="年级" />
@@ -25,5 +25,16 @@
   <view class="start-study {{ isStartStudy?'active':'' }}" bindtap="startStudy">
     开启学习之旅
   </view>
-</view>
+</view> -->
 
+
+
+<view class="p-container">
+	<s-chooseBoard tag-name="年级" render-list="{{allGrades}}" type="grade"   active-color="#85F267" bindtagBeChoosed="gradeChoosed"></s-chooseBoard>
+	<s-chooseBoard tag-name="科目" render-list="{{currentSubjects}}" type="subject" active-color="#15DA7F" bindtagBeChoosed="subjectChoosed"></s-chooseBoard>
+	<s-chooseBoard tag-name="教材" render-list="{{allVersion}}" type="textbook" active-color="#15DABC" bindtagBeChoosed="versionChoosed"></s-chooseBoard>
+	<view class="to-learn" bindtap="startStudy">
+		<image class="pic" src="../../assets/pic/icon_open.png"/>
+	</view>
+</view>
+ 

@@ -12,7 +12,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     code: '',
-    loginInfo: {}
+    loginInfo: {},
+    canLogin: false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -62,7 +63,7 @@ Page({
       }
     })
     Promise.all([codeP, userInfoP]).then((res) => {
-      this.userLogin()
+      this.setData({canLogin: true})
     })
   },
   userLogin: function () {
@@ -110,6 +111,8 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-    
+    if(this.data.canLogin){
+      this.userLogin()
+    }
   }
 })

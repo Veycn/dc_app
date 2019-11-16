@@ -9,7 +9,7 @@
                     <view class="water w1"></view>
                     <view class="water w2"></view>
                     <view class="water w3"></view>
-                </view>
+                </view>*-0
             </view>
             <view class="point u-f20" wx:if="{{item['submitStatus'] === 2}}" wx:key="index" catchtap="toPoints" data-type="{{item}}" style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
                 <text class="text">{{item.section}}</text>

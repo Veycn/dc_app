@@ -47,6 +47,7 @@ Page({
     })
   },
   startStudy() {
+    console.log(1111)
     if (this.data.isStartStudy) {
       console.log(`选中的信息是:`)
       console.log(this.data.getversion)
@@ -98,6 +99,25 @@ Page({
     }, function (res) {
       console.log(res)
     })
+  },
+
+
+  gradeChoosed (e) {
+    console.log('gradeChoosed')
+    console.log(e)
+    const id = e.detail.item.id
+    this.setData({['getversion.gradeId']: id})
+    this.getSubjects(id)
+  },
+  subjectChoosed (e) {
+    const id = e.detail.item.id
+    this.setData({['getversion.subjectId']: id})
+    this.getTextBooks(id)
+  },
+
+  versionChoosed (e) {
+    const id = e.detail.item.id
+    this.setData({['getversion.textbookId']: id, isStartStudy: true})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

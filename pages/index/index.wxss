@@ -1,56 +1,21 @@
-/* pages/cgrade/index.wxss */
-.cg-wrap {
-  width: 645rpx;
-  min-height: 100rpx; 
-  margin: 0 auto;
-}
-.tag-grade {
+.p-container {
   width: 100%;
-  min-height: 250rpx;
-  margin-top: 85rpx;
-  position: relative;
+  height: 100%;
+  background: rgba(240, 242, 245, 1);
+  padding-top: 40rpx;
 }
-.ctext {
+
+.to-learn {
+  margin-top: 25rpx;
+  width: 416rpx;
+  height: 154rpx;
+  background: transparent;
   position: absolute;
-  width: 196rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  color: #fff;
-  background-position: right top;
-  top: -30rpx;
-  left: 150rpx;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.ctext image {
-  width: 196rpx;
-  height: 60rpx; 
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-.allgrades {
+
+.to-learn .pic {
   width: 100%;
-  margin: 60rpx  0 auto;
-}
-.tag-subject {
-  margin-top: 58rpx;
-  min-height: 170rpx;
-}
-.tag-book {
-  min-height: 210rpx;
-  margin-top: 60rpx;
-}
-.start-study {
-  width: 645rpx;
-  line-height: 94rpx;
-  text-align: center;
-  color: #353535;
-  font-size: 33rpx;
-  position: fixed;
-  bottom: 65rpx;
-  border: 1px dashed #ccc;
-}
-.hide {
-  display: none;
+  height: 100%;
 }

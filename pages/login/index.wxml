@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<!-- <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 允许深辅获取您的头像昵称 </button>
     <block wx:else>
@@ -10,4 +10,15 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+</view> -->
+
+<view class="p-container">
+  <view class="logo">
+    <image class="pic" src=""/>
+    <text class="title">深辅·在线智能教育</text>
+  </view>
+  <view class="login" >
+    <button class="btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo"><text class="login-text">登 录</text></button>
+  </view>
+  <view class="banner"></view>
 </view>
