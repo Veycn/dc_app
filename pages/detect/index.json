@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "s-sectionlist": "/components/sectionlist/index"
+  },
   "navigationBarTitleText":"认知检测"
 }

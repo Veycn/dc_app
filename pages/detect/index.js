@@ -15,7 +15,8 @@ Page({
     activeChapter: '',
     activeChapterId: 1,
     hasDetected: false,
-    activeIndex: 0
+    activeIndex: 0,
+    seclist: []
   },
 
   /**
@@ -74,7 +75,8 @@ Page({
   },
   getSections() {
     request('api/section/getSectionOfUser', 'get', { chapterId: +this.data.activeChapterId }, res => {
-      console.log(res)
+      console.log(res.data)
+      this.setData({seclist: res.data})
       if(res.status === 200){
         this.setData({ list: res.data })
         this.calculatePos()
@@ -96,8 +98,9 @@ Page({
 
   chapterTap (e) {
     let { item, index} = e.currentTarget.dataset
-    console.log(item)
+    console.log(item,index)
     this.setData({activeIndex: index})
+    this.getSections()
   },
   onCustomTap (e) {
     wx.reLaunch({

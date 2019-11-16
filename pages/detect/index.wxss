@@ -66,4 +66,8 @@
     height: 4rpx;
     background: #24DD88;
 }
+.p-container .section-list .sec-wrap {
+  width: 705rpx;
+  margin: 15rpx auto;
+}
 

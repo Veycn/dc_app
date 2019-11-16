@@ -1,0 +1,14 @@
+<!--components/knoblist/index.wxml-->
+<view class="sec-wrap">
+  <view class="sec-logo">置顶</view>
+  <view class="sec-content">
+    <span class="sec-name">{{seclist.section}}</span><span class="sec-pro">正确率：  {{seclist.ratio * 100}}%</span>
+  </view>
+
+  <block wx:if="{{seclist.submitStatus === 2}}">
+    <view class="sec-sum"><view class="sec-part" style="width:{{seclist.ratio*400}}rpx;"></view></view>
+  </block>
+  <block wx:else>
+    <view class="sec-notest">点击进行认知检测</view>
+  </block>
+</view>

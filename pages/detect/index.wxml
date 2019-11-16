@@ -1,20 +1,25 @@
 <view class="p-container">
-    <view class="banner"></view>
-    <view class="header">
-        <view class="chapter">
-            <image class="img" src="../../assets/pic/Image.png" />
-            <text class="txt">人教A版本</text>
-            <view class="tip">欢迎使用深辅智能在线教育</view>
-        </view>
-        <view class="scroll">
-            <scroll-view class="scroller" enable-flex scroll-x="true" bindscroll="scroll" style="width: 100%">
-                <block wx:for="{{chapters}}" wx:key="{{index}}">
-                    <view id="" class="item {{activeIndex === index ? '_active' : ''}}" data-item="{{item}}" data-index="{{index}}" catchtap="chapterTap">第{{index+1}}章</view>
-                </block>
-            </scroll-view>
-        </view>
+  <view class="banner"></view>
+  <view class="header">
+    <view class="chapter">
+      <image class="img" src="../../assets/pic/Image.png" />
+      <text class="txt">人教A版本</text>
+      <view class="tip">欢迎使用深辅智能在线教育</view>
     </view>
-    <view class="section-list">
+    <view class="scroll">
+      <scroll-view class="scroller" enable-flex scroll-x="true" bindscroll="scroll" style="width: 100%">
+        <block wx:for="{{chapters}}" wx:key="{{index}}">
+          <view id="" class="item {{activeIndex === index ? '_active' : ''}}" data-item="{{item}}" data-index="{{index}}" catchtap="chapterTap">第{{index+1}}章</view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="section-list">
+    <block wx:for="{{seclist}}" wx:key="index">
+      <view class="sec-wrap">
+        <s-sectionlist  seclist="{{item}}" />
+      </view>
+    </block>
 
-    </view>
+  </view>
 </view>

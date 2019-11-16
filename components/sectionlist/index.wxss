@@ -1,0 +1,58 @@
+/* components/knoblist/index.wxss */
+.sec-wrap {
+  width: 705rpx;
+  height: 150rpx;
+  background-color: #fff;
+  box-shadow:0rpx 2rpx 6rpx 0rpx rgba(50,55,53,0.05);
+  border-radius:10rpx;
+  position: relative;
+}
+.sec-logo {
+  width: 77rpx;
+  line-height: 32rpx;
+  position: absolute;
+  top: 26rpx;
+  left: -5rpx;
+  font-size: 20rpx;
+  background-color: #15EC89;
+  text-align: center;
+}
+.sec-content {
+  position: absolute;
+  left: 106rpx;
+  top: 23rpx;
+  font-size: #323735;
+}
+.sec-name {
+  font-size: 36rpx;
+
+}
+.sec-pro {
+  font-size: 20rpx;
+  margin-left: 21rpx;
+}
+
+.sec-sum {
+  width: 400rpx;
+  height: 6rpx;
+  background-color: #E9E9E9;
+  border-radius: 3rpx;
+  position: absolute;
+  left: 107rpx;
+  bottom: 42rpx;
+}
+
+.sec-part {
+  height: 6rpx;
+  width: 200rpx;
+  border-radius: 6rpx;
+  background-color: #15EC89;
+}
+
+.sec-notest {
+  color: #CCCCCC;
+  font-size: 20rpx;
+  position: absolute;
+  left: 107rpx;
+  bottom: 42rpx;
+}
