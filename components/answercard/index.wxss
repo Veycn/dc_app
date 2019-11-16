@@ -15,18 +15,24 @@
   position: absolute;
   bottom: 0;
   border-radius: 20rpx 20rpx 0 0;
+  overflow: hidden;
   box-sizing: border-box;
-  padding-top: 100rpx;
   z-index: 999;
 }
 .exit {
-  position: absolute;
-  right: 28rpx;
-  top: 41rpx;
+  line-height: 110rpx;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(43,43,43,1);
+  font-size: 36rpx;
 }
 .exit .img{
-  width: 34rpx;
-  height: 34rpx;
+  position: absolute;
+  right: 28rpx;
+  top: 32rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 
 .btn {

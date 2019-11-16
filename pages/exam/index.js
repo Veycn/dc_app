@@ -10,6 +10,8 @@ Page({
    */
   data: {
     szimg: "../../assets/icon/clock.png",
+    tyimg: "../../assets/icon/icon_circle.png",
+    psimg: "../../assets/icon/icon_poss.png",
     minutes: '00',
     seconds: '00',
     timer: null, // 倒计时 器
