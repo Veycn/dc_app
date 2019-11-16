@@ -1,52 +1,55 @@
 <!--pages/exam/index.wxml-->
 <view class="clock-container">
-	<view class="{{ isShowExitModal ? 'show':'hide' }}">
-		<s-exitmodal bindhideExitModal="hideExitModal" />
-	</view>
-	<block wx:if="{{ isShowAnswerCard }}">
-		<s-answercard bindhideAnswerCard="hideAnswerCard">
-			<s-topicsbtn submitAnswer="{{examTemp}}" slot="scantron" isFinshed="{{ userAnswers }}"
-				bindrediretTopic="rediretTopic" scantron-list="{{ topicsList }}" bindhideAnswerCard="hideAnswerCard"
-				bindisSubmit="isSubmit" spendTime="{{spendTime}}" />
-		</s-answercard>
-	</block>
-
-	<view class="clock-list">
-		<view class="timer">
-			<view class="item-one">
-				<image class="img" mode="widthFix" src="{{szimg}}" />
-				<text class="item-text">{{ minutes }}:{{ seconds }}</text>
-			</view>
-		</view>
-		<view class="answer-card" bindtap="showAnswerCard">
-			({{ currentTopicIndex+1 }}/{{ topicsLength }})
-			<text>答题卡</text>
-		</view>
-		<button class="pass" hover-class="button-hover" bindtap="passCurrentTopic">
+  <view class="{{ isShowExitModal ? 'show':'hide' }}">
+    <s-exitmodal bindhideExitModal="hideExitModal" />
+  </view>
+  <block wx:if="{{ isShowAnswerCard }}">
+    <s-answercard bindhideAnswerCard="hideAnswerCard">
+      <s-topicsbtn submitAnswer="{{examTemp}}" slot="scantron" isFinshed="{{ userAnswers }}" bindrediretTopic="rediretTopic" scantron-list="{{ topicsList }}" bindhideAnswerCard="hideAnswerCard" bindisSubmit="isSubmit" spendTime="{{spendTime}}" />
+    </s-answercard>
+  </block>
+  <view class="clock-wrap">
+    <view class="clock-list">
+      <view class="timer">
+        <view class="item-one">
+          <image class="img" mode="widthFix" src="{{szimg}}" />
+          <text class="item-text">{{ minutes }}:{{ seconds }}</text>
+        </view>
+      </view>
+      <view class="answer-card" bindtap="showAnswerCard">答题卡</view>
+      <view>{{ topicsLength }}/{{ currentTopicIndex+1 }}</view>
+      <!-- <button class="pass" hover-class="button-hover" bindtap="passCurrentTopic">
 			pass
-		</button>
-	</view>
+		</button> -->
+    </view>
+  </view>
 
-	<view class="topic-wrap">
-		<swiper bindchange="nextTopic" current="{{ currentTopicIndex }}">
-			<block wx:for="{{ topicsList }}" wx:for-item="items" wx:key="{{ index }}">
-				<swiper-item>
-					<view>
-						<view class="topic-img">
-							<image mode="widthFix" src="{{ items.url }}"/>
-						</view>
-						<view class="btn-wrap">
-							<block wx:for="{{ answerLists }}" wx:key="{{ index }}">
-								<view class="btn-item {{ choosedTopicIndex===index?'active':'' }} {{index+1 === items.userAnswer ?'active':''}}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
-							</block>
-						</view>
-					</view>
-				</swiper-item>
-			</block>
-		</swiper>
-	</view>
+  <view class="topic-wrap">
+    <swiper bindchange="nextTopic" current="{{ currentTopicIndex }}">
+      <block wx:for="{{ topicsList }}" wx:for-item="items" wx:key="{{ index }}">
+        <swiper-item>
+          <view>
+            <view class="topic-img">
+              <image mode="widthFix" src="{{ items.url }}" />
+            </view>
+            <view class="quetype">
+              <view class="quetype-con">
+                <view class="item"><image mode="widthFix" src="{{ tyimg }}"/>选择题</view>
+                <view class="item" bindtap="passCurrentTopic">PASS<image mode="widthFix" src="{{ psimg }}"/></view>
+              </view>
+            </view>
+            <view class="btn-wrap">
+              <block wx:for="{{ answerLists }}" wx:key="{{ index }}">
+                <view class="btn-item {{ choosedTopicIndex===index?'active':'' }} {{index+1 === items.userAnswer ?'active':''}}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
+              </block>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
 
-	<view bindtap="submitUserAnswer" class="submit u-bg-theme u-c-white {{ isLastTopic ? 'show' : 'hide'}}">
-		提交
-	</view>
+  <view bindtap="submitUserAnswer" class="submit u-bg-theme u-c-white {{ isLastTopic ? 'show' : 'hide'}}">
+    提交
+  </view>
 </view>

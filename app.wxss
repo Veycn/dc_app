@@ -25,12 +25,12 @@ page {
 .u-c-888          {color: #888888;}
 .u-c-b5           {color: #b5b5b5;}
 
-.u-bg-theme       {background-color: rgb(19, 109, 184)}
+.u-bg-theme       {background-color: #15EC89;}
 
 .u-border         {border: 1rpx solid #434343;}
 
 .active {
-  background-color: rgb(19, 109, 184)!important;
+  background-color: #15DA7F!important;
   color: #ffffff;
 }
 .show {

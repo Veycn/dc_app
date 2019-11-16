@@ -4,16 +4,15 @@
   height: 400rpx;
   box-sizing: border-box;
   padding: 0 50rpx;
-  overflow: scroll;
-  height: 100%;
+  margin-top: 39rpx;
 }
 .container .default {
   display: inline-block;
-  width: 100rpx;
+  width: 60rpx;
   text-align: center;
   border-radius: 50%;
-  font-size: 36rpx;
-  line-height: 100rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;
   margin: 0 12rpx;
   margin-bottom: 20rpx;
   font-family: 'Adobe Heiti Std R';
@@ -25,16 +24,16 @@
 }
 
 .active {
-  background-color: rgb(19, 109, 184);
+  background-color: #15DA7F;
   color: #ffffff;
 }
 .tip {
-  width: 640rpx;
-  line-height: 80rpx;
-  background-color:#ccc;
-  border-radius: 12rpx;
+  width: 400rpx;
+  line-height: 60rpx;
+  background-color:rgb(21, 236, 137);
+  border-radius: 30rpx;
   margin: 60rpx auto 30rpx;
   text-align: center;
-  color: #353535;
-  font-size: 28rpx;
+  color: #fff;
+  font-size: 30rpx;
 }
