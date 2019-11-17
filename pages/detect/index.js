@@ -52,15 +52,24 @@ Page({
     }
     this.setData({ pos: res })
   },
+  skipPage: function(e) {
+    console.log(e)
+    let { submitstatus } = e.currentTarget.dataset
+    if(submitstatus === 2) {
+      this.toPoints(e)
+    } else {
+      this.toDetect(e)
+    }
+  },
   toDetect: function (e) {
     console.log(e)
     let { id, section } = e.currentTarget.dataset
     wx.navigateTo({ url: `/pages/exam/index?id=${id}` })
   },
   toPoints: function(e){
-    let { id, section } = e.currentTarget.dataset.type
+    let { id, item } = e.currentTarget.dataset
     console.log(e)
-    wx.navigateTo({ url: `/pages/points/index?id=${id}&section=${section}` })
+    wx.navigateTo({ url: `/pages/points/index?id=${id}&section=${item}` })
   },
 
   changeChapter: function (e) {
