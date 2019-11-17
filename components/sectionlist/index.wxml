@@ -2,7 +2,8 @@
 <view class="sec-wrap">
   <view class="sec-logo">置顶</view>
   <view class="sec-content">
-    <span class="sec-name">{{seclist.section}}</span><span class="sec-pro">正确率：  {{seclist.ratio * 100}}%</span>
+    <span class="sec-name">{{seclist.section}}</span>
+    <span class="sec-pro" wx:if="{{seclist.submitStatus === 2}}">正确率：  {{seclist.ratio * 100}}%</span>
   </view>
 
   <block wx:if="{{seclist.submitStatus === 2}}">

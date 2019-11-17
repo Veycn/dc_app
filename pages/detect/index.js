@@ -35,7 +35,7 @@ Page({
         activeChapter: res.data[0].chapter && res.data[0].chapter.substring(0, 3),
         activeChapterId: res.data[0].id
       })
-      // this.getSections()
+      this.getSections(res.data[0].id)
     })
     
   },
@@ -74,8 +74,8 @@ Page({
   closeToast() {
     this.setData({ isToastShow: false })
   },
-  getSections() {
-    request('api/section/getSectionOfUser', 'get', { chapterId: +this.data.activeChapterId }, res => {
+  getSections(id) {
+    request('api/section/getSectionOfUser', 'get', { chapterId: id }, res => {
       console.log(res.data)
       this.setData({seclist: res.data})
       if(res.status === 200){
@@ -101,7 +101,7 @@ Page({
     let { item, index} = e.currentTarget.dataset
     console.log(item,index)
     this.setData({activeIndex: index})
-    this.getSections()
+    this.getSections(item.id)
   },
   onCustomTap (e) {
     wx.reLaunch({
