@@ -5,7 +5,8 @@ Component({
    */
   properties: {
     pointNumber: Number,
-    titleList: Array
+    titleList: Array,
+    resultArr: Array
   },
 
   /**

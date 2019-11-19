@@ -28,6 +28,7 @@ Page({
     answerLists: ['A', 'B', 'C', 'D'],
     isLastTopic: false,
     isSubmit: false,
+    submited: false,
     currentTopicIndex: 0,
     topicsLength: 1,
     topicsList: [],
@@ -86,7 +87,8 @@ Page({
       })
       if (this.data.isSubmit) {
         this.setData({
-          isSubmit: false
+          isSubmit: false,
+          submited: true
         })
         this.spendAllTime()
       }
@@ -129,7 +131,8 @@ Page({
       // 判断是否提交，如果提交计算做题花费总时间
       if (this.data.isSubmit) {
         this.setData({
-          isSubmit: false
+          isSubmit: false,
+          submited: true
         })
         this.spendAllTime()
       }
@@ -224,9 +227,13 @@ Page({
         header: header, // 设置请求的 header
         success: (res) => {
           console.log(res)
-          wx.reLaunch({
-            url: `/pages/detectResult/index?data=${JSON.stringify(res.data.data)}`
-          })
+          if (sign === 'submit') {
+            wx.hideLoading()
+            // console.log('做完了，跳转到认知结构页面')
+            wx.reLaunch({
+              url: `/pages/detectResult/index?data=${JSON.stringify(res.data.data)}`
+            })
+          }
           // for (let i = 0; i < tempArr.length; ++i) {
           //   let result = tempArr[i].userAnswer * 1
           //   if (result === 0 && sign === "submit") {
@@ -505,7 +512,10 @@ Page({
     clearInterval(this.data.stimer)
     this.clearTimer()
     this.clearForTimer()
-    this.saveAns()
+    if (!this.data.submited ) {
+      console.log('页面卸载时保存')
+      this.saveAns()
+    }
     console.log('exit...')
   },
 

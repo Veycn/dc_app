@@ -1,6 +1,6 @@
 <view class="p-wrapper">
   <view class="drw">
-    <s-detectResult point-number="{{4}}" title-list="{{titleList}}" class="dr" />
+    <s-detectResult resultArr="{{resultArr}}" point-number="{{4}}" title-list="{{titleList}}" class="dr" />
     <view class="line"></view>
   </view>
   <view class="recommand">

@@ -5,14 +5,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    titleList: ['正确率', '正确题数', '花费时间', '本次测试题目数']
+    titleList: ['正确率', '正确题数', '花费时间', '本次测试题目数'],
+    resultArr: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    console.log(options.data)
+    let arr = this.data.resultArr
+    let { ratio, rightNum, useTime, submitNum } = JSON.parse(options.data)
+    arr.push(`${ratio.toFixed(2) * 100}%`)
+    arr.push(`${rightNum}题`)
+    let m = Math.floor(useTime / 60)
+    let s = useTime % 60
+    arr.push(`${m}分${s}秒`)
+    arr.push(`${submitNum}题`)
+    this.setData({
+      resultArr: arr
+    })
   },
 
   exit () {
