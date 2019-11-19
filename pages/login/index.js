@@ -74,6 +74,10 @@ Page({
     })
     Promise.all([codeP, userInfoP]).then((res) => {
       this.setData({canLogin: true})
+    }).catch(err => {
+      wx.showToast({
+        title: '系统异常！'
+      })
     })
   },
   userLogin: function () {
