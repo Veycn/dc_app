@@ -1,4 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText":"认知结构"
+  "navigationBarTitleText":"认知结构",
+  "navigationBarBackgroundColor": "#15EC89",
+  "navigationBarTextStyle": "white"
 }

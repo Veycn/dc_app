@@ -1,17 +1,6 @@
-
-<view class="detect">
-  <view class="chapter">
-      <view class="u-f30 cptt">{{section}}</view>
-      <view class="point u-f20" wx:for="{{list}}" wx:key="index" catchtap="toDetect" data-type="{{item}}"
-          style="left: {{pos[index].x}}rpx; top: {{pos[index].y}}rpx">
-          <text class="text">{{item['knowledgePoint']}}...</text>
-          <view class="wrapper" style="top: {{(1-item.ratio) * 160}}rpx">
-              <view class="water w1"></view>
-              <view class="water w2"></view>
-              <view class="water w3"></view>
-          </view>
-      </view>
-  </view>
-  <view class="btn u-f28 u-bg-theme"  catchtap="onCustomTap" data-hascustomize="true">定制课程</view>
- <view class="btn btn1" bindtap="changePoints">看看其他</view>
+<view class="p-wrapper">
+    <view class="banner">
+        <text class="c">{{sectionName}}</text>
+        <text class="s">欢迎使用深辅智能在线教育</text>
+    </view>
 </view>
