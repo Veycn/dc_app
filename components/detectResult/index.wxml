@@ -1,0 +1,11 @@
+<!-- components/detectResult/index.wxml -->
+<view class="c-wrapper">
+  <view class="content">
+    <view class="decorate">
+      <view class="item" wx:for="{{pointNumber}}" wx:key=""></view>
+    </view>
+    <view class="text">
+      <view wx:for="{{titleList}}" wx:key="" class="title">{{item}} : <text class="data">20%</text></view>
+    </view>
+  </view>
+</view>

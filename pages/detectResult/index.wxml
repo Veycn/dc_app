@@ -1,0 +1,14 @@
+<view class="p-wrapper">
+  <view class="drw">
+    <s-detectResult point-number="{{4}}" title-list="{{titleList}}" class="dr" />
+    <view class="line"></view>
+  </view>
+  <view class="recommand">
+    <view class="big-title">深辅AI智能系统</view>
+    <view class="sub-title">
+      <text class="big-title">将</text><text class="nomal">根据本次测评为您推荐</text>
+    </view>
+    <view class="custom">《 定制课程 》</view>
+    <view class="exit" bindtap="exit">退 出</view>
+  </view>
+</view>

@@ -1,34 +1,3 @@
-<!-- pages/cgrade/index.wxml
-<view class='cg-wrap'>
-	<view class="tag-grade">
-		<s-tag tagText="年级" />
-		<view class="ctext u-f24 {{choosed !== -1 ? 'hide' : ''}}">
-			<image src="../../assets/icon/c_grade.png" />
-			请选择你的年级
-		</view>
-		<view class="allgrades">
-			<s-allgrades bindchoosedType="choosedGrade" allGrades="{{ allGrades }}" />
-		</view>
-	</view>
-	<view class="tag-subject">
-		<s-tag tagText="科目" />
-		<view class="allgrades">
-			<s-allsubjects bindchoosedSubject="choosedSubject" currentSubjects="{{ currentSubjects }}" isTap="{{isChoosed}}" />
-		</view>
-	</view>
-	<view class="tag-book">
-		<s-tag tagText="教材" />
-    <view class="allgrades u-f28">
-			<s-allversion bindchoosedVersion="choosedVersion" allVersion="{{ allVersion }}" isTap="{{isChoosed}}"/>
-		</view>
-	</view>
-  <view class="start-study {{ isStartStudy?'active':'' }}" bindtap="startStudy">
-    开启学习之旅
-  </view>
-</view> -->
-
-
-
 <view class="p-container">
 	<s-chooseBoard tag-name="年级" render-list="{{allGrades}}" type="grade"   active-color="#85F267" bindtagBeChoosed="gradeChoosed"></s-chooseBoard>
 	<s-chooseBoard tag-name="科目" render-list="{{currentSubjects}}" type="subject" active-color="#15DA7F" bindtagBeChoosed="subjectChoosed"></s-chooseBoard>

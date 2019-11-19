@@ -23,36 +23,15 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: {}
   },
-
-
-  choosedSubject(e) {
-    let choosedSubjectId = e.detail.id
-    this.setData({
-      ['getversion.subjectId']: choosedSubjectId
-    })
-    this.getTextBooks(choosedSubjectId)
-  },
-  choosedGrade(value) {
-    this.setData({
-      isChoosed: true,
-      choosed: value.detail.choosed,
-      ['getversion.gradeId']: value.detail.id
-    })
-    this.getSubjects(value.detail.id)
-  },
-  choosedVersion(e) {
-    this.setData({
-      ['getversion.textbookId']: e.detail.id,
-      isStartStudy: true
-    })
-  },
   startStudy() {
-    console.log(1111)
     if (this.data.isStartStudy) {
       console.log(`选中的信息是:`)
       console.log(this.data.getversion)
       app.globalData.requestMsg = this.data.getversion
       wx.switchTab({ url: '../detect/index' })
+      request('api/userInfo/addUserInfo', 'post', this.data.getversion, res => {
+        console.log(res)
+      }, 'form')
     }
   },
 
@@ -75,12 +54,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.getCourseInfo()
     this.getAllGrades()
   },
 
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -91,7 +68,6 @@ Page({
   userLogin: function () {
     const { code } = this.data
     const { nickName, gender, city, province, country, avatarUrl } = this.data.userInfo
-    console.log(code, nickName, gender, city, province, country, avatarUrl)
     request('api/userAccount/login', 'post', {
       wxUserInfo: {
         code, nickName, gender, city, province, country, avatarUrl
@@ -103,8 +79,6 @@ Page({
 
 
   gradeChoosed (e) {
-    console.log('gradeChoosed')
-    console.log(e)
     const id = e.detail.item.id
     this.setData({['getversion.gradeId']: id})
     this.getSubjects(id)
