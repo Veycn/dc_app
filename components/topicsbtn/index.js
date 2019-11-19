@@ -32,7 +32,7 @@ Component({
    */
   data: {
     // currentIndex: -1
-    isDone: true
+    // isDone: true
   },
 
   /**
@@ -92,9 +92,7 @@ Component({
       //     break
       //   }
       // }
-      if (this.data.isDone) {
-        this.triggerEvent("isSubmit")
-      }
+      this.triggerEvent("isSubmit")
     }
   }
 })

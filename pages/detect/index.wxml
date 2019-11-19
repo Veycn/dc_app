@@ -14,12 +14,14 @@
       </scroll-view>
     </view>
   </view>
-  <view class="section-list">
-    <block wx:for="{{seclist}}" wx:key="index">
-      <view class="sec-wrap" data-submitStatus="{{item.submitStatus}}" data-id="{{item.id}}" data-item="{{item.section}}" bindtap="skipPage">
-        <s-sectionlist  seclist="{{item}}" />
-      </view>
-    </block>
+  <view>
+    <scroll-view scroll-y="true" class="section-list">
+      <block wx:for="{{seclist}}" wx:key="index">
+        <view class="sec-wrap" data-submitStatus="{{item.submitStatus}}" data-id="{{item.id}}" data-item="{{item.section}}" bindtap="skipPage">
+          <s-sectionlist seclist="{{item}}" />
+        </view>
+      </block>
 
+    </scroll-view>
   </view>
 </view>

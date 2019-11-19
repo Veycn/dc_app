@@ -43,7 +43,7 @@ Page({
       "timeSecond": 0,
       "timeWay": 0
     },
-    intervalTime: 1000 * 6,   // 自动保存的间隔时间
+    intervalTime: 1000 * 60,   // 自动保存的间隔时间
     stimer: null
   },
 
@@ -135,16 +135,25 @@ Page({
       timer
     })
   },
-
+  saveAns() {
+    let sign = "save"
+    console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
+    this.setData({
+      ['examTemp.dealType']: 1
+      // ['examTemp.timeSecond']: this.data.spendTime
+    })
+    this.subOrSaveReq(sign)
+  },
   autoSave() {
     let stimer = setInterval(() => {
-      let sign = "save"
-      console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
-      this.setData({
-        ['examTemp.dealType']: 1
-        // ['examTemp.timeSecond']: this.data.spendTime
-      })
-      this.subOrSaveReq(sign)
+      // let sign = "save"
+      // console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
+      // this.setData({
+      //   ['examTemp.dealType']: 1
+      //   // ['examTemp.timeSecond']: this.data.spendTime
+      // })
+      // this.subOrSaveReq(sign)
+      this.saveAns()
     }, this.data.intervalTime)
     this.setData({
       stimer
@@ -170,6 +179,18 @@ Page({
       isShowAnswerCard: false
     })
   },
+  getDoneQue(ques) {
+    let doneArr = []
+    let quesArr = ques.examItemTempList
+    for (let i = 0; i < quesArr.length; ++i) {
+      if (quesArr[i].userAnswer !== 0) {
+        doneArr.push(quesArr[i])
+      }
+    }
+    this.setData({
+      ['examTemp.examItemTempList']: doneArr
+    })
+  },
   subOrSaveReq(sign = "submit") {
     if (sign === "submit") {
       wx.showLoading({ title: '加载中...', icon: 'none' })
@@ -187,6 +208,9 @@ Page({
       } else {
         url = 'https://www.shenfu.online/sfeduWx/api/exam/dealSectionExam'
       }
+      let tempArr = this.data.examTemp.examItemTempList
+      this.getDoneQue(this.data.examTemp)
+      console.log(this.data.examTemp.examItemTempList)
       wx.request({
         url: url,
         data: this.data.examTemp,
@@ -194,11 +218,10 @@ Page({
         header: header, // 设置请求的 header
         success:  (res) => {
           console.log(res)
-          let tempArr = this.data.examTemp.examItemTempList
           for (let i = 0; i < tempArr.length; ++i) {
             let result = tempArr[i].userAnswer * 1
             if (result === 0 && sign === "submit") {
-              console.log('还没做完')
+              console.log('还没做完,跳转到detect页面')
               this.setData({
                 isDone: false
               })
@@ -210,6 +233,7 @@ Page({
           }
           if (sign === 'submit' && this.data.isDone) {
             wx.hideLoading()
+            console.log('做完了，跳转到认知结构页面')
             wx.reLaunch({
               url: `/pages/points/index?data=${JSON.stringify(res.data.data)}`
             })
@@ -329,6 +353,11 @@ Page({
     currentTopicIndex = currentTopicIndex < length ? currentTopicIndex : length - 1
     this.setData({
       currentTopicIndex
+    })
+    let userAnswers = this.data.userAnswers
+    userAnswers[currentTopicIndex-1] = 5
+    this.setData({
+      userAnswers
     })
   },
   // 得到题目集合
@@ -454,6 +483,7 @@ Page({
     clearInterval(this.data.stimer)
     this.clearTimer()
     this.clearForTimer()
+    this.saveAns()
     console.log('exit...')
   },
 

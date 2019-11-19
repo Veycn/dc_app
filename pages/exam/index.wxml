@@ -4,8 +4,8 @@
     <s-exitmodal bindhideExitModal="hideExitModal" />
   </view>
   <block wx:if="{{ isShowAnswerCard }}">
-    <s-answercard bindhideAnswerCard="hideAnswerCard">
-      <s-topicsbtn submitAnswer="{{examTemp}}" slot="scantron" isFinshed="{{ userAnswers }}" bindrediretTopic="rediretTopic" scantron-list="{{ topicsList }}" bindhideAnswerCard="hideAnswerCard" bindisSubmit="isSubmit" spendTime="{{spendTime}}" />
+    <s-answercard bindhideAnswerCard="hideAnswerCard" bindisSubmit="isSubmit">
+      <s-topicsbtn submitAnswer="{{examTemp}}" slot="scantron" isFinshed="{{ userAnswers }}" bindrediretTopic="rediretTopic" scantron-list="{{ topicsList }}" bindhideAnswerCard="hideAnswerCard"  spendTime="{{spendTime}}" />
     </s-answercard>
   </block>
   <view class="clock-wrap">
@@ -34,13 +34,14 @@
             </view>
             <view class="quetype">
               <view class="quetype-con">
-                <view class="item"><image mode="widthFix" src="{{ tyimg }}"/>选择题</view>
+                <view class="item"><image mode="widthFix" src="{{ tyimg }}"/>单选题</view>
                 <view class="item" bindtap="passCurrentTopic">PASS<image mode="widthFix" src="{{ psimg }}"/></view>
               </view>
             </view>
             <view class="btn-wrap">
               <block wx:for="{{ answerLists }}" wx:key="{{ index }}">
-                <view class="btn-item {{ choosedTopicIndex===index?'active':'' }} {{index+1 === items.userAnswer ?'active':''}}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
+               <!-- {{index+1 === items.userAnswer ?'active':''}} -->
+                <view class="btn-item {{ choosedTopicIndex===index?'active':'' }}" data-index="{{ index }}" bindtap="getUserAnswer">{{ item }}</view>
               </block>
             </view>
           </view>
@@ -49,7 +50,11 @@
     </swiper>
   </view>
 
-  <view bindtap="submitUserAnswer" class="submit u-bg-theme u-c-white {{ isLastTopic ? 'show' : 'hide'}}">
+  <!-- <view bindtap="submitUserAnswer" class="submit u-bg-theme u-c-white {{ isLastTopic ? 'show' : 'hide'}}">
     提交
+  </view> -->
+  <view class="footer">
+    <view class="tip-b">点击答题卡可提交已测试题目</view>
+    <view class="tip-s">如果著作权人发现，请第一时间通知我们，我们马上删除。</view>
   </view>
 </view>
