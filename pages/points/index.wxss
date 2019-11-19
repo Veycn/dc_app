@@ -1,169 +1,67 @@
-/* pages/points/index.wxss *//* pages/detect/index.wxss */
 
-.detect{
-  width: 100%;
-  height: 100%;
-  position: relative;
+.p-wrapper, page {
+  background: rgb(240, 242, 245);
 }
 
-.detect .chapter{
-  position: absolute;
-  width: 200rpx;
-  height: 400rpx;
-  border: 2rpx solid #ccc;
-  border-left: none;
-  border-bottom-right-radius: 200rpx;
-  border-top-right-radius: 200rpx;
-  line-height: 400rpx;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.detect .point {
-  width: 160rpx;
-  height: 160rpx;
-  border: 2rpx solid #ccc;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 160rpx;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: translateY(80rpx);
-  overflow: hidden;
-  
-}
-.detect .point .text{
-  position: absolute;
-  top: 50%;
-  left: 0;
-  /* transform: translate(0 -50%); */
-  color: #000;
-  text-align: center;
-  z-index: 1000;
-  display: inline-block;
-  text-align: center;
+.p-wrapper .banner{
   width: 100%;
-  line-height: 1;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.detect .point .wrapper{
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-.detect .point .water {
-  position: absolute;
-  left: -20rpx;
-  top: 0;
-  border-radius: 70rpx;
-  width: 200rpx;
   height: 200rpx;
-  background: rgba(54, 142, 224, 0.4);
-  z-index: 100;
-}
-
-.w1 {
-  animation: wave 10s 0s infinite;
-}
-.w2 {
-  animation: wave 10s 0.4s infinite;
-}
-.w3 {
-  animation: wave 10s 0.8s infinite;
-}
-
-@keyframes wave {
-  from {
-      transform: rotate(0deg);
-  }
-  to {
-      transform: rotate(360deg);    
-  }
-}
-
-
-
-.toast {
-  width: 100%;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, .6);
+  z-index: 99;
 }
 
-.content {
-  width: 686rpx;
-  height: 600rpx;
-  background: #fff;
+.p-wrapper .banner .bg {
+  width: 750rpx;
+  height: 200rpx;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 10rpx;
-  box-sizing: border-box;
-  padding: 16rpx;
+  left: 0;
+  top: 0;
+}
+.p-wrapper .banner .c {
+  color: #1C1B1B;
+  font-size: 48rpx;
+  font-weight: bold;
+  z-index: 10;
 }
 
-.content .close {
-  position: absolute;
-  top: 15rpx;
-  right: 15rpx;
-  width: 32rpx;
-  height: 32rpx;
-  padding: 10rpx;
+.p-wrapper .banner .s {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+  z-index: 10;
 }
 
-.content .list {
+
+.points {
   width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
   box-sizing: border-box;
-  padding-top: 25rpx;
+  padding: 220rpx 22rpx 200rpx;
+}
+
+.btn-wrapper {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #ffffff;
+  width: 100%;
+  height: 200rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+.btn-wrapper .btn {
+  width: 260rpx;
+  height: 87rpx;
 }
 
-.content .list .list-item {
-  margin: 20rpx;
-  text-align: center;
-  width: 400rpx;
-  height: 120rpx;
-  background: #ccc;
-  line-height: 120rpx;
-  border: 1px solid #fff;
-  border-radius: 10rpx;
-}
-
-
-.btn {
-  width: 200rpx;
-  height: 60rpx;
-  position: absolute;
-  right: 32rpx;
-  bottom: 32rpx;
-  border-radius: 8rpx;
-  text-align: center;
-  line-height: 60rpx;
-  color: #fff;
-  background: rgb(19, 109, 184);
-  font-size: 28rpx;
-}
-
-.btn1 {
-  top: 32rpx;
-}
-
-
-.cptt {
-  width: 100%;
-  height: 40rpx;
+.btn-wrapper .txt {
+  font-size: 24rpx;
+  color: #999;
 }

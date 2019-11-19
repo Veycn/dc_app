@@ -10,23 +10,66 @@ Page({
    */
   data: {
     sectionName: '',
-    sectionId: -1
+    sectionId: -1,
+    renderList: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    let { id, section} = options
-    this.setData({sectionId: id, sectionName: section})
+    let {
+      id,
+      section
+    } = options
+    this.setData({
+      sectionId: id,
+      sectionName: section
+    })
     this.getList(id)
   },
-  
-  getList (id) {
-    request('api/exam/getSectionExamOfUser', 'get', {sectionId: id}, res => {
-      console.log(res)
+
+  getList(id) {
+    request('api/exam/getSectionExamOfUser', 'get', {
+      sectionId: id
+    }, res => {
+      let renderList = res.data.knowledgeList
+      let arr = [];
+      for (let i = 0; i < renderList.length; i++) {
+        let temp = new Object()
+        if (renderList[i].ratio === 0) {
+          temp.text = '未完成';
+          temp.level = 0;
+          temp.color = '#ececec'
+        } else if (renderList[i].ratio < 0.4) {
+          temp.text = '已了解/未掌握'
+          temp.level = 1
+          temp.color = '#afffeb'
+
+        } else if (renderList[i].ratio < 0.7) {
+          temp.text = '已理解/未掌握'
+          temp.level = 2
+          temp.color = '#55ffb1'
+        } else {
+          temp.text = '已掌握'
+          temp.level = 3
+          temp.color = '#15EC89'
+        }
+        renderList[i] = {...temp, ...renderList[i]}
+        arr.push(temp)
+      }
+      this.setData({renderList})
     })
+  },
+
+  toQuestion(e) {
+    console.log(e)
+    let {id} = e.currentTarget.dataset
+    wx.navigateTo({url: `/pages/exam/index?id=${id}&isKnowledge=${true}`})
+  },
+
+  customize () {
+    wx.switchTab({url: '/pages/customize/index'})
   },
 
   /**

@@ -1,6 +1,16 @@
 <view class="p-wrapper">
     <view class="banner">
+        <image class="bg" src="/assets/pic/jhbg.png"/>
         <text class="c">{{sectionName}}</text>
         <text class="s">欢迎使用深辅智能在线教育</text>
+    </view>
+    <view class="points">
+        <block wx:for="{{renderList}}" wx:key="">
+            <s-pointItem point-name="{{item['knowledgePoint']}}" status="{{item['text']}}" color="{{item['color']}}" level="{{item['level']}}" bindpointTap="toQuestion" data-id="{{item['id']}}"/>
+        </block>
+    </view>
+    <view class="btn-wrapper">
+        <image class="btn" bindtap="customize" src="../../assets/pic/btn_curriculum.png"/>
+        <text class="txt">深辅AI智能精选课程</text>
     </view>
 </view>

@@ -13,8 +13,9 @@
 </view> -->
 
 <view class="p-container">
+  <image class="bg" mode="widthFix" src="../../assets/pic/login_bg.png"/>
   <view class="logo">
-    <image class="pic" src=""/>
+    <image class="pic" src="../../assets/pic/login_logo.png"/>
     <text class="title">深辅·在线智能教育</text>
   </view>
   <view class="login" >
