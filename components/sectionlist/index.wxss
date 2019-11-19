@@ -9,13 +9,16 @@
 }
 .sec-logo {
   width: 77rpx;
-  line-height: 32rpx;
+  height: 32rpx;
   position: absolute;
   top: 26rpx;
   left: -5rpx;
-  font-size: 20rpx;
+}
+.default {
+  background-color: #ccc;
+}
+.active {
   background-color: #15EC89;
-  text-align: center;
 }
 .sec-content {
   position: absolute;

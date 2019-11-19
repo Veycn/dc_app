@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/detectResult/index",
     "pages/login/index",
+
+    "pages/detectResult/index",
     "pages/index/index",
     "pages/detect/index",
     "pages/pay/index",

@@ -1,5 +1,8 @@
 // pages/exam/index.js
-const { request, getHeader } = require('../../utils/request.js')
+const {
+  request,
+  getHeader
+} = require('../../utils/request.js')
 const header = {
   'content-type': 'application/json'
 }
@@ -16,7 +19,7 @@ Page({
     seconds: '00',
     timer: null, // 倒计时 器
     forwardtimer: null, //正向计时器
-    lasttime: 0,  // 过去的秒数
+    lasttime: 0, // 过去的秒数
     isDone: true,
     // forwardtime: 0, // 正向计时
     // sumTime: 0,   // 总时间
@@ -34,8 +37,8 @@ Page({
     choosedTopicIndex: -1,
     type: '',
     isK: false,
-    count: [],                // 用来记录用户做过题的数量
-    userAnswers: [],          // 记录用户做过的题目
+    count: [], // 用来记录用户做过题的数量
+    userAnswers: [], // 记录用户做过的题目
     examTemp: {
       "dealType": 0,
       "examItemTempList": [],
@@ -43,18 +46,18 @@ Page({
       "timeSecond": 0,
       "timeWay": 0
     },
-    intervalTime: 1000 * 6,   // 自动保存的间隔时间
+    intervalTime: 1000 * 60, // 自动保存的间隔时间
     stimer: null
   },
 
-  init: function () {
+  init: function() {
     this.setData({
       minutes: '00',
       second: '00'
     })
   },
   // 清除倒计时的计时器
-  clearTimer: function () {
+  clearTimer: function() {
     clearInterval(this.data.timer)
     this.setData({
       timer: null
@@ -62,7 +65,7 @@ Page({
     this.init()
   },
   // 清除正向计时器
-  clearForTimer: function () {
+  clearForTimer: function() {
     clearInterval(this.data.forwardtimer)
     this.setData({
       forwardtimer: null
@@ -92,7 +95,7 @@ Page({
       forwardtimer
     })
   },
-  countDown: function (duration) {
+  countDown: function(duration) {
     if (duration <= 0) {
       this.clearTimer()
       this.forwardCount()
@@ -100,15 +103,15 @@ Page({
     return this.conversion(duration)
 
   },
-  conversion: function (time) {
+  conversion: function(time) {
     var seconds = this._format(time % 60)
     var minutes = Math.floor(time / 60) < 10 ? `0${Math.floor(time / 60)}` : Math.floor(time / 60)
     return `${minutes}:${seconds}`
   },
-  _format: function (time) {
+  _format: function(time) {
     return time >= 10 ? time : `0${time}`
   },
-  runCountDown: function (initDuration) {
+  runCountDown: function(initDuration) {
     console.log(`总时间为${initDuration}`)
     var timer = setInterval(() => {
       var totalseconds = initDuration;
@@ -135,16 +138,25 @@ Page({
       timer
     })
   },
-
+  saveAns() {
+    let sign = "save"
+    console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
+    this.setData({
+      ['examTemp.dealType']: 1
+      // ['examTemp.timeSecond']: this.data.spendTime
+    })
+    this.subOrSaveReq(sign)
+  },
   autoSave() {
     let stimer = setInterval(() => {
-      let sign = "save"
-      console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
-      this.setData({
-        ['examTemp.dealType']: 1
-        // ['examTemp.timeSecond']: this.data.spendTime
-      })
-      this.subOrSaveReq(sign)
+      // let sign = "save"
+      // console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
+      // this.setData({
+      //   ['examTemp.dealType']: 1
+      //   // ['examTemp.timeSecond']: this.data.spendTime
+      // })
+      // this.subOrSaveReq(sign)
+      this.saveAns()
     }, this.data.intervalTime)
     this.setData({
       stimer
@@ -170,9 +182,24 @@ Page({
       isShowAnswerCard: false
     })
   },
+  getDoneQue(ques) {
+    let doneArr = []
+    let quesArr = ques.examItemTempList
+    for (let i = 0; i < quesArr.length; ++i) {
+      if (quesArr[i].userAnswer !== 0) {
+        doneArr.push(quesArr[i])
+      }
+    }
+    this.setData({
+      ['examTemp.examItemTempList']: doneArr
+    })
+  },
   subOrSaveReq(sign = "submit") {
     if (sign === "submit") {
-      wx.showLoading({ title: '加载中...', icon: 'none' })
+      wx.showLoading({
+        title: '加载中...',
+        icon: 'none'
+      })
     }
     getHeader().then(token => {
       if (token) {
@@ -187,36 +214,42 @@ Page({
       } else {
         url = 'https://www.shenfu.online/sfeduWx/api/exam/dealSectionExam'
       }
+      let tempArr = this.data.examTemp.examItemTempList
+      this.getDoneQue(this.data.examTemp)
+      console.log(this.data.examTemp.examItemTempList)
       wx.request({
         url: url,
         data: this.data.examTemp,
         method: 'post', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: header, // 设置请求的 header
-        success:  (res) => {
+        success: (res) => {
           console.log(res)
-          let tempArr = this.data.examTemp.examItemTempList
-          for (let i = 0; i < tempArr.length; ++i) {
-            let result = tempArr[i].userAnswer * 1
-            if (result === 0 && sign === "submit") {
-              console.log('还没做完')
-              this.setData({
-                isDone: false
-              })
-              wx.switchTab({
-                url:"/pages/detect/index"
-              })
-              break
-            }
-          }
-          if (sign === 'submit' && this.data.isDone) {
-            wx.hideLoading()
-            wx.reLaunch({
-              url: `/pages/points/index?data=${JSON.stringify(res.data.data)}`
-            })
-          }
+          wx.reLaunch({
+            url: `/pages/detectResult/index?data=${JSON.stringify(res.data.data)}`
+          })
+          // for (let i = 0; i < tempArr.length; ++i) {
+          //   let result = tempArr[i].userAnswer * 1
+          //   if (result === 0 && sign === "submit") {
+          //     console.log('还没做完,跳转到detect页面')
+          //     this.setData({
+          //       isDone: false
+          //     })
+          //     wx.switchTab({
+          //       url:"/pages/detect/index"
+          //     })
+          //     break
+          //   }
+          // }
+          // if (sign === 'submit' && this.data.isDone) {
+          //   wx.hideLoading()
+          //   console.log('做完了，跳转到认知结构页面')
+          //   wx.reLaunch({
+          //     url: `/pages/points/index?data=${JSON.stringify(res.data.data)}`
+          //   })
+          // }
 
         },
-        fail: function () {
+        fail: function() {
           // fail
         },
         // 防止请求不成功一直 loading
@@ -330,13 +363,26 @@ Page({
     this.setData({
       currentTopicIndex
     })
+    let userAnswers = this.data.userAnswers
+    userAnswers[currentTopicIndex - 1] = 5
+    this.setData({
+      userAnswers
+    })
   },
   // 得到题目集合
   getTopicsList(id) {
     if (this.data.type === 'knowledgePointId') {
-      request('api/exam/getKnowledgeExamOfUser', 'get', { knowledgePointId: id }, res => {
-        let tempArr = [], ans = []
-        let { id, questionList, timeSecond, timeWay } = res.data
+      request('api/exam/getKnowledgeExamOfUser', 'get', {
+        knowledgePointId: id
+      }, res => {
+        let tempArr = [],
+          ans = []
+        let {
+          id,
+          questionList,
+          timeSecond,
+          timeWay
+        } = res.data
         for (var i = 0; i < questionList.length; i++) {
           tempArr.push({
             questionId: questionList[i].id,
@@ -359,7 +405,9 @@ Page({
         })
       }, 'form')
     } else {
-      request('api/exam/getSectionExamOfUser', 'get', { sectionId: id }, res => {
+      request('api/exam/getSectionExamOfUser', 'get', {
+        sectionId: id
+      }, res => {
         console.log(res.data)
         if (res.data.questionList) {
           this.setData({
@@ -414,11 +462,14 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(options)
     let id = Number(options.id)
     if (options.type) {
-      this.setData({ type: 'knowledgePointId', isK: true })
+      this.setData({
+        type: 'knowledgePointId',
+        isK: true
+      })
     }
     this.setData({
       ['examTemp.knowledgePointId']: id
@@ -429,52 +480,53 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.autoSave()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
     clearInterval(this.data.stimer)
     this.clearTimer()
     this.clearForTimer()
+    this.saveAns()
     console.log('exit...')
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

@@ -67,8 +67,13 @@
     height: 4rpx;
     background: #24DD88;
 }
+.p-container .section-list {
+  width: 710rpx;
+  margin: 20rpx auto;
+  height: 700rpx;
+}
 .p-container .section-list .sec-wrap {
   width: 705rpx;
-  margin: 15rpx auto;
+  margin: 0 auto 15rpx;
 }
 
