@@ -13,7 +13,7 @@
   border-radius: 50%;
   font-size: 30rpx;
   line-height: 60rpx;
-  margin: 0 16rpx;
+  margin: 0 15rpx;
   margin-bottom: 20rpx;
   font-family: 'Adobe Heiti Std R';
   border: 1px solid rgba(230,230,230,1);
