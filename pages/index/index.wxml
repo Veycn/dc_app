@@ -5,5 +5,8 @@
 	<view class="to-learn" bindtap="startStudy">
 		<image class="pic" src="../../assets/pic/icon_open.png"/>
 	</view>
+  <block wx:if="{{ isChoosed }}">
+    <s-tipWindows bindexitModal="exitModal" />
+  </block>
 </view>
  

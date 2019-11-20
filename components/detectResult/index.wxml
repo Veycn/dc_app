@@ -5,7 +5,7 @@
       <view class="item" wx:for="{{pointNumber}}" wx:key=""></view>
     </view>
     <view class="text">
-      <view wx:for="{{titleList}}" wx:key="" class="title">{{item}} : <text class="data">20%</text></view>
+      <view wx:for="{{titleList}}" wx:key="" class="title">{{item}} : <text class="data"></text>{{resultArr[index]}}</view>
     </view>
   </view>
 </view>

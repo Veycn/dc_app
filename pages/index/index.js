@@ -21,7 +21,8 @@ Page({
     isStartStudy: false,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    userInfo: {}
+    userInfo: {},
+    isChoosed: false
   },
   startStudy() {
     if (this.data.isStartStudy) {
@@ -32,7 +33,16 @@ Page({
       request('api/userInfo/addUserInfo', 'post', this.data.getversion, res => {
         console.log(res)
       }, 'form')
+    } else {
+      this.setData({
+        isChoosed: true
+      })
     }
+  },
+  exitModal() {
+    this.setData({
+      isChoosed: false
+    })
   },
 
   getAllGrades () {

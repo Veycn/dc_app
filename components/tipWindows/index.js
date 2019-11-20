@@ -1,12 +1,10 @@
-// components/detectResult/index.js
+// components/tipWindows/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    pointNumber: Number,
-    titleList: Array,
-    resultArr: Array
+
   },
 
   /**
@@ -20,6 +18,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    exitModal() {
+      this.triggerEvent('exitModal')
+    }
   }
 })
