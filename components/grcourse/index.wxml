@@ -3,10 +3,10 @@
   <view class='title'>{{title}}</view>
 
   <view class="groupInfo" wx:if="{{hasgroup==true}}">
-    <text class="groupneed">开团缺1人</text>
+    <text class="groupneed">拼团缺{{groupneed}}人</text>
     <text class="space">|</text>
     <view class='{{time}}'>
-      <text>团购倒计时{{retime}}</text>
+      <text>团购倒计时  {{retime}}</text>
     </view>
   </view>
 
@@ -15,7 +15,7 @@
       <image src='{{tx}}'></image>主讲师：{{name}}
     </view>
     <view class="schedule">
-      <progress stroke-width="6" percent="40" color="#15EC89"/>
+    <s-myprogress stroke-width="6" percent="0"  active-color="#15EC89"/>
     </view>
   </view>
 
@@ -26,7 +26,6 @@
      <image src="{{tx}}"></image>
      <image src="{{tx}}"></image>
        <image src="{{tx}}"></image>
-     <image src="{{tx}}"></image>
  </view>
   <view class='{{mask}}'>
     <view class='courecancel'>

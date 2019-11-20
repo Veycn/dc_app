@@ -7,7 +7,7 @@
   </view>
 
   <view class="schedule">
-  <progress stroke-width="6" percent="40"  color="#15EC89"/>
+  <s-myprogress stroke-width="6" percent="40"  active-color="#15EC89"/>
   </view>
   <view class='study'>
   <text>进入学习</text>

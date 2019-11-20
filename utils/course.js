@@ -3,7 +3,7 @@ let descourse = [
   { title: "空间几何体的结构特点", section: "第2章5节", buynum: "120", teachecName: "马云", teacherImage: "/assets/icon/pic.png",courseImage: "/assets/pic/cover1.png" }
   ]
   let desgrcourse=[
-    { title: "一元一次方程解法详情",courseImage:"/assets/pic/cover1.png",groupneed:"5"}
+    { title: "一元一次方程解法详情",courseImage:"/assets/pic/cover1.png",groupneed:"0"}
   ]
 module.exports={
   descourse,

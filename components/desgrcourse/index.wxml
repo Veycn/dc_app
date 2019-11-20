@@ -5,14 +5,13 @@
   <view class="courseInfo">
     <text class="title">{{title}}</text>
     <view class="groupInfo">
-      <text class="groupneed">开团缺{{groupneed}}人</text>
+      <text class="groupneed">拼团缺{{groupneed}}人</text>
       <text class="space">|</text>
       <view class='time'>
-        <text>团购倒计时{{retime}}</text>
+        <text>团购倒计时  {{retime}}</text>
       </view>
     </view>
     <view class="peopleImage">
-      <image src="/assets/icon/pic.png" />
       <image src="/assets/icon/pic.png" />
       <image src="/assets/icon/pic.png" />
       <image src="/assets/icon/pic.png" />

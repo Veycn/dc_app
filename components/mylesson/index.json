@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+      "s-myprogress": "/components/myprogress/index"
+  }
 }

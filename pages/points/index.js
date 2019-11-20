@@ -69,6 +69,7 @@ Page({
   },
 
   customize () {
+    app.globalData.hascustomize=true
     wx.switchTab({url: '/pages/customize/index'})
   },
 

@@ -17,7 +17,7 @@ Page({
       edi: "必修一",
       retime: "24:00:00",
       title: "一元一次方程解法与一元二次方程解法的比较分析",
-      groupneed: 2,
+      groupneed: 0,
       point: "2.1指数函数"
     }, {
       courseId: 2,
@@ -27,7 +27,7 @@ Page({
       edi: "必修一",
       retime: "07:00:00",
       title: "集合的交，并，补集",
-      groupneed: 5,
+      groupneed: 0,
       point: "2.1指数函数"
     }],
     myList: [{

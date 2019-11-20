@@ -1,4 +1,5 @@
 // pages/detectResult/index.js
+const app=getApp()
 Page({
 
   /**
@@ -31,6 +32,7 @@ Page({
     wx.switchTab({url: '/pages/detect/index'})
   },
   toCourse () {
+    app.globalData.hascustomize=true
     wx.switchTab({url: '/pages/customize/index'})
   }, 
   /**

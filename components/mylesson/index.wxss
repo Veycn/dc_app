@@ -1,13 +1,14 @@
 /* components/mylesson/index.wxss */
 .lesson {
   background-color: white;
-  width: 626rpx;
+  width: 586rpx;
   height: 180rpx;
   margin: 20rpx auto;
   position: relative;
   border: 1px solid white;
   border-radius:10rpx;
   padding-left: 40rpx;
+  padding-right: 40rpx;
 }
 .title {
   margin: 34rpx auto 20rpx;
