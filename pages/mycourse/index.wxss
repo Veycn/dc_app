@@ -1,1 +1,15 @@
 /* pages/mycourse/index.wxss */
+.top {
+  text-align: center;
+  padding-top: 30rpx;
+  background-color: white;
+    margin-bottom: 40rpx;
+}
+.top image {
+  width: 668rpx;
+  height: 310rpx;
+
+}
+page {
+    background-color: #eee;
+}

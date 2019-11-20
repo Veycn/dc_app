@@ -1,22 +1,19 @@
-// components/descourse/index.js
+// components/desgrcourse/index.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
+    retime: String,
     title:String,
-    section:String,
-    buynum:String,
-    teachecName:String,
-    teacherImage:String,
-    courseImage:String
+    courseImage:String,
+    groupneed:String
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-
   },
 
   /**

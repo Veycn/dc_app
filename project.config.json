@@ -48,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -65,10 +65,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "pages/customize/index",
 					"pathName": "pages/customize/index",
-					"query": "",
+					"query": "hascustomize=true",
 					"scene": null
 				},
 				{
@@ -97,6 +97,13 @@
 					"name": "pages/detect/index",
 					"pathName": "pages/detect/index",
 					"query": "id=26&section=1.1集合",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mycourse/index",
+					"pathName": "pages/mycourse/index",
+					"query": "",
 					"scene": null
 				}
 			]

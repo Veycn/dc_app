@@ -1,10 +1,17 @@
 <!--pages/mycourse/index.wxml-->
+<view class="top">
+<image src="/assets/pic/mycourse.png"></image>
+</view>
+
+
 <block wx:for="{{myList}}" wx:key="{{index}}">
-  <s-mylesson name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" edi="{{item.edi}}" point="{{item.point}}" />
+  <s-mylesson name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" edi="{{item.edi}}" point="{{item.point}}"/>
 </block>
 
 <block wx:for="{{groupList}}" wx:key="{{item.courseId}}">
   <s-grcourse name="{{item.name}}" num="{{item.num}}" tx="{{item.tx}}" title="{{item.title}}" point="{{item.point}}" edi="{{item.edi}}" groupneed="{{item.groupneed}}" courseId="{{item.courseId}}" retime="{{clock}}" />
 </block>
+
+
 
 
