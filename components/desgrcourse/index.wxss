@@ -1,4 +1,4 @@
-/* components/descourse/index.wxss */
+/* components/desgrcourse/index.wxss *//* components/descourse/index.wxss */
 .lesson {
   height: 220rpx;
   width: 668rpx;
@@ -6,7 +6,8 @@
   margin-top: 24rpx;
   align-items: center;
   border-bottom: 1rpx solid #E3E3E3;
-  display: flex
+  display: flex;
+  position: relative;
 }
 .courseImage {
   height: 150rpx;
@@ -24,17 +25,7 @@
   font-weight:400;
 }
 
-.desc {
-  display: flex;
-  color: #999999;
-font-size:20rpx;
-font-family:PingFang SC;
-font-weight:400;
-margin-top: 20rpx;
-}
-.space {
-  margin: 0 15rpx;
-}
+
 
 .teacher {
   display: flex;
@@ -63,5 +54,36 @@ align-items: center;
   line-height: 38rpx;
   font-size: 24rpx;
   color: white;
-  margin-left: 150rpx;
+  position: absolute;
+  right: 22rpx;
+  bottom:40rpx;
+}
+.groupInfo {
+  font-size: 20rpx;
+  display: flex;
+  margin: 17rpx auto 0;
+}
+.groupneed {
+ color:  #15EC89;
+}
+.space {
+  padding: 0 10rpx;
+  color: #CECECE;
+}
+.time {
+color:#009CFF;
+font-size:20rpx;
+font-family:PingFang SC;
+font-weight:400; 
+}
+.peopleImage {
+  display: flex;
+}
+.peopleImage image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 22rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 26rpx;
 }

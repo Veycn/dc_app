@@ -1,84 +1,111 @@
 /* components/grcourse/index.wxss */
 /* components/mylesson/index.wxss */
+
 .lesson {
-  width: 696rpx;
-  height: 340rpx;
-  margin: 10rpx auto;
-  border: 1px dashed #ccc;
+  background-color: white;
+  width: 626rpx;
+  height: 180rpx;
+  margin: 20rpx auto;
   position: relative;
+  border: 1px solid white;
+  border-radius:10rpx;
+  padding-left: 40rpx;
 }
-.edi {
-  position: absolute;
-  left: 0;
-  top:0;
-  font-size: 20rpx;
-}
-.edi>text {
-  display: block;
-  width: 79rpx;
-  height: 32rpx;
-  text-align: center;
-  background-color: #78b5cf;
-}
+
 .title {
-  width: 664rpx;
-  margin: 40rpx auto 20rpx;
-  font-size: 28rpx;
-  height: 90rpx;
-  line-height: 90rpx;
+  margin: 34rpx auto 20rpx;
+  font-size: 30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  overflow: hidden;
+  text-overflow:ellipsis;
+white-space: nowrap;
+width: 100%;
 }
-.desc {
-  font-size: 28rpx;
+.groupInfo {
+  font-size: 20rpx;
   display: flex;
-  justify-content: space-between;
-  width: 484rpx;
+  margin: 17rpx auto 0;
+}
+.groupneed {
+ color:  #15EC89;
+}
+
+.desc {
+  font-size: 24rpx;
+  display: flex;
   margin: 20rpx auto 0;
   align-items:center;
 }
 .desc image {
-  width: 76rpx;
-  height: 76rpx;
+  width: 50rpx;
+  height: 50rpx;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  margin-right: 16rpx;
 }
-.study {
-  display: flex;
-  width: 664rpx;
-  margin: 40rpx auto 0;
-  justify-content: space-between;
-  align-items: center;
-}
-.study text:first-child {
-  color: #B5B5B5;
+.cancelCourse {
+   position: absolute;
+   right: 50rpx;
+   bottom: 13rpx;
+  width: 130rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  background-color:  #009CFF;
+  text-align: center; 
   font-size: 20rpx;
+  border-radius:19px;
+   color: white;
 }
-.study text:last-child {
-  background-color:  #78b5cf;
-  width: 166rpx;
-  height: 62rpx;
-  line-height: 62rpx;
-  text-align: center;
-    font-size: 24rpx;
+.cancelCourse-active{
+   position: absolute;
+   right: 50rpx;
+   bottom: 13rpx;
+  width: 130rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  background-color:  #15EC89;
+  text-align: center; 
+  font-size: 20rpx;
+  border-radius:19px;
+   color: white;
+}
+.space {
+  padding: 0 10rpx;
+  color: #CECECE;
 }
 .time {
-  position: absolute;
-  right: 200rpx;
-  bottom:5rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+color:#C3C3C3;
+font-size:20rpx;
+font-family:PingFang SC;
+font-weight:400; 
 }
 .time-hidden {
   display: none;
 }
-.time text {
-  font-size: 24rpx;
-  color: #353535;
+.schedule {
+  margin-top: 10rpx;
+  width: 400rpx;
 }
-.time .red {
-  color: #E64340;
+.schedule progress {
+  border: 1rpx solid #E9E9E9;
+  border-radius: 8rpx;
 }
+.peopleNum {
+  display: flex;
+  position: absolute;
+  left: 40rpx;
+  bottom: 10rpx;
+}
+.peopleNum image {
+  margin-right: 15rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .mask {
 position: fixed;
 top: 0;
@@ -86,15 +113,15 @@ left: 0;
 width: 100%;
 height: 100%;
 z-index: 1000;
-background:rgba(0, 0, 0, 0.3);
+background:rgba(30,29,29,.7);
 display: block;
 }
 .mask-hidden {
   display: none;
 }
 .courecancel {
-  width: 468rpx;
-  height: 352rpx;
+  width:500rpx;
+  height: 254rpx;
   background-color: #fff;
   position: relative;
   border-radius: 20rpx;
@@ -102,40 +129,36 @@ display: block;
   margin-left: -234rpx;
   top: 50%;
   margin-top: -176rpx;
+  font-size: 36rpx;
 }
-.courecancel>image {
-  width: 34rpx;
-  height: 34rpx;
+.tipbg {
+    width:500rpx;
+  height: 254rpx;
+}
+.exit{
+  width: 50rpx;
+  height: 50rpx;
   position: absolute;
-  right: 5rpx;
-  top: 5rpx;
+  right: 26rpx;
+  top: 26rpx;
 }
-.courecancel>text {
-  font-size: 30rpx;
-}
+
 .hint{
   position: absolute;
-  left: 160rpx;
-  top: 100rpx;
+  top:48rpx;
+  left: 144rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: white;
 }
 .confirm {
   position: absolute;
-  bottom: 40rpx;
-  left: 20rpx;
-  width: 120rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  border: 1px solid #ccc;
+  bottom: 48rpx;
+  left: 92rpx;
+
 }
 .deny {
   position: absolute;
-  bottom: 40rpx;
-  right: 20rpx;
-  width: 120rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
-  border: 1px solid #ccc;
-  background-color: rgb(19, 109, 184);
+  bottom: 48rpx;
+  right: 96rpx;
 }

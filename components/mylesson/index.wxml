@@ -1,15 +1,15 @@
 <!--components/mylesson/index.wxml-->
 <view class='lesson' bindtap='toclass'>
-  <view class='edi'>
-    <text>{{edi}}</text>
-  </view>
   <view class='title'>{{title}}</view>
   <view class='desc'>
-  <image src='{{tx}}'></image>{{name}}
-    <text>{{num}} 课时</text>
+  <image src='{{tx}}'></image>主讲师：{{name}}
+    <text>学习进度：40%</text>
+  </view>
+
+  <view class="schedule">
+  <progress stroke-width="6" percent="40"  color="#15EC89"/>
   </view>
   <view class='study'>
-  <text>{{point}}</text>
   <text>进入学习</text>
   </view>
 </view>

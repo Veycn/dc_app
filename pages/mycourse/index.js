@@ -36,7 +36,7 @@ Page({
       name: "马云",
       tx: "/assets/icon/pic.png",
       edi: "必修一",
-      title: "一元一次方程解法与一元二次方程解法的比较分析",
+      title: "一元一次方程解法详情",
       point: "2.1指数函数"
     }]
   },

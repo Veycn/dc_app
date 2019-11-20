@@ -21,10 +21,11 @@ Component({
    */
   data: {
       mask:"mask-hidden",
-      lesscancel:"取消课程",
+      lesscancel:'取消团购',
       time:"time",
       cancel: "cancel",
-      buycourse:"buycourse"
+      buycourse:"buycourse",
+      hasgroup:true
   },
 
   /**
@@ -52,7 +53,8 @@ Component({
         lesscancel: "退款中",
         time:"time-hidden",
         cancel:null,
-        buycourse: "buycourse"
+        buycourse: "buycourse",
+        hasgroup:false
       })
       wx.showToast({
         title: '24小时内退款',
