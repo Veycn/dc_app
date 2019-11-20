@@ -21,10 +21,6 @@ Page({
     forwardtimer: null, //正向计时器
     lasttime: 0, // 过去的秒数
     isDone: true,
-    // forwardtime: 0, // 正向计时
-    // sumTime: 0,   // 总时间
-    // timeWay: 0,
-
     answerLists: ['A', 'B', 'C', 'D'],
     isLastTopic: false,
     isSubmit: false,
@@ -32,14 +28,20 @@ Page({
     currentTopicIndex: 0,
     topicsLength: 1,
     topicsList: [],
-    // spendTime: 0,
     isShowAnswerCard: false,
     isShowExitModal: false,
     choosedTopicIndex: -1,
     type: '',
-    isK: false,
     count: [], // 用来记录用户做过题的数量
     userAnswers: [], // 记录用户做过的题目
+    examKnowledgeTemp: {
+      "dealType": 0,
+      "examItemTempList": [],
+      "examKnowledgeId": 0,
+      "knowledgePointId": 0,
+      "timeSecond": 0,
+      "timeWay": 0
+    },
     examTemp: {
       "dealType": 0,
       "examItemTempList": [],
@@ -48,7 +50,10 @@ Page({
       "timeWay": 0
     },
     intervalTime: 1000 * 60, // 自动保存的间隔时间
-    stimer: null
+    stimer: null,
+    sectionId: 0,
+    sectionName: '',
+    tempSaveAns: []
   },
 
   init: function() {
@@ -75,11 +80,20 @@ Page({
   },
   forwardCount() {
     var forwardtimer = setInterval(() => {
-      var forwardtime = this.data.examTemp.timeSecond + 1;
-      this.setData({
-        ['examTemp.timeSecond']: forwardtime,
-        ['examTemp.timeWay']: 1
-      })
+      if (this.data.type === "isKnowledge") {
+        var forwardtime = this.data.examKnowledgeTemp.timeSecond + 1;
+        this.setData({
+          ['examKnowledgeTemp.timeSecond']: forwardtime,
+          ['examKnowledgeTemp.timeWay']: 1
+        })
+      } else {
+        var forwardtime = this.data.examTemp.timeSecond + 1;
+        this.setData({
+          ['examTemp.timeSecond']: forwardtime,
+          ['examTemp.timeWay']: 1
+        })
+      }
+
       var str = this.conversion(forwardtime).split(":")
       this.setData({
         minutes: str[0],
@@ -103,7 +117,6 @@ Page({
       this.forwardCount()
     }
     return this.conversion(duration)
-
   },
   conversion: function(time) {
     var seconds = this._format(time % 60)
@@ -119,10 +132,17 @@ Page({
       var totalseconds = initDuration;
       var lasttime = this.data.lasttime + 1;
       totalseconds = totalseconds - lasttime;
-      this.setData({
-        lasttime,
-        ['examTemp.timeSecond']: totalseconds
-      })
+      if (this.data.type === "isKnowledge") {
+        this.setData({
+          lasttime,
+          ['examKnowledgeTemp.timeSecond']: totalseconds
+        })
+      } else {
+        this.setData({
+          lasttime,
+          ['examTemp.timeSecond']: totalseconds
+        })
+      }
       var str = this.countDown(totalseconds).split(":")
       this.setData({
         minutes: str[0],
@@ -143,22 +163,21 @@ Page({
   },
   saveAns() {
     let sign = "save"
-    console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
-    this.setData({
-      ['examTemp.dealType']: 1
-      // ['examTemp.timeSecond']: this.data.spendTime
-    })
+    if (this.data.type === "isKnowledge") {
+      console.log(`type:${this.data.type}倒计时时间${this.data.examKnowledgeTemp.timeSecond}`)
+      this.setData({
+        ['examKnowledgeTemp.dealType']: 1
+      })
+    } else {
+      console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
+      this.setData({
+        ['examTemp.dealType']: 1
+      })
+    }
     this.subOrSaveReq(sign)
   },
   autoSave() {
     let stimer = setInterval(() => {
-      // let sign = "save"
-      // console.log(`倒计时时间${this.data.examTemp.timeSecond}`)
-      // this.setData({
-      //   ['examTemp.dealType']: 1
-      //   // ['examTemp.timeSecond']: this.data.spendTime
-      // })
-      // this.subOrSaveReq(sign)
       this.saveAns()
     }, this.data.intervalTime)
     this.setData({
@@ -185,17 +204,23 @@ Page({
       isShowAnswerCard: false
     })
   },
-  getDoneQue(ques) {
+  getDoneQue() {
     let doneArr = []
-    let quesArr = ques.examItemTempList
+    let quesArr = this.data.tempSaveAns
     for (let i = 0; i < quesArr.length; ++i) {
       if (quesArr[i].userAnswer !== 0) {
         doneArr.push(quesArr[i])
       }
     }
-    this.setData({
-      ['examTemp.examItemTempList']: doneArr
-    })
+    if (this.data.type === "isKnowledge") {
+      this.setData({
+        ['examKnowledgeTemp.examItemTempList']: doneArr
+      })
+    } else {
+      this.setData({
+        ['examTemp.examItemTempList']: doneArr
+      })
+    }
   },
   subOrSaveReq(sign = "submit") {
     if (sign === "submit") {
@@ -211,50 +236,47 @@ Page({
         console.error("token get faild!")
       }
       let url = ''
-      console.log(`isK的值是${this.data.isK}`)
-      if (this.data.isK) {
+      let data = {}
+      console.log(`type的值是${this.data.type}`)
+      this.getDoneQue()
+      if (this.data.type === "isKnowledge") {
         url = 'https://www.shenfu.online/sfeduWx/api/exam/dealKnowledgeExam'
+        data = this.data.examKnowledgeTemp
       } else {
         url = 'https://www.shenfu.online/sfeduWx/api/exam/dealSectionExam'
+        data = this.data.examTemp
       }
-      let tempArr = this.data.examTemp.examItemTempList
-      this.getDoneQue(this.data.examTemp)
-      console.log(this.data.examTemp.examItemTempList)
+      console.log(data)
       wx.request({
         url: url,
-        data: this.data.examTemp,
+        data: data,
         method: 'post', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
         header: header, // 设置请求的 header
         success: (res) => {
           console.log(res)
           if (sign === 'submit') {
-            wx.hideLoading()
-            // console.log('做完了，跳转到认知结构页面')
-            wx.reLaunch({
-              url: `/pages/detectResult/index?data=${JSON.stringify(res.data.data)}`
-            })
+            if (this.data.type === "isKnowledge") {
+              wx.hideLoading()
+              this.setData({
+                type: ''
+              })
+              let pages = getCurrentPages()
+              let prevPage = pages[pages.length - 2]
+              prevPage.setData({
+                sectionId: this.data.sectionId,
+                sectionName: this.data.sectionName
+              })
+              prevPage.getList(prevPage.data.sectionId)
+              wx.navigateBack({
+                delta: 1
+              })
+            } else {
+              wx.hideLoading()
+              wx.reLaunch({
+                url: `/pages/detectResult/index?data=${JSON.stringify(res.data.data)}`
+              })
+            }
           }
-          // for (let i = 0; i < tempArr.length; ++i) {
-          //   let result = tempArr[i].userAnswer * 1
-          //   if (result === 0 && sign === "submit") {
-          //     console.log('还没做完,跳转到detect页面')
-          //     this.setData({
-          //       isDone: false
-          //     })
-          //     wx.switchTab({
-          //       url:"/pages/detect/index"
-          //     })
-          //     break
-          //   }
-          // }
-          // if (sign === 'submit' && this.data.isDone) {
-          //   wx.hideLoading()
-          //   console.log('做完了，跳转到认知结构页面')
-          //   wx.reLaunch({
-          //     url: `/pages/points/index?data=${JSON.stringify(res.data.data)}`
-          //   })
-          // }
-
         },
         fail: function() {
           // fail
@@ -267,55 +289,66 @@ Page({
     })
   },
   spendAllTime() {
-    console.log(`${this.data.examTemp.timeWay}计时,倒计时总时间为${this.data.examTemp.timeSecond}s`)
-    this.setData({
-      ['examTemp.dealType']: 2,
-      ['examTemp.timeWay']: this.data.examTemp.timeWay
-    })
-    let data = this.data.examTemp
-    console.log(data)
+    if (this.data.type === "isKnowledge") {
+      console.log(`${this.data.examKnowledgeTemp.timeWay}计时,倒计时总时间为${this.data.examKnowledgeTemp.timeSecond}s`)
+      this.setData({
+        ['examKnowledgeTemp.dealType']: 2
+      })
+      console.log(this.data.examKnowledgeTemp)
+    } else {
+      console.log(`${this.data.examTemp.timeWay}计时,倒计时总时间为${this.data.examTemp.timeSecond}s`)
+      this.setData({
+        ['examTemp.dealType']: 2
+      })
+      console.log(this.data.examTemp)
+    }
     this.subOrSaveReq()
-
   },
   // 得到用户的答案
   getUserAnswer(e) {
-    this.isMakeAllTopic()
+    // this.isMakeAllTopic()
     let userAnswers = this.data.userAnswers
     let choosedTopicIndex = e.target.dataset.index
     this.setData({
       choosedTopicIndex
     })
-    console.log(userAnswers)
-    console.log(choosedTopicIndex)
-
     let currentTopicIndex = this.data.currentTopicIndex
-
-    let submitAnswer = this.data.examTemp.examItemTempList
+    let submitAnswer = []
+    if (this.data.type === "isKnowledge") {
+      submitAnswer = this.data.tempSaveAns
+    } else {
+      submitAnswer = this.data.tempSaveAns
+    }
     submitAnswer[currentTopicIndex].userAnswer = choosedTopicIndex + 1
-    this.setData({
-      ['examTemp.examItemTempList']: submitAnswer
-    })
+    if (this.data.type === "isKnowledge") {
+      this.setData({
+        tempSaveAns: submitAnswer
+      })
+    } else {
+      this.setData({
+        tempSaveAns: submitAnswer
+      })
+    }
     userAnswers[currentTopicIndex] = choosedTopicIndex
     this.setData({
       userAnswers
     })
-    console.log(this.data.examTemp)
   },
   // 判断用户是否做完了所有题目
-  isMakeAllTopic() {
-    let currentTopicIndex = this.data.currentTopicIndex
-    let count = new Set(this.data.count)
-    let len = this.data.topicsLength
-    count.add(currentTopicIndex)
-    if (len === count.size) {
-      this.setData({
-        isLastTopic: true
-      })
-    }
-    this.setData({
-      count
-    })
-  },
+  // isMakeAllTopic() {
+  //   let currentTopicIndex = this.data.currentTopicIndex
+  //   let count = new Set(this.data.count)
+  //   let len = this.data.topicsLength
+  //   count.add(currentTopicIndex)
+  //   if (len === count.size) {
+  //     this.setData({
+  //       isLastTopic: true
+  //     })
+  //   }
+  //   this.setData({
+  //     count
+  //   })
+  // },
   isSubmit() {
     this.setData({
       isSubmit: true
@@ -361,7 +394,7 @@ Page({
   // 跳过当前题目
   passCurrentTopic() {
     let currentTopicIndex = this.data.currentTopicIndex + 1
-    let submitAnswer = this.data.examTemp.examItemTempList
+    let submitAnswer = this.data.tempSaveAns
     if (submitAnswer[currentTopicIndex - 1].userAnswer === 0) {
       submitAnswer[currentTopicIndex - 1].userAnswer = 5
     }
@@ -378,38 +411,59 @@ Page({
   },
   // 得到题目集合
   getTopicsList(id) {
-    if (this.data.type === 'knowledgePointId') {
+    if (this.data.type === 'isKnowledge') {
+      console.log(id)
       request('api/exam/getKnowledgeExamOfUser', 'get', {
-        knowledgePointId: id
+        examSectionId: id.examSectionId,
+        knowledgePointId: id.knowledgePointId
       }, res => {
-        let tempArr = [],
-          ans = []
+        console.log(res)
+        let tempArr = []
         let {
-          id,
+          examKnowledgeId,
           questionList,
           timeSecond,
           timeWay
         } = res.data
-        for (var i = 0; i < questionList.length; i++) {
+        let len = questionList.length
+        let arr = new Array(len).fill(-1)
+        for (var i = 0; i < len; i++) {
           tempArr.push({
             questionId: questionList[i].id,
             userAnswer: questionList[i].userAnswer
           })
-          ans.push(questionList[i].userAnswer)
+          if (questionList[i].userAnswer !== 0) {
+            arr[i] = questionList[i].userAnswer - 1
+          }
         }
         this.setData({
-          userAnswers: ans,
+          userAnswers: arr,
           topicsList: questionList,
           topicsLength: questionList.length,
-          examTemp: {
+          tempSaveAns: tempArr,
+          examKnowledgeTemp: {
             "dealType": 2,
-            "examId": id,
             "examItemTempList": tempArr,
-            "knowledgePointId": questionList[0].knowledgePointId,
+            "examKnowledgeId": examKnowledgeId,
+            "knowledgePointId": id.knowledgePointId,
             "timeSecond": timeSecond,
             "timeWay": timeWay
           }
         })
+        console.log(arr)
+        console.log(this.data.examKnowledgeTemp.examItemTempList)
+
+        if (arr[0] !== -1) {
+          let choosedTopicIndex = arr[0]
+          this.setData({
+            choosedTopicIndex
+          })
+        }
+        if (this.data.examKnowledgeTemp.timeWay === 0) {
+          this.runCountDown(this.data.examKnowledgeTemp.timeSecond)
+        } else {
+          this.forwardCount()
+        }
       }, 'form')
     } else {
       request('api/exam/getSectionExamOfUser', 'get', {
@@ -426,27 +480,24 @@ Page({
           })
 
           let len = this.data.topicsLength
+          let list = this.data.topicsList
+          let arr = new Array(len).fill(-1)
+          let tempArr = []
           for (let i = 0; i < len; ++i) {
             let obj = {
               "questionId": 0,
               "userAnswer": 0
             }
-            obj.questionId = this.data.topicsList[i].id
-            let tempArr = this.data.examTemp.examItemTempList
-            tempArr.push(obj)
-          }
-          let arr = new Array(len).fill(-1)
-          let answerArr = this.data.examTemp.examItemTempList
-          for (let j = 0; j < len; ++j) {
-            let lastAnswer = this.data.topicsList[j].userAnswer
-            if (lastAnswer !== 0) {
-              arr[j] = lastAnswer - 1
-              answerArr[j].userAnswer = lastAnswer
+            obj.questionId = list[i].id
+            obj.userAnswer = list[i].userAnswer
+            if (obj.userAnswer !== 0) {
+              arr[i] = obj.userAnswer - 1
             }
+            tempArr.push(obj)
           }
           this.setData({
             userAnswers: arr,
-            ['examTemp.examItemTempList']: answerArr
+            tempSaveAns: tempArr
           })
           console.log(arr)
           console.log(this.data.examTemp.examItemTempList)
@@ -471,17 +522,23 @@ Page({
    */
   onLoad: function(options) {
     console.log(options)
-    let id = Number(options.id)
-    if (options.type) {
+    if (options.isKnowledge) {
       this.setData({
-        type: 'knowledgePointId',
-        isK: true
+        type: 'isKnowledge',
+        sectionId: options.sectionId,
+        sectionName: options.sectionName
       })
+      let obj = {}
+      obj.examSectionId = Number(options.examSectionId)
+      obj.knowledgePointId = Number(options.knowledgePointId)
+      this.getTopicsList(obj)
+    } else {
+      let id = Number(options.id)
+      this.setData({
+        ['examTemp.knowledgePointId']: id
+      })
+      this.getTopicsList(options.id)
     }
-    this.setData({
-      ['examTemp.knowledgePointId']: id
-    })
-    this.getTopicsList(options.id)
   },
 
   /**
@@ -512,7 +569,7 @@ Page({
     clearInterval(this.data.stimer)
     this.clearTimer()
     this.clearForTimer()
-    if (!this.data.submited ) {
+    if (!this.data.submited) {
       console.log('页面卸载时保存')
       this.saveAns()
     }

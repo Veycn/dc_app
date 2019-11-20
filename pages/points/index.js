@@ -11,13 +11,15 @@ Page({
   data: {
     sectionName: '',
     sectionId: -1,
-    renderList: null
+    renderList: null,
+    examSectionId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     let {
       id,
       section
@@ -33,6 +35,8 @@ Page({
     request('api/exam/getSectionExamOfUser', 'get', {
       sectionId: id
     }, res => {
+      let examSectionId = res.data.examSectionId
+      this.setData({ examSectionId })
       let renderList = res.data.knowledgeList
       let arr = [];
       for (let i = 0; i < renderList.length; i++) {
@@ -65,7 +69,10 @@ Page({
   toQuestion(e) {
     console.log(e)
     let {id} = e.currentTarget.dataset
-    wx.navigateTo({url: `/pages/exam/index?id=${id}&isKnowledge=${true}`})
+    let examSectionId = this.data.examSectionId
+    let sectionId = this.data.sectionId
+    let sectionName = this.data.sectionName
+    wx.navigateTo({ url: `/pages/exam/index?sectionId=${sectionId}&sectionName=${sectionName}&examSectionId=${examSectionId}&knowledgePointId=${id}&isKnowledge=${true}`})
   },
 
   customize () {
