@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "认知检测",
-  "navigationBarBackgroundColor": "#136DB8",
+  "navigationBarBackgroundColor": "#15EC89",
   "usingComponents": {
     "s-exitmodal": "/components/exitmodal/index",
     "s-topicsbtn": "/components/topicsbtn/index",
