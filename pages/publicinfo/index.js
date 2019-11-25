@@ -9,64 +9,92 @@ Page({
    */
   data: {
     pause: true,
-    videoInfoList:[],
+    videoInfo: null,
     courseInfo:[],
     descourseInfo:[],
-    playInfo:[]
+    playInfo:[],
+    course: null,
+    canPlay: true
   },
-  playVideo() {
-    console.log("开始播放")
-    console.log(this.data.videoInfoList[0].videoPlayId)
-    var videoPlay = wx.createVideoContext("myVideo")
+  tryPlayVideo() {
+    let {videoInfo, canPlay} = this.data
     request("api/recommendCourse/getVideoPlayInfo", "get", {
-      videoPlayId: this.data.videoInfoList[0].videoPlayId || "",
+      videoPlayId: videoInfo[0].videoPlayId,
       isTry: false
     }, res => {
-      console.log(res.data)
-      var videoArr = []
-      videoArr.push(res.data)
+      this.videoContext.pause()
       this.setData({
-        playInfo: videoArr
+        playInfo: res.data
       })
     })
-    videoPlay.play()
-    this.setData({
-      pause: false
-    })
+
+    // if(canPlay){
+    //   this.videoContext.play()
+    //   setTimeout(() => {
+    //     this.videoContext.pause()
+    //   }, 3000)
+    // }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
+    var videoPlay = wx.createVideoContext("myVideo")
+    this.videoContext = videoPlay
+
     request("api/recommendCourse/getPublicVideoList", "get", {
       courseId: options.id
     }, res => {
-      console.log("请求公开课视频列表")
-      var arr = []
-      arr.push(res.data)
+      let {data} = res
       this.setData({
-        videoInfoList: res.data.videoInfoList,
-        courseInfo: arr
+        videoInfo: data.videoInfoList,
       })
-      console.log(this.data.videoInfoList[0].videoPlayId)
     })
     request("api/recommendCourse/getPrivateCourseInfo", "get", {
         courseId: options.id
       },
       res => {
-        console.log("请求定制课程详细信息")
-        console.log(res)
-        var newArr=[]
-        newArr.push(res.data)
+        this.getTryVideoInfo()
         this.setData({
-          descourseInfo:newArr
+          course: res.data
         })
       })
-
+  },
+  videoPlay(){
+    this.videoContext.play()
+    this.setData({pause: false})
+  },
+  videoPause(){
+    this.videoContext.pause()
+    this.setData({pause: true})
+  },
+  toggleState () {
+    let {pause} = this.data
+    if(pause){
+      this.videoPlay()
+    }else {
+      this.videoPause()
+    }
   },
 
+  getTryVideoInfo () {
+    let {videoInfo} = this.data
+    request("api/recommendCourse/getVideoPlayInfo", "get", {
+      videoPlayId: videoInfo[0].videoPlayId,
+      isTry: false
+    }, res => {
+      this.setData({
+        playInfo: res.data
+      })
+    })
+  },
+  toPay(e){
+    console.log(this.data.course)
+    let { type } = e.currentTarget.dataset
+    let { course } = this.data
+    wx.navigateTo({url: `/pages/pay/index?isGroup=${type}&courseId=${course.courseId}`})
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

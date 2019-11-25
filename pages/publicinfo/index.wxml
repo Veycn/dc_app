@@ -1,34 +1,25 @@
-<!--pages/courseinfo/index.wxml-->
-<!-- video部分 -->
 <view class="publicVideo">
-  <video id="myVideo" src="{{videoSrc}}" object-fit="fill" controls show-center-play-btn="{{false}}" poster="{{videoCover}}" />
-  <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="playVideo" wx:if="{{pause}}" />
+  <video id="myVideo" src="{{playInfo.playURL}}" autoplay="{{false}}" bindplay="videoPlay" bindpause="videoPause" duration="{{120}}" object-fit="fill" show-center-play-btn="{{false}}" poster="{{playInfo.coverURL}}" />
+  <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="toggleState" wx:if="{{pause}}" />
 </view>
-
 <view class="produce">
   <text>课程介绍</text>
 </view>
-
-
-<view class="produceInfo" wx:for="{{videoInfoList}}" wx:key="{{item.courseId}}">
-<scroll-view scroll-y style="height: 600rpx;">
-  <view class="title">
-    <text>{{item.videoTitle}}</text>
-  </view>
-  <view class="nameTime">
-    <text class="name">讲师： 张怡</text>
-    <text class="time">时间： 2019.08.09</text>
-  </view>
-
-  <view class="courseInfo" wx:for="{{courseInfo}}" wx:key="{{item.courseId}}">
-    <text>{{item.courseIntro}}</text>
-  </view>
+<view class="produceInfo">
+  <scroll-view scroll-y style="height: 600rpx;">
+    <view class="title">
+      <text>{{item.videoTitle}}</text>
+    </view>
+    <view class="nameTime">
+      <text class="name">讲师： 张怡</text>
+      <text class="time">时间： 2019.08.09</text>
+    </view>
+    <view class="courseInfo">
+      <text>{{course.courseIntro}}</text>
+    </view>
   </scroll-view>
 </view>
-
-  <view class="price" wx:for="{{descourseInfo}}" wx:key="{{item.courseId}}">
-    <image  src="/assets/icon/individual.png" class="individual"/>
-  <image  src="/assets/icon/group.png" class="group"/>
-  <text class="individualText">{{item.coursePrice}}元  单独购买</text>
-  <text class="groupText">{{item.courseGroupPrice}}元 开团</text>
-  </view>
+<view class="price">
+  <view class="a c" bindtap="toPay" data-type="0">{{course.coursePrice}}元  单独购买</view>
+  <view class="b c" bindtap="toPay" data-type="1">{{course.courseGroupPrice}}元 去参团</view>
+</view>

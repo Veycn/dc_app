@@ -88,29 +88,30 @@ page {
   font-family: PingFang SC;
   font-weight: bold;
   font-size: 30rpx;
+  border-radius: 34rpx;
+  display: flex;
 }
 
-.individual {
-  width: 279rpx;
-  height: 68rpx;
+
+.price .c {
+  width: 50%;
+  height: 100%;
+  line-height: 68rpx;
+  text-align: center;
+}
+.price .a {
+  background-color: rgb(26,215,134);
+  border-top-left-radius: 34rpx;
+  border-bottom-left-radius: 34rpx;
 }
 
-.individualText {
-  position: absolute;
-  top: 12rpx;
-  left: 39rpx;
+.price .b {
+  background-color: #3699FF;
+  border-bottom-right-radius: 34rpx;
+  border-top-right-radius: 34rpx;
 }
 
-.groupText {
-  position: absolute;
-  top: 12rpx;
-  right: 70rpx;
-}
 
-.group {
-  width: 279rpx;
-  height: 68rpx;
-}
 /* 隐藏滚动条 */
 ::-webkit-scrollbar{
 width: 0;

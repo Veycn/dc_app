@@ -80,8 +80,14 @@ Page({
   onReady: function () {
     request("api/recommendCourse/getPrivateCourseList", "get", {}, res => {
       console.log(res.data)
+      let {data} = res.data
+      if(data.length>0){
+        this.setData({
+          hasCustomize: true
+        })
+      }
       this.setData({
-        descourseList: res.data.data
+        descourseList: data
       })
     })
     clearTimeOut()

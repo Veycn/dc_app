@@ -1,26 +1,48 @@
 // pages/pay/index.js
+
+const {
+  request
+} = require("../../utils/request.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    wxPay: true
+    wxPay: true,
+    courseId: 0,
+    isGroup: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- console.log(options)
+    console.log(options)
+    this.setData({courseId: options.courseId, isGroup: options.isGroup})
+    this.getCousePayInfo()
+  },
+  getCousePayInfo(){
+    let {courseId, isGroup} = this.data
+    request('api/wxPay/getPayInfo', 'get', {
+      courseId,
+      isGroup
+    }, res => {
+      console.log(res)
+    })
   },
 
-
   choosePayWay: function (e) {
-    let {type} = e.currentTarget.dataset
+    let {
+      type
+    } = e.currentTarget.dataset
     console.log(type)
-    type === 'wx' ? this.setData({wxPay: true}) : this.setData({wxPay: false});
-    
+    type === 'wx' ? this.setData({
+      wxPay: true
+    }) : this.setData({
+      wxPay: false
+    });
+
   },
   submitPay: function () {
 
