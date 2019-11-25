@@ -11,18 +11,24 @@ Page({
     pause: true,
     videoInfoList:[],
     courseInfo:[],
-    descourseInfo:[]
+    descourseInfo:[],
+    playInfo:[]
   },
   playVideo() {
     console.log("开始播放")
     console.log(this.data.videoInfoList[0].videoPlayId)
-    request("api/recommendCourse/getVideoPlayInfo","get",{
-      videoPlayId:this.data.videoInfoList[0].videoPlayId,
-      isTry:false
-    },res=>{
-      console.log(res)
-    })
     var videoPlay = wx.createVideoContext("myVideo")
+    request("api/recommendCourse/getVideoPlayInfo", "get", {
+      videoPlayId: this.data.videoInfoList[0].videoPlayId || "",
+      isTry: false
+    }, res => {
+      console.log(res.data)
+      var videoArr = []
+      videoArr.push(res.data)
+      this.setData({
+        playInfo: videoArr
+      })
+    })
     videoPlay.play()
     this.setData({
       pause: false
@@ -34,6 +40,18 @@ Page({
    */
   onLoad: function(options) {
     console.log(options)
+    request("api/recommendCourse/getPublicVideoList", "get", {
+      courseId: options.id
+    }, res => {
+      console.log("请求公开课视频列表")
+      var arr = []
+      arr.push(res.data)
+      this.setData({
+        videoInfoList: res.data.videoInfoList,
+        courseInfo: arr
+      })
+      console.log(this.data.videoInfoList[0].videoPlayId)
+    })
     request("api/recommendCourse/getPrivateCourseInfo", "get", {
         courseId: options.id
       },
@@ -46,18 +64,6 @@ Page({
           descourseInfo:newArr
         })
       })
-    request("api/recommendCourse/getPublicVideoList", "get", {
-      courseId: options.id
-    }, res => {
-      console.log("请求公开课视频列表")
-      console.log(res.data)
-      var arr=[]
-      arr.push(res.data)
-      this.setData({
-        videoInfoList:res.data.videoInfoList,
-        courseInfo:arr
-      })
-    })
 
   },
 

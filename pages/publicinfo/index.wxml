@@ -10,7 +10,7 @@
 </view>
 
 
-<view class="produceInfo" wx:for="{{videoInfoList}}">
+<view class="produceInfo" wx:for="{{videoInfoList}}" wx:key="{{item.courseId}}">
 <scroll-view scroll-y style="height: 600rpx;">
   <view class="title">
     <text>{{item.videoTitle}}</text>
@@ -20,13 +20,13 @@
     <text class="time">时间： 2019.08.09</text>
   </view>
 
-  <view class="courseInfo" wx:for="{{courseInfo}}">
+  <view class="courseInfo" wx:for="{{courseInfo}}" wx:key="{{item.courseId}}">
     <text>{{item.courseIntro}}</text>
   </view>
   </scroll-view>
 </view>
 
-  <view class="price" wx:for="{{descourseInfo}}">
+  <view class="price" wx:for="{{descourseInfo}}" wx:key="{{item.courseId}}">
     <image  src="/assets/icon/individual.png" class="individual"/>
   <image  src="/assets/icon/group.png" class="group"/>
   <text class="individualText">{{item.coursePrice}}元  单独购买</text>
