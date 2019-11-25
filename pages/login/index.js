@@ -84,21 +84,6 @@ Page({
   userLogin: function () {
     const { code } = this.data
     const { nickName, gender, city, province, country, avatarUrl	} = this.data.userInfo
-    // request('api/userAccount/login', 'post', {
-    //   code, nickName, gender, city, province, country, avatarUrl
-    // }, (res) => {
-    //   console.log(res)
-    //   if(res.status === 200){
-    //     wx.setStorage({
-    //       key: 'userToken',
-    //       data: res.data.token
-    //     })
-    //     this.setData({loginInfo: res.data})
-    //   }
-    //   setTimeout(() => {
-    //     wx.navigateTo({url: '/pages/index/index'})
-    //   }, 1500)
-    // })
     wx.request({
       url: "https://www.shenfu.online/sfeduWx/api/userAccount/login",
       method: 'POST',
