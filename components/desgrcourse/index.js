@@ -20,6 +20,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    togroupInfo(){
+      wx.navigateTo({
+        url: '/pages/grclassinfo/index',
+      })
+    }
   }
 })

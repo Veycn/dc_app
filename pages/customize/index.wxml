@@ -33,8 +33,8 @@
 </view>
 
 
-<block wx:for="{{descourseList}}" wx:key="index">
-<s-descourse title="{{item.title}}" section="{{item.section}}" buynum="{{item.buynum}}" teachecName="{{item.teachecName}}" teacherImage="{{item.teacherImage}}" courseImage="{{item.courseImage}}" />
+<block wx:for="{{descourseList}}" wx:key="{{item.courseId}}" >
+<s-descourse title="{{item.courseName}}" section="{{item.knowledgePoint}}" buynum="{{item.courseDuration}}" teachecName="{{item.teacherName}}" teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}" courseImage="{{item.courseAvatar}}" courseId="{{item.courseId}}" />
 </block>
 
 <block wx:for="{{desgrcourseList}}" wx:key="index">

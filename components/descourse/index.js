@@ -6,6 +6,7 @@ Component({
   properties: {
     title:String,
     section:String,
+    courseId:String,
     buynum:String,
     teachecName:String,
     teacherImage:String,
@@ -23,6 +24,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    tobuy(e){
+      var courseId = e.target.dataset.id
+      wx.navigateTo({
+        url: `/pages/publicinfo/index?id=${courseId}`,
+      })
+    }
   }
 })

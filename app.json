@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/login/index",
-
     "pages/detectResult/index",
     "pages/index/index",
     "pages/detect/index",
@@ -15,7 +14,9 @@
     "pages/coursedesign/index",
     "pages/publicinfo/index",
     "pages/test/index",
-    "pages/points/index"
+    "pages/points/index",
+    "pages/publicclass/index",
+    "pages/grclassinfo/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

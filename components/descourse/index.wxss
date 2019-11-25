@@ -6,7 +6,8 @@
   margin-top: 24rpx;
   align-items: center;
   border-bottom: 1rpx solid #E3E3E3;
-  display: flex
+  display: flex;
+  position: relative;
 }
 .courseImage {
   height: 150rpx;
@@ -63,5 +64,7 @@ align-items: center;
   line-height: 38rpx;
   font-size: 24rpx;
   color: white;
-  margin-left: 150rpx;
+  position: absolute;
+  right: 0;
+  bottom: 36rpx;
 }

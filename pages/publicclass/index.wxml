@@ -1,0 +1,27 @@
+<!--pages/publicclass/index.wxml-->
+<!-- video部分 -->
+<view class="publicVideo">
+  <video id="myVideo" src="{{videoSrc}}"  object-fit="fill" controls show-center-play-btn="{{false}}" poster="{{videoCover}}" />
+    <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="playVideo" wx:if="{{pause}}"/>
+</view>
+
+<view class="produce">
+<text>课程介绍</text>
+</view>
+
+<view class="produceInfo">
+<view class="title">
+<text>一元一次方程详解</text>
+</view>
+<view class="nameTime">
+<text class="name">讲师： 张怡</text>
+<text class="time">时间： 2019.08.09</text>
+</view>
+
+<view class="courseInfo">
+<text>只含有一个未知数，且未知数的高次数是1，等号两面都是整式，这样的方程叫做一元一次方程
+ [1] 其一般形式是：
+可以通过等式性质化简而成为一元一次方程的整式方程（如 ）也属于一元一次方程。一元一次方程是一种线性方程，且只有一个根。</text>
+
+</view>
+</view>

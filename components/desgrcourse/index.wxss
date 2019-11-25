@@ -55,7 +55,7 @@ align-items: center;
   font-size: 24rpx;
   color: white;
   position: absolute;
-  right: 22rpx;
+  right: 0;
   bottom:40rpx;
 }
 .groupInfo {
