@@ -33,8 +33,6 @@ Page({
     autoplay:true,
     interval: 5000,
     duration: 1000,
-     pageNum: 1,
-    pageSize: 5,
     hasMore:true,
     list: []
   },
@@ -46,22 +44,16 @@ Page({
   },
   publicInfo(e) {
     wx.navigateTo({
-      url: `../../pages/publicinfo/index?id=${e.target.dataset.index}`
+      url: `../../pages/publicclass/index?id=${e.target.dataset.index}`
     })
   },
   //加载更多
   loadMore() {
     if (!this.data.hasMore) return;
-    request("api/recommendCourse/getPrivateCourseSimple", "get", {
-      pageNum: this.data.pageNum,
-      pageSize: ++this.data.pageSize
-    }, res => {
-      var data = res.data;
-      var size = data && data.size;
-      var flag = this.data.pageNum * this.data.pageSize < size;
-      var newList = this.data.list && this.data.list.concat(data.list);
+    request("api/recommendCourse/getPrivateCourseList", "get", res => {
+      var newlist=res.data.data
       this.setData({
-        list: newList,
+        descourseList: newList,
         hasMore: flag
       })
     })
@@ -71,23 +63,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    console.log(descourse)
     this.setData({
-      descourseList: descourse,
+      // descourseList: descourse,
       desgrcourseList:desgrcourse
     })
-    console.log(app.globalData.hascustomize)
-    if (app.globalData.hascustomize==true){
-      console.log("yes")
-      this.setData({
-        hasCustomize:true,
-      })
-    }
+    request("api/recommendCourse/getSimplePublicCourse","get",{},function(res){
+       console.log("请求公开课信息:",res)
+    })
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    request("api/recommendCourse/getPrivateCourseList", "get", {}, res => {
+      console.log(res.data)
+      this.setData({
+        descourseList: res.data.data
+      })
+    })
     clearTimeOut()
     if (this.data.remainTime) {
       countDown(this)
@@ -118,7 +114,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(app.globalData.hascustomize)
+    if (app.globalData.hascustomize == true) {
+      console.log("yes")
+      this.setData({
+        hasCustomize: true,
+      })
+    }
   },
 
   /**

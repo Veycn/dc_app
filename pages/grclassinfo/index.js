@@ -1,4 +1,5 @@
-// pages/courseinfo/index.js
+// pages/grclassinfo/index.js
+import { formatTime, countDown, clearTimeOut } from "../../utils/retime.js" 
 const {
   request
 } = require("../../utils/request.js")
@@ -8,20 +9,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    remainTime: 3600,
+    clock: formatTime(3600),
+    videoSrc: "http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
     pause: true,
-    videoInfoList:[],
-    courseInfo:[],
-    descourseInfo:[]
+    videoCover: ""
   },
   playVideo() {
     console.log("开始播放")
-    console.log(this.data.videoInfoList[0].videoPlayId)
-    request("api/recommendCourse/getVideoPlayInfo","get",{
-      videoPlayId:this.data.videoInfoList[0].videoPlayId,
-      isTry:false
-    },res=>{
-      console.log(res)
-    })
     var videoPlay = wx.createVideoContext("myVideo")
     videoPlay.play()
     this.setData({
@@ -32,31 +27,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     console.log(options)
-    request("api/recommendCourse/getPrivateCourseInfo", "get", {
-        courseId: options.id
-      },
+    request("api/recommendCourse/getPublicCourseInfo", "get", {
+      courseId: options.id
+    },
       res => {
-        console.log("请求定制课程详细信息")
+        console.log("请求公开课详细信息")
         console.log(res)
-        var newArr=[]
-        newArr.push(res.data)
-        this.setData({
-          descourseInfo:newArr
-        })
+        this.setData({})
       })
     request("api/recommendCourse/getPublicVideoList", "get", {
       courseId: options.id
     }, res => {
       console.log("请求公开课视频列表")
-      console.log(res.data)
-      var arr=[]
-      arr.push(res.data)
-      this.setData({
-        videoInfoList:res.data.videoInfoList,
-        courseInfo:arr
-      })
+      console.log(res)
     })
 
   },
@@ -64,49 +49,52 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-
+  onReady: function () {
+    clearTimeOut()
+    if (this.data.remainTime) {
+      countDown(this)
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

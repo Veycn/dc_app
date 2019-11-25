@@ -26,7 +26,7 @@ Page({
       wx.login({
         success: res => {
           this.setData({code: res.code})
-          resolve(1)
+          resolve(res.code)
         }
       })
     })
@@ -73,6 +73,7 @@ Page({
       })
     })
     Promise.all([codeP, userInfoP]).then((res) => {
+      console.log(res)
       this.setData({canLogin: true})
     }).catch(err => {
       wx.showToast({

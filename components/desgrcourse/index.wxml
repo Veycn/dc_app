@@ -17,7 +17,7 @@
       <image src="/assets/icon/pic.png" />
     </view>
     <view class="buycourse">
-    <text>购买</text>
+    <text bindtap="togroupInfo">购买</text>
     </view>
   </view>
 

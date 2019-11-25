@@ -48,19 +48,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
 					"name": "course",
 					"pathName": "pages/mycourse/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/exam/index",
-					"pathName": "pages/exam/index",
 					"query": "",
 					"scene": null
 				},
@@ -111,6 +104,33 @@
 					"name": "pages/detectResult/index",
 					"pathName": "pages/detectResult/index",
 					"query": "hascustomize=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publicclass/index",
+					"pathName": "pages/publicclass/index",
+					"query": "hascustomize=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publicinfo/index",
+					"pathName": "pages/publicinfo/index",
+					"query": "hascustomize=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/gotoclass/index",
+					"pathName": "pages/gotoclass/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/grclassinfo/index",
+					"pathName": "pages/grclassinfo/index",
 					"scene": null
 				}
 			]
