@@ -1,4 +1,0 @@
-<!--components/button/index.wxml-->
-<view class="btn-wrapper">
-  <button class="btn btn-border" bindtap="handleClick" style="background: {{bgColor}}; color: {{fontColor}}">{{btnText}}</button>
-</view>

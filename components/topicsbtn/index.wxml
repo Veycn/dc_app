@@ -1,8 +1,0 @@
-<!--components/topicsbtn/index.wxml-->
-<scroll-view scroll-y="true" class="container">
-	<block wx:for="{{ scantronList }}" wx:key="index">
-		<view bindtap="rediretTopic" data-index="{{index}}" class="default {{ isFinshed[index] > -1 ? 'active' : 'init' }}">{{ index + 1 }}</view>
-	</block>
-	<!-- <view class="tip" bindtap="watchResult">交卷并查看结果</view> -->
-</scroll-view>
-

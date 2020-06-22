@@ -1,5 +1,0 @@
-<!--components/coudown/index.wxml-->
-<view class="item-one">
-	<image class="img" mode="widthFix" src="{{szimg}}" />
-	<text  class="item-text">{{ minutes }}:{{ seconds }}</text>
-</view>

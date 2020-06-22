@@ -1,3 +1,0 @@
-<!--components/tag/index.wxml-->
-<view class="tag-wrap u-f36 u-c-lgrey">{{ tagText }}</view>
-
