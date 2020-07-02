@@ -1,0 +1,112 @@
+/* components/descourse/index.wxss */
+.lesson {
+  height: 220rpx;
+  width: 668rpx;
+  margin: 0 auto;
+  margin-top: 24rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #E3E3E3;
+  display: flex;
+  position: relative;
+}
+.courseImage {
+  height: 152rpx;
+  width: 152rpx;
+}
+.courseInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 42rpx;
+}
+.title {
+  color: #1C1B1B;
+  font-size: 30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  width: 500rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.desc {
+  display: flex;
+  color: #999999;
+font-size:20rpx;
+font-family:PingFang SC;
+font-weight:400;
+margin-top: 20rpx;
+}
+.space {
+  margin: 0 15rpx;
+}
+
+.teacher {
+  display: flex;
+margin-top: 22rpx;
+align-items: center;
+}
+.teacher image {
+ height: 50rpx;
+ width: 50rpx;
+ border-radius: 50%;
+ overflow: hidden;
+ margin-right: 24rpx;
+}
+.teacherName {
+  color: #1C1B1B;
+  font-size:24rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+}
+.buycourse {
+  width: 90rpx;
+  height: 38rpx;
+  border-radius:19rpx;
+  background-color: #15EC89;
+  text-align: center;
+  line-height: 38rpx;
+  font-size: 24rpx;
+  color: white;
+  position: absolute;
+  right: 0;
+  bottom: 36rpx;
+}
+
+.desc > .group {
+  font-size: 20rpx;
+  color: #15EC89;
+}
+
+.desc > .time{
+  color: #009CFF;
+}
+
+
+.gr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.gr > .avatar {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 36rpx;
+  display: inline-block;
+  margin-right: 22rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+
+
+.gr > .avatar > .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}

@@ -1,0 +1,20 @@
+<!--pages/user/index.wxml-->
+<view class="userInfo">
+   <image src='{{userInfo.avatarUrl}}'></image>
+   <text class="userName">{{userInfo.nickName}}</text>
+</view>
+
+<view class="operate">
+  <view class="common" bindtap='toGrade'>
+    <text>{{bookInfo}}</text>
+    <image src="/assets/icon/right.png"></image>
+  </view>
+  <view class="common">
+    <text>我的客服</text>
+    <image src="/assets/icon/right.png"></image>
+  </view>
+  <view class="common">
+    <text>教师中心</text>
+    <image src="/assets/icon/right.png"></image>
+  </view>
+</view>

@@ -1,0 +1,39 @@
+<!--components/grcourse/index.wxml拼课-->
+<view class='lesson' catchtap="{{buycourse}}">
+  <view class='title'>{{title}}</view>
+
+  <view class="groupInfo" wx:if="{{hasgroup==true}}">
+    <text class="groupneed">拼团缺{{groupneed}}人</text>
+    <text class="space">|</text>
+    <view class='{{time}}'>
+      <text>团购倒计时  {{retime}}</text>
+    </view>
+  </view>
+
+  <view wx:elif="{{hasgroup==false}}">
+    <view class='desc'>
+      <image src='{{tx}}'></image>主讲师：{{name}}
+    </view>
+    <view class="schedule">
+    <s-myprogress stroke-width="6" percent="0"  active-color="#15EC89"/>
+    </view>
+  </view>
+
+  <view class="{{lesscancel=='取消团购'?'cancelCourse':'cancelCourse-active'}}">
+    <text catchtap="{{cancel}}">{{lesscancel}}</text>
+  </view>
+   <view class="peopleNum" wx:if="{{hasgroup==true}}">
+     <image src="{{tx}}"></image>
+     <image src="{{tx}}"></image>
+       <image src="{{tx}}"></image>
+ </view>
+  <view class='{{mask}}'>
+    <view class='courecancel'>
+    <image src='/assets/icon/cancel.png' class="tipbg"/>
+      <image src='/assets/icon/cuowu.png' catchtap='cancelpic' class="exit"></image>
+     <view class="hint">是否取消课程</view>
+      <text class='confirm' catchtap='confirm'>YES</text>
+      <text class='deny' catchtap='cancelpic'>NO</text>
+    </view>
+  </view>
+</view>

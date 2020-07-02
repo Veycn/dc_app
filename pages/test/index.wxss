@@ -1,0 +1,12 @@
+/* pages/test/index.wxss */
+.cricle {
+  margin: 100rpx auto;
+  width: 100rpx;
+  height: 100rpx;
+  border: 1px solid blue;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.wrap {
+  
+}

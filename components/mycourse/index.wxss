@@ -1,0 +1,116 @@
+/* components/mycourse/index.wxss */
+
+.c-wrapper{
+  width: 100%;
+  height: 180rpx;
+  box-sizing: border-box;
+  padding: 0 42rpx;
+  margin-bottom: 20rpx;
+}
+
+.content{
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 30rpx 40rpx 20rpx;
+}
+
+.content > .title {
+  font-size: 30rpx;
+  color: #1C1B1B;
+}
+
+.content > .teacher{
+  display: flex;
+  margin-top: 10rpx;
+}
+.content > .teacher > .avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
+  margin-right: 18rpx;
+}
+
+.content > .teacher > .tname {
+  font-size: 24rpx;
+  color: #1C1B1B;
+  line-height: 50rpx;
+  margin-right: 45rpx;
+}
+
+.content > .teacher > .percent {
+  font-size: 20rpx;
+  color: #1C1B1B;
+  line-height: 50rpx;
+}
+
+
+.botm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botm > .pro{
+  width: 400rpx;
+  height: 6rpx;
+  border-radius: 3rpx;
+  background-color: #E9E9E9;
+}
+.botm > .pro > .inner {
+  height: 6rpx;
+  background-color:  #15EC89;
+}
+.botm > .btn {
+  width: 130rpx;
+  height: 38rpx;
+  border-radius: 19rpx;
+  font-size: 20rpx;
+  color: #fff;
+  background: #15EC89;
+  text-align: center;
+  line-height: 38rpx;
+}
+
+.botm > .group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botm > .group > .avatar {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 36rpx;
+  display: inline-block;
+  margin-right: 22rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+.botm > .group > .avatar > .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.groupInfo {
+  font-size: 20rpx;
+  color: #ccc;
+  padding: 16rpx 0;
+}
+
+.groupInfo > .need {
+  color: #15EC89;
+}
+
+
+.groupInfo > .count{
+  color: #C3C3C3;
+}

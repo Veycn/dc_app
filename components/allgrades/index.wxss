@@ -1,0 +1,26 @@
+/* components/allgrades/index.wxss */
+.all-wrap {
+  min-height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.all-item {
+  width: 120rpx;
+  line-height: 60rpx;
+  margin-top: 18rpx;
+  text-align: center;
+  background: #ccc;
+  border-radius: 4rpx;
+  font-size: 30rpx;
+  border: 1rpx solid #ccc;
+  margin-left: 60rpx;
+}
+.all-item:nth-child(3n+1){
+  margin-left: 0;
+}
+.active {
+  background-color: rgb(19, 109, 184);
+  color: #ffffff;
+}

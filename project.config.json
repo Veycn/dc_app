@@ -1,0 +1,252 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": false,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"uglifyFileName": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.0.4",
+	"appid": "wx33c639555ff78ca4",
+	"projectname": "dc_app",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 23,
+			"list": [
+				{
+					"id": -1,
+					"name": "course",
+					"pathName": "pages/mycourse/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/customize/index",
+					"pathName": "pages/customize/index",
+					"query": "hascustomize=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/exam/index",
+					"pathName": "pages/exam/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/points/index",
+					"pathName": "pages/points/index",
+					"query": "id=26&section=1.1集合",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "id=26&section=1.1集合",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/detect/index",
+					"pathName": "pages/detect/index",
+					"query": "id=26&section=1.1集合",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/detectResult/index",
+					"pathName": "pages/detectResult/index",
+					"query": "hascustomize=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publicclass/index",
+					"pathName": "pages/publicclass/index",
+					"query": "hascustomize=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publicinfo/index",
+					"pathName": "pages/publicinfo/index",
+					"query": "hascustomize=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/gotoclass/index",
+					"pathName": "pages/gotoclass/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/grclassinfo/index",
+					"pathName": "pages/grclassinfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/customize/index",
+					"pathName": "pages/customize/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/pay/index",
+					"pathName": "pages/pay/index",
+					"query": "isGroup=1&courseId=17",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mycourse/index",
+					"pathName": "pages/mycourse/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/gotoclass/index",
+					"pathName": "pages/gotoclass/index",
+					"query": "courseId=17&courseName=ssssss&teacherName=kkkkkk",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publicinfo/index",
+					"pathName": "pages/publicinfo/index",
+					"query": "id=51&teacherName=xxx&isGroup=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/publicclass/index",
+					"pathName": "pages/publicclass/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/detectResult/index",
+					"pathName": "pages/detectResult/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/feedback/index",
+					"pathName": "pages/feedback/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/login/index",
+					"pathName": "pages/login/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/buycourse/index",
+					"pathName": "pages/buycourse/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/coursedesign/index",
+					"pathName": "pages/coursedesign/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/index",
+					"pathName": "pages/test/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/grclassinfo/index",
+					"pathName": "pages/grclassinfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/search/index",
+					"pathName": "pages/search/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/index",
+					"pathName": "pages/user/index",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

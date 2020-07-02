@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#15DA7F",  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "答题统计",
+  "usingComponents": {
+    "s-detectResult": "/components/detectResult/index"
+  }
+}

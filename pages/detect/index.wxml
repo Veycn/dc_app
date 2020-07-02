@@ -1,0 +1,33 @@
+<view class="p-container">
+  <official-account></official-account>
+  <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{background}}" wx:key="*this">
+      <swiper-item>
+        <view class="swiper-item {{item}}"></view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="header">
+    <view class="chapter">
+      <image class="img" src="https://www.shenfu.online/pic/Image.png" />
+      <view class="txt">{{subjectVersion}}<image class="down" bindtap="reselect" src="../../assets/pic/down.png" /></view>
+      <view class="tip">欢迎使用深辅智能在线教育</view>
+    </view>
+    <view class="scroll">
+      <scroll-view class="scroller" scroll-x="true"  style="width: 100%">
+        <block wx:for="{{chapters}}" wx:key="index">
+          <view id="" class="item {{activeIndex === index ? '_active' : ''}}" data-item="{{item}}" data-index="{{index}}" catchtap="chapterTap">
+            {{item.chapter}}
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="section-list">
+    <block wx:for="{{seclist}}" wx:key="index">
+      <view class="sec-wrap" data-submitStatus="{{item.exams[index].status}}" data-id="{{item.id}}" data-item="{{item.section}}"  data-examid="{{item.exams[index].id}}">
+        <s-sectionlist seclist="{{item}}"  first="{{index}}" />
+      </view>
+    </block>
+  </view>
+</view>

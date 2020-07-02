@@ -1,0 +1,25 @@
+<view class="c-wrapper" bindtap="onTap">
+  <view class="tag" style="background: {{color}};"></view>
+  <view class="head">
+    <text class="title">{{pointName}}</text>
+    <text class="status">{{status}}</text>
+  </view>
+  <view class="process">
+    <block wx:if="{{level === 0}}">
+      <view class="s-default" wx:for="{{listNum}}" wx:key="index"></view>
+    </block>
+    <block wx:elif="{{level === 1}}">
+      <view class="s-active"></view>
+      <view class="s-default"></view>
+      <view class="s-default"></view>
+    </block>
+    <block wx:elif="{{level === 2}}">
+      <view class="s-active"></view>
+      <view class="s-active"></view>
+      <view class="s-default"></view>
+    </block>
+    <block wx:else="{{level === 3}}">
+      <view class="s-active" wx:for="{{listNum}}" wx:key="index"></view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<!--pages/publicclass/index.wxml-->
+<!-- video部分 -->
+<view class="publicVideo">
+  <video id="myVideo" src="{{videoInfo.playURL}}" object-fit="fill" bindtimeupdate="update" controls show-center-play-btn="{{false}}"
+    poster="{{videoCover}}" />
+  <!-- <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="playVideo" wx:if="{{pause}}" /> -->
+</view>
+
+<view class="produce">
+  <text>课程介绍</text>
+</view>
+
+<view class="produceInfo">
+  <view class="title">
+    <text>{{courseInfo.courseName}}</text>
+  </view>
+  <view class="nameTime">
+    <text class="name">讲师： {{courseInfo.teacherName}}</text>
+    <text class="time">{{courseInfo.courseDuration}}</text>
+  </view>
+
+  <view class="courseInfo">
+    <text>{{courseInfo.courseIntro}}</text>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+<!-- pages/customize/index.wxml -->
+<view wx:if="{{hasCustomize==false}}" class="customize">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <swiper-item>
+      <image src="{{imgUrls[0]}}" class="slide-image" bindtap="jumpPage" data-idx="0"/>
+    </swiper-item>
+    <swiper-item>
+      <image src="{{imgUrls[1]}}" class="slide-image" bindtap="jumpPage" data-idx="1"/>
+    </swiper-item>
+  </swiper>
+  <view class="tip">
+    <image src="/assets/pic/tip.png"></image>
+  </view>
+  <view class="startTest" bindtap="toDetect">
+    <image src="/assets/pic/startTest.png"></image>
+  </view>
+</view>
+<!-- 已检测过 -->
+<view wx:elif="{{hasCustomize==true}}" class="customized">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{item.courseId}}">
+      <swiper-item>
+        <image id="myVideo{{item.courseId}}" src="{{item}}" data-index="{{item.courseId}}" bindtap="jumpPage" data-idx="{{index}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="recommend">
+    <image src="/assets/pic/Image.png" />
+    <text class="recommendText">检测推荐</text>
+    <view class="search">
+      <input type="text" placeholder="课程搜索" bindtap="toSearch"/>
+      <image src="/assets/icon/sousuo.png" />
+    </view>
+  </view>
+  <block wx:for="{{descourseList}}" wx:key="{{item.courseId}}">
+    <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
+      is-group-open="{{item['isGroupOpen']}}" title="{{item.courseName}}"
+      section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
+      teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
+      sales="{{item['sales']}}" section="{{item['section']}}"
+      courseImage="{{item.courseAvatar}}"/>
+  </block>
+</view>

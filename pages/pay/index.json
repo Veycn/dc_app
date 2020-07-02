@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#17E871",
+  "navigationBarTitleText": "支付",
+  "usingComponents": {
+    "s-btn": "/components/button/index"
+  }
+}

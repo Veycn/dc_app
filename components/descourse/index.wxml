@@ -1,0 +1,33 @@
+<!--components/descourse/index.wxml-->
+<view class="lesson" bindtap="tobuy">
+  <image src="{{courseImage}}" mode="widthFix" class="courseImage" />
+  <view class="courseInfo">
+    <text class="title">{{title}}</text>
+    <view class="desc">
+      <text class="group" wx:if="{{isGroupOpen}}">拼团差{{groupInfo['groupNeedNum']}}人</text>
+      <text class="section" wx:else>{{section}}</text>
+      <text class="space">|</text>
+      <text class="time" wx:if="{{isGroupOpen}}">团购倒计时: {{timeStr}}</text>
+      <text class="buynum" wx:else>{{sales}}人已购</text>
+    </view>
+    <view class="teacher" wx:if="{{isGroupOpen}}">
+      <view class="gr">
+         <block wx:for="{{3}}" wx:key="{{index}}">
+          <view class="avatar" wx:if="{{index < groupInfo.groupUserAvatar.length}}"><image class="img" src="{{groupInfo.groupUserAvatar[index]}}"/></view>
+          <view class="avatar" wx:else>?</view>
+        </block>
+      </view>
+      <view class='buycourse'>
+        <text bindtap="tobuy" data-id="{{courseId}}">参团</text>
+      </view>
+    </view>
+    <view class="teacher" wx:else>
+      <image  src="{{teacherImage}}" />
+      <text class="teacherName">主讲师：{{teacherName}}</text>
+      <view class='buycourse'>
+        <!-- <text bindtap="tobuy" data-id="{{courseId}}">购买</text> -->
+        <text>购买</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+<view class="sec-wrap">
+  <view class="sec-chapter">
+    <view class="sec-top">{{first === 0 ? '置顶' : ' '}}</view>
+    <scroll-view scroll-x="true">
+      <view class="scroll-view">
+        <view class="sec-name">{{seclist.section}}</view>
+        <view class="sec-ratio">完成进度: {{tools.dealData(seclist.exams[0].ratio)*100}}%</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view>
+    <scroll-view class="test-papers" scroll-x="true">
+      <block wx:for="{{seclist.exams}}" wx:for-item="exams" wx:key="index">
+        <view class="{{index === 0 ? 'test-item' : 'test-item-nofirst'}}" bindtap="toExam"
+          data-knowledgePointId="{{seclist.id}}" data-submitStatus="{{exams.status}}" data-examId="{{exams.id}}">
+          <block wx:if="{{exams.status === 1}}">
+            <image class="image" src="{{didimg}}"></image>
+            <text class="paper-name">{{exams.exam}}</text>
+          </block>
+          <block wx:else>
+            <image class="image" src="{{nodidimg}}"></image>
+            <text class="nopaper-name">{{exams.exam}}</text>
+          </block>
+
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>
+
+<wxs module = "tools">
+  var dealData = function(e) {
+    return e.toFixed(2)
+  }
+  module.exports = {
+    dealData: dealData
+  }
+</wxs>

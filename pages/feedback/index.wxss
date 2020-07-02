@@ -1,0 +1,71 @@
+/* pages/feedback/index.wxss */
+
+.p-wrapper {
+  width: 100%;
+}
+
+.p-wrapper .welcome {
+  width: 750rpx;
+  height: 874rpx;
+}
+.p-wrapper .welcome > .img {
+  width: 100%;
+  height: 100%;
+}
+
+.text-wrapper{
+  text-align: center;
+} 
+
+
+
+.text-wrapper > .wel {
+  color: #3F3F3F;
+  font-size: 40rpx;
+  font-weight: 800;
+  text-align: center;
+}
+.text-wrapper > .tit {
+  color: #3F3F3F;
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.text-wrapper > .txt {
+  width: 558rpx;
+  min-height: 300rpx;
+  border: 1rpx solid #A1A1A1;
+  display: inline-block;
+  margin-top: 15rpx;
+  box-sizing: border-box;
+  padding: 15rpx;
+  font-size: 24rpx;
+  text-align: left;
+}
+
+.text-wrapper > .btn {
+  width: 400rpx;
+  height: 60rpx;
+  background-color: #15EC89;
+  display: inline-block;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 60rpx;
+  margin-top: 20rpx;
+}
+
+.code {
+  width: 100%;
+  height: 520rpx;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.code > .codeimg {
+  width: 338rpx;
+  height: 310rpx;
+}

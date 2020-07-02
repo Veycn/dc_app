@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "认知检测",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "s-exitmodal": "/components/exitmodal/index",
+    "s-topicsbtn": "/components/topicsbtn/index",
+    "s-answercard": "/components/answercard/index"
+  },
+  "disableScroll":true
+}

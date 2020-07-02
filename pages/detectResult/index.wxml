@@ -1,0 +1,11 @@
+<view class="p-wrapper">
+  <view class="drw">
+    <s-detectResult resultArr="{{resultArr}}" point-number="{{4}}" title-list="{{titleList}}" class="dr" />
+    <view class="line"></view>
+  </view>
+  <view class="recommand">
+    <image  src="https://www.shenfu.online/pic/customize.png" 
+   class="img" mode="widthFix" bindtap="toCourse"/>
+    <view class="exit" bindtap="exit">退 出</view>
+  </view>
+</view>

@@ -1,0 +1,46 @@
+<view class="publicVideo">
+  <video id="myVideo" src="{{playInfo.playURL}}" controls="{{false}}" autoplay="{{false}}" bindtimeupdate="update" bindplay="videoPlay" bindpause="videoPause" object-fit="fill" show-center-play-btn="{{false}}" poster="{{playInfo.coverURL}}" />
+  <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="toggleState" wx:if="{{pause}}" />
+</view>
+<view class="produce" wx:if="{{isGroup}}">
+  <text>团购进行中</text>
+</view>
+<view class="group" wx:if="{{isGroup}}">
+  <view class="head">课程开团中</view>
+  <view class="info">
+    <text class="p">拼团缺{{course['groupInfo'].groupNeedNum}}人</text>
+    <text class="o">团购价{{course['groupInfo'].courseGroupPrice}}元</text>
+  </view>
+  <view class="count">
+    <view class="time">团购倒计时 {{timeStr}}</view>
+     <view class="ga">
+        <block wx:for="{{3}}" wx:key="{{index}}">
+          <view class="avatar" wx:if="{{index < course['groupInfo'].groupUserAvatar.length}}"><image class="img" src="{{course['groupInfo'].groupUserAvatar[index]}}"/></view>
+          <view class="avatar" wx:else>?</view>
+        </block>
+      </view>
+  </view>
+</view>
+<view class="produce">
+  <text>课程介绍</text>
+</view>
+<view class="produceInfo">
+  <scroll-view scroll-y style="height: 600rpx;">
+    <view class="title">
+      <text>{{item.videoTitle}}</text>
+    </view>
+    <view class="nameTime">
+      <text class="name">讲师： {{teacherName}}</text>
+      <text class="time">{{course['courseDuration']}}</text>
+    </view>
+    <view class="courseInfo">
+      <text>{{course.courseIntro}}</text>
+    </view>
+  </scroll-view>
+</view>
+<view class="p-w">
+  <view class="price">
+    <view class="a c" bindtap="toPay" data-type="0">{{course.coursePrice}}元  单独购买</view>
+    <view class="b c" bindtap="toPay" data-type="1">{{course.courseGroupPrice}}元 去参团</view>
+  </view>
+</view>

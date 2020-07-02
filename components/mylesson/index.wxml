@@ -1,0 +1,15 @@
+<!--components/mylesson/index.wxml-->
+<view class='lesson' bindtap='toclass'>
+  <view class='title'>{{title}}</view>
+  <view class='desc'>
+    <image src='{{tx}}'></image>主讲师：{{name}}
+    <text>学习进度：40%</text>
+  </view>
+
+  <view class="schedule">
+    <s-myprogress stroke-width="6" percent="40" active-color="#15EC89" />
+  </view>
+  <view class='study'>
+    <text>进入学习</text>
+  </view>
+</view>

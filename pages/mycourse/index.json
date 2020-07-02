@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "s-mycourse":"/components/mycourse/index"
+  },
+  "navigationBarTitleText":"我的课程",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

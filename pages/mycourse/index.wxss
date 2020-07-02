@@ -1,0 +1,47 @@
+/* pages/mycourse/index.wxss */
+.top {
+  text-align: center;
+  padding-top: 30rpx;
+  background-color: white;
+    margin-bottom: 40rpx;
+}
+.top image {
+  width: 668rpx;
+  height: 310rpx;
+
+}
+page {
+    background-color: #eee;
+}
+
+.noc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150rpx;
+}
+
+.noc > .btn {
+  width: 270rpx;
+  height: 80rpx;
+  background-color: #15ec89;
+  border-radius: 40rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 30rpx;
+}
+
+.noc > .txt {
+  font-size: 26rpx;
+  color: #3F3F3F;
+  margin-top: 30rpx;
+}
+
+.noc > .img {
+  width: 198rpx;
+  height: 263rpx;
+}

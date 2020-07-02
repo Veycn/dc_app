@@ -1,0 +1,20 @@
+<!--components/chooseBoard/index.wxml-->
+
+<view class="wrapper">
+  <view class="tag" style="background: {{activeColor}}"></view>
+  <view class="title" >
+    <text class="text">{{tagName}}</text>
+  </view>		
+  <view class="content">
+    <block wx:for="{{renderList}}" wx:key="index">
+      <view class="item" catchtap="itemChoosed" 
+            style="background: {{activeIndex === index ? activeColor : '#ccc'}}"
+            data-item="{{item}}" data-index="{{index}}"
+      >{{item[type]}}</view>
+    </block>
+    <block wx:if="{{type == 'grade'}}">
+      <view class="item" bindtap="showTip">高二</view>
+      <view class="item" bindtap="showTip">高三</view>
+    </block>
+  </view>		
+</view>

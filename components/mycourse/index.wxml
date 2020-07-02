@@ -1,0 +1,41 @@
+<!--components/mycourse/index.wxml-->
+<view class="c-wrapper">
+  <view class="content">
+    <view class="title">{{courseName}}</view>
+    <view class="teacher" wx:if="{{courseStatus == 1}}">
+      <image src="{{teacherAvatar}}" class="avatar"/>
+      <text class="tname">主讲师: {{teacherName}}</text>
+      <text class="percent">学习进度: {{T.Trans(percent)}}%</text>
+    </view>
+    <view class="groupInfo" wx:if="{{courseStatus == 0}}">
+      <text class="need">拼团缺{{groupInfo.groupNeedNum}}人</text> |
+      <text class="count">团购倒计时：{{timeStr}}</text>
+    </view>
+    <view class="botm">
+      <view class="group" wx:if="{{courseStatus == 0}}">
+        <block wx:for="{{3}}" wx:key="{{index}}">
+          <view class="avatar" wx:if="{{index < groupInfo.groupUserAvatar.length}}"><image class="img" src="{{groupInfo.groupUserAvatar[index]}}"/></view>
+          <view class="avatar" wx:else>?</view>
+        </block>
+      </view>
+      <view class="pro" wx:else>
+        <view class="inner" style="width: {{T.Trans(percent)}}%"></view>
+      </view>
+      <view class="btn" bindtap="onTap" style="background-color: {{courseStatus == 0 ? '#009CFF': courseStatus == 1 ? '': ''}};">
+      {{courseStatus == 0 ? '取消团购' : courseStatus == 1 ? '进入学习' : ''}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<wxs module="T">
+  function Trans (num) {
+    if (typeof num == 'number') {
+      num *= 100;
+      return num.toFixed(2)
+    } else {
+      return num
+    }
+  }
+  module.exports = {Trans: Trans}
+</wxs>

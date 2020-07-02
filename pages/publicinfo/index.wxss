@@ -1,0 +1,206 @@
+/* pages/courseinfo/index.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.publicVideo {
+  width: 100%;
+  height: 422rpx;
+  position: relative;
+}
+
+.publicVideo video {
+  width: 100%;
+  height: 422rpx;
+}
+
+.playImg {
+  width: 66rpx;
+  height: 66rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -33rpx;
+  margin-left: -33rpx;
+}
+
+.produce {
+  text-align: center;
+  margin-top: 60rpx;
+  font-size: 36rpx;
+  color: #1c1b1b;
+  font-family: PingFang SC;
+  font-weight: bold;
+  height: 72rpx;
+}
+
+.produce text {
+  padding-bottom: 14rpx;
+  border-bottom: 10rpx solid #17e871;
+}
+
+.produceInfo {
+  margin: 32rpx auto 0;
+  height: 736rpx;
+  width: 606rpx;
+  border-radius: 10rpx;
+  padding: 0 50rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  background-color: #fbfbfb;
+}
+
+.title {
+  font-size: 30rpx;
+  margin-top: 74rpx;
+}
+
+.nameTime {
+  margin-top: 40rpx;
+  display: flex;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+}
+
+.name {
+  margin-right: 54rpx;
+}
+
+.courseInfo {
+  font-size: 24rpx;
+  margin-top: 70rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 48rpx;
+}
+
+.p-w {
+  width: 750rpx;
+  height: 150rpx;
+  position: fixed;
+  left: 0rpx;
+  bottom: 0rpx;
+  background-color: #fff;
+}
+.price {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 68rpx;
+  width: 558rpx;
+  margin: 0 auto;
+  color: white;
+  font-family: PingFang SC;
+  font-weight: bold;
+  font-size: 30rpx;
+  border-radius: 34rpx;
+  display: flex;
+}
+
+
+.price .c {
+  width: 50%;
+  height: 100%;
+  line-height: 68rpx;
+  text-align: center;
+}
+.price .a {
+  background-color: rgb(26,215,134);
+  border-top-left-radius: 34rpx;
+  border-bottom-left-radius: 34rpx;
+}
+
+.price .b {
+  background-color: #3699FF;
+  border-bottom-right-radius: 34rpx;
+  border-top-right-radius: 34rpx;
+}
+
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
+
+
+
+.group {
+  width: 706rpx;
+  margin: 0 auto;
+  background-color: #FBFBFB;
+  border-radius: 10rpx;
+  padding: 40rpx 50rpx 30rpx;
+  box-sizing: border-box;
+  margin-top: 25rpx;
+}
+
+.group .head {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #1C1B1B;
+}
+
+.info {
+  line-height: 1;
+}
+
+.info > .p {
+  font-size: 20rpx;
+  color: #009CFF;
+  margin-right: 15rpx;
+}
+
+.info > .o {
+  font-size: 20rpx;
+  color: #17E871;
+}
+
+.count {
+  width: 100%;
+  height: 66rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 33rpx;
+  border-radius: 33rpx;
+  background-color: #009CFF;
+  margin-top: 15rpx;
+
+}
+.count > .time {
+  font-size: 28rpx;
+  color: #fff;
+}
+
+
+
+.count > .ga {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.count > .ga > .avatar {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 36rpx;
+  display: inline-block;
+  margin-right: 22rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+.count > .ga > .avatar > .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}

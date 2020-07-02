@@ -1,0 +1,16 @@
+<view class="p-container">
+	<scroll-view class="scroll-wrap" scroll-y="true">
+		<s-chooseBoard tag-name="科目" render-list="{{allGrades}}" type='subject' active-color="#85F267"
+			bindtagBeChoosed="gradeChoosed"></s-chooseBoard>
+		<s-chooseBoard tag-name="教材" render-list="{{currentSubjects}}" type="textbook" active-color="#15DA7F"
+			bindtagBeChoosed="subjectChoosed"></s-chooseBoard>
+		<s-chooseBoard tag-name="版本" render-list="{{allVersion}}" type="textbookVersion" active-color="#15DABC"
+			bindtagBeChoosed="versionChoosed"></s-chooseBoard>
+		<view class="to-learn" bindtap="startStudy">
+			<image class="pic" src="../../assets/pic/icon_open.png" />
+		</view>
+		<block wx:if="{{ isChoosed }}">
+			<s-tipWindows bindexitModal="exitModal" />
+		</block>
+	</scroll-view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "s-descourse": "/components/descourse/index"
+  },
+  "navigationBarTitleText": "定制课程",
+  "enablePullDownRefresh": true
+}

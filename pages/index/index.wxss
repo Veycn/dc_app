@@ -1,0 +1,23 @@
+.p-container {
+  width: 100%;
+  height: 100%;
+  background: rgba(240, 242, 245, 1);
+  padding-top: 40rpx;
+}
+.scroll-wrap {
+  height: 100%;
+}
+.to-learn {
+  margin-top: 25rpx;
+  width: 416rpx;
+  height: 154rpx;
+  background: transparent;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.to-learn .pic {
+  width: 100%;
+  height: 100%;
+}

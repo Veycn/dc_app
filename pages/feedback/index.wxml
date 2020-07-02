@@ -1,0 +1,15 @@
+<!--pages/feedback/index.wxml-->
+<view class="p-wrapper">
+  <view class="welcome">
+    <image src="https://www.shenfu.online/pic/fb_bg.png" class="img" mode="widthFix"/> 
+  </view>
+  <view class="text-wrapper">
+    <view class="wel">您的反馈是对我们最大的鼓励</view>
+    <view class="tit">留言评论</view>
+    <textarea class="txt" placeholder="点击输入文字" bindinput="onInput" maxlength="255"></textarea>
+    <view class="btn" bindtap="submitContent">提交</view>
+  </view>
+  <view class="code">
+    <image src="https://www.shenfu.online/pic/code.png" bindtap="previewImage" class="codeimg"/>
+  </view>
+</view>

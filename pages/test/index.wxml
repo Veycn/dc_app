@@ -1,0 +1,16 @@
+<!--pages/test/index.wxml-->
+<view>
+  <view class="cricle">
+    <view class="wrap">
+      <canvas style="width: 100rpx; height: 100rpx;" canvas-id="myCanvas"></canvas>
+    </view>
+  </view>
+  <view>
+    <button bindtap="add">加</button>
+    <button bindtap="minus">减</button>
+  </view>
+  <view>
+    <text>1.1有理数</text>
+    
+  </view>
+</view>

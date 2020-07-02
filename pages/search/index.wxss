@@ -1,0 +1,40 @@
+/* pages/search/index.wxss */
+.search {
+  width: 550rpx;
+  height: 60rpx;
+  border:1rpx solid #15EC89;
+  border-radius: 15px;
+  margin: 24rpx auto;
+  position: relative;
+}
+.search image {
+  position: absolute;
+  left:24rpx;
+  width: 42rpx;
+  top: 10rpx;
+  height: 42rpx;
+}
+.search input {
+  width: 456rpx;
+  position: absolute;
+  top: 4rpx;
+  left:94rpx;
+  font-size: 26rpx;
+}
+.courseList {
+  padding: 0 26rpx;
+  height: 50rpx;
+}
+.listItem{
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  border-bottom: 1rpx solid #BFBFBF ;
+  height: 72rpx;
+}
+.listItem image {
+  width: 42rpx;
+  height: 42rpx;
+  margin-left: 14rpx;
+  margin-right: 26rpx;
+}

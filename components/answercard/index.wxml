@@ -1,0 +1,15 @@
+<!--components/answercard/index.wxml-->
+<view class="container" animation="{{modalAnimation}}">
+	<view class="content" animation="{{btnAnimation}}">
+		<view class="exit"  bindtap="onClose">
+      答题卡
+			<image class="img" src="../../assets/icon/exit_pic.png" />
+		</view>
+		<slot name="scantron" />
+		<!-- <view class="btn">
+			<slot name="btn" />
+		</view> -->
+		<view class="tip" bindtap="watchResult">交卷并查看结果</view>
+	</view>
+</view>
+

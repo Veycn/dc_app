@@ -1,0 +1,25 @@
+<!--pages/mycourse/index.wxml-->
+<view class="top">
+  <image src="/assets/pic/mycourse.png"></image>
+</view>
+<view class="" wx:if="{{courseList.length>0}}">
+  <block wx:for="{{courseList}}" wx:key="{{index}}">
+    <s-mycourse percent="{{0}}" course-status="{{item['courseStatus']}}" 
+      teacher-name="{{item['teacherName']}}"
+      teacher-avatar="{{item['teacherAvatar']}}" 
+      course-name="{{item['courseName']}}"
+      data-state="{{item['courseStatus']}}" 
+      data-name="{{item['courseName']}}" 
+      data-tname="{{item['teacherName']}}"
+      data-id="{{item['courseId']}}" 
+      percent="{{item['learningProcess']}}"
+      group-info="{{item['groupInfo']}}"
+      bindbtnTap="onBtnTap"
+    ></s-mycourse>
+  </block>
+</view>
+<view class="noc" wx:else>
+  <image src="https://www.shenfu.online/pic/no_course.png" class="img"/>
+  <view class="btn" bindtap="buyCourse">选购课程</view>
+  <view class="txt">您还没有课程视频，快去选购吧。</view>
+</view>

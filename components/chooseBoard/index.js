@@ -1,0 +1,39 @@
+// components/chooseBoard/index.js
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    tagName: String,
+    renderList: Array,
+    type: String,
+    activeColor: String
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+    activeIndex: -1
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    itemChoosed(e){
+      let {item, index} = e.currentTarget.dataset
+      console.log(item)
+      this.setData({
+        activeIndex: index
+      })
+      this.triggerEvent('tagBeChoosed', {item, index})
+    },
+    showTip () {
+      wx.showToast({
+        icon: 'none',
+        title: '敬请期待!'
+      })
+    }
+  }
+})

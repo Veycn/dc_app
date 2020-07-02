@@ -1,0 +1,92 @@
+.sec-wrap {
+  width: 706rpx;
+  height: 200rpx;
+  margin: 3rpx auto 0;
+  border-radius: 10rpx;
+  background-color: #fff;
+  position: relative;
+}
+.sec-chapter {
+  position: absolute;
+  height: 40rpx;
+  width: 100%;
+  top: 24rpx;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+.sec-top {
+  width: 84rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: rgb(24, 219, 155);
+  border-radius: 6rpx;
+  color: #fff;
+  font-size: 20rpx;
+  font-family: 'PingFang-SC-Regular';
+  text-align: center;
+}
+.scroll-view {
+  white-space: nowrap;
+  width: 580rpx;
+  overflow: auto;
+}
+.sec-name {
+  display: inline-block;
+  margin-left: 30rpx;
+  font-size: 38rpx;
+
+}
+.sec-ratio {
+  display: inline-block;
+  margin-left: 30rpx;
+  font-size: 20rpx;
+}
+.test-papers {
+  position: absolute;
+  width: 586rpx;
+  height: 74rpx;
+  bottom: 36rpx;
+  left: 62rpx;
+  display: flex;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+.test-item {
+  width: 65rpx;
+  height: 73rpx;
+  position: relative;
+  display: inline-block;
+}
+.test-item-nofirst {
+  width: 65rpx;
+  height: 73rpx;
+  margin-left: 99rpx;
+  position: relative;
+  display: inline-block;
+}
+.test-item .image,  .test-item-nofirst .image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65rpx;
+  height: 73rpx;
+}
+.test-papers .paper-name {
+  position: absolute;
+  top: 9rpx;
+  left: 2rpx;
+  font-size: 24rpx;
+  height: 73rpx;
+  width: 32rpx;
+  color: #fff;
+  white-space: pre-wrap;
+}
+.nopaper-name {
+  position: absolute;
+  font-size: 24rpx;
+  height: 73rpx;
+  line-height: 73rpx;
+  width: 60rpx;
+  text-align: center;
+}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "s-pointItem": "/components/pointItem/index"
+  },
+  "navigationBarTitleText":"认知结构",
+  "navigationBarBackgroundColor": "#15EC89",
+  "navigationBarTextStyle": "white"
+}

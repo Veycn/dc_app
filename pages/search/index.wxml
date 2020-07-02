@@ -1,0 +1,12 @@
+<!--pages/search/index.wxml-->
+<view class="search">
+ <input type="text"  focus bindinput="keywords"/>
+ <image src='/assets/icon/sousuo.png' />
+</view>
+
+<view class="courseList" wx:if='{{hasList}}'>
+  <view class="listItem"  wx:for='{{courseList}}' wx:key='index' bindtap="showCourse">
+    <image src='/assets/icon/sousuo.png' />
+     <text>{{item}}</text>
+  </view>
+</view>
