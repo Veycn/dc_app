@@ -16,7 +16,9 @@
     "pages/publicclass/index",
     "pages/feedback/index",
     "pages/search/index",
-    "pages/knowledgelist/index"
+    "pages/knowledgelist/index",
+    "pages/samecourse/index",
+    "pages/freecourse/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

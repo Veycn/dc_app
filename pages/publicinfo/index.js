@@ -2,6 +2,7 @@
 const {
   request
 } = require("../../utils/request.js")
+const  { descourse }=require("../../utils/course.js")
 Page({
 
   /**
@@ -10,7 +11,7 @@ Page({
   data: {
     pause: true,
     videoInfo: null,
-    courseInfo:[],
+    courseInfo:null,
     descourseInfo:[],
     playInfo:[],
     course: null,
@@ -19,7 +20,8 @@ Page({
     teacherName: '',
     isGroup: 0,
     time: 0,
-    timeStr: ''
+    timeStr: '',
+    courseId:'',
   },
 
   update (){
@@ -33,13 +35,23 @@ Page({
       })
     }
   },
+  toSameCourse(){
+     wx.navigateTo({
+       url: `/pages/samecourse/index?id=${this.data.courseId}`,
+     })
+  },
+  toFreeCourse(){
+    wx.navigateTo({
+      url: `/pages/freecourse/index?id=${this.data.courseId}`,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     console.log(options)
-    this.setData({teacherName: options.teacherName, isGroup: +options.isGroup})
+    this.setData({teacherName: options.teacherName,courseId:options.id,courseInfo:descourse})
     var videoPlay = wx.createVideoContext("myVideo")
     this.videoContext = videoPlay
 
@@ -71,7 +83,25 @@ Page({
         }
       })
     })
+    // this.getSimilarCourse()
+    // this.getFreeCourse()
     
+    
+  },
+  // 获取同类课程
+  getSimilarCourse(){
+    request('api/recommendCourse/getSimilarCourse',"get",{
+      courseId:this.data.courseId
+    },res=>{
+      console.log(res)
+    })
+  },
+  getFreeCourse(){
+    request('api/recommendCourse/getFreeCourse',"get",{
+      courseId:this.data.courseId
+    },res=>{
+      console.log(res)
+    })
   },
   videoPlay(){
     this.videoContext.play()

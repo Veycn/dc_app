@@ -2,7 +2,9 @@
   <video id="myVideo" src="{{playInfo.playURL}}" controls="{{false}}" autoplay="{{false}}" bindtimeupdate="update" bindplay="videoPlay" bindpause="videoPause" object-fit="fill" show-center-play-btn="{{false}}" poster="{{playInfo.coverURL}}" />
   <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="toggleState" wx:if="{{pause}}" />
 </view>
-<view class="produce" wx:if="{{isGroup}}">
+
+<!-- 拼团已舍弃 -->
+<!-- <view class="produce" wx:if="{{isGroup}}">
   <text>团购进行中</text>
 </view>
 <view class="group" wx:if="{{isGroup}}">
@@ -20,7 +22,15 @@
         </block>
       </view>
   </view>
+</view> -->
+<view class="info">
+  <text class="buynum">{{5}}人已购</text>
+  <view class="star">
+    <text class="starnum">{{999}}</text>
+    <image src='/assets/icon/star.png' class="img"></image>
+  </view>
 </view>
+
 <view class="produce">
   <text>课程介绍</text>
 </view>
@@ -38,9 +48,29 @@
     </view>
   </scroll-view>
 </view>
+<view class="courseArea">
+  <view class="sameCourse" bindtap="toSameCourse"> 同类课程  》</view>
+  <block wx:for="{{courseInfo}}" wx:key="{{item.id}}">
+    <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
+    title="{{item.courseName}}"    
+    section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
+    teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
+    sales="{{item['sales']}}" section="{{item['section']}}"
+    courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}"
+    price="{{item.coursePrice}}"/>
+  </block>
+  <view class="freeCourse" bindtap="toFreeCourse"> 免费区  》</view>
+  <block wx:for="{{courseInfo}}" wx:key="{{item.id}}">
+    <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
+    title="{{item.courseName}}"    
+    section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
+    teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
+    sales="{{item['sales']}}" section="{{item['section']}}"
+    courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}"
+    price="{{0.0}}"/>
+  </block>
+</view>
+
 <view class="p-w">
-  <view class="price">
-    <view class="a c" bindtap="toPay" data-type="0">{{course.coursePrice}}元  单独购买</view>
-    <view class="b c" bindtap="toPay" data-type="1">{{course.courseGroupPrice}}元 去参团</view>
-  </view>
+  <view class="price" bindtap="toPay" data-type="0">{{course.coursePrice}}元购买</view>
 </view>

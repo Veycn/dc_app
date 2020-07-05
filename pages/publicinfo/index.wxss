@@ -42,7 +42,7 @@ page {
 
 .produceInfo {
   margin: 32rpx auto 0;
-  height: 736rpx;
+  height: 600rpx;
   width: 606rpx;
   border-radius: 10rpx;
   padding: 0 50rpx;
@@ -90,33 +90,61 @@ page {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 68rpx;
-  width: 558rpx;
-  margin: 0 auto;
+  line-height: 68rpx;
+  width: 360rpx;
   color: white;
   font-family: PingFang SC;
   font-weight: bold;
   font-size: 30rpx;
-  border-radius: 34rpx;
-  display: flex;
-}
-
-
-.price .c {
-  width: 50%;
-  height: 100%;
-  line-height: 68rpx;
-  text-align: center;
-}
-.price .a {
   background-color: rgb(26,215,134);
-  border-top-left-radius: 34rpx;
-  border-bottom-left-radius: 34rpx;
+  text-align: center;
+  border-radius: 34rpx;
 }
 
-.price .b {
-  background-color: #3699FF;
-  border-bottom-right-radius: 34rpx;
-  border-top-right-radius: 34rpx;
+
+.courseArea {
+  margin: 0 24rpx 150rpx;
+}
+
+.sameCourse {
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  color:white;
+  width: 172rpx;
+  height: 40rpx;
+  background-color: rgb(26,215,134);
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  font-family:PingFang SC;
+}
+
+.freeCourse {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color:white;
+  width: 172rpx;
+  height: 40rpx;
+  background-color: rgb(26,215,134);
+  text-align: center;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  font-family:PingFang SC;
+}
+
+
+.info {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  color:#333333;
+  font-size: 28rpx;
+}
+.info .img {
+  margin-left: 8rpx;
+  width: 32rpx;
+  height: 30rpx;
 }
 
 

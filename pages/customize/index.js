@@ -1,7 +1,7 @@
 // pages/customize/index.js
 const { request } = require("../../utils/request.js")
 import { formatTime, countDown, clearTimeOut } from "../../utils/retime.js" 
-const  { descourse, desgrcourse }=require("../../utils/course.js")
+// const  { descourse, desgrcourse }=require("../../utils/course.js")
 const app=getApp()
 Page({
 
@@ -54,7 +54,7 @@ Page({
       wx.navigateTo({url: '/pages/feedback/index'})
     }else if(idx == 0){
       // 公开课
-      // wx.navigateTo({url: '/pages/publicclass/index'})
+      wx.navigateTo({url: '/pages/publicclass/index'})
     }
   },
   toDetect () {
@@ -66,12 +66,12 @@ Page({
   onLoad: function () {
     this.getList()
     console.log(descourse)
+    // this.setData({
+    //   descourseList: descourse,
+    //   desgrcourseList:desgrcourse
+    // })
     wx.showToast({
       title: '正在获取您的检测信息, 请稍后...'
-    })
-    this.setData({
-      // descourseList: descourse,
-      desgrcourseList:desgrcourse
     })
     request("api/recommendCourse/getSimplePublicCourse","get",{},function(res){
        console.log("请求公开课信息:",res)
@@ -82,6 +82,7 @@ Page({
   getList(){
     request("api/recommendCourse/getPrivateCourseList", "get", {}, res => {
       let {data} = res
+      console.log(res)
       if(data && data.length>0){
         this.setData({
           hasCustomize: true

@@ -10,8 +10,8 @@
   position: relative;
 }
 .courseImage {
-  height: 152rpx;
-  width: 152rpx;
+  height: 154rpx;
+  width: 154rpx;
 }
 .courseInfo {
   display: flex;
@@ -36,13 +36,14 @@ font-size:20rpx;
 font-family:PingFang SC;
 font-weight:400;
 margin-top: 20rpx;
+align-items: center;
 }
 .space {
   margin: 0 15rpx;
 }
 
 .teacher {
-  display: flex;
+display: flex;
 margin-top: 22rpx;
 align-items: center;
 }
@@ -60,19 +61,14 @@ align-items: center;
   font-weight:400;
 }
 .buycourse {
-  width: 90rpx;
-  height: 38rpx;
-  border-radius:19rpx;
-  background-color: #15EC89;
-  text-align: center;
-  line-height: 38rpx;
-  font-size: 24rpx;
-  color: white;
+  font-size: 28rpx;
   position: absolute;
   right: 0;
-  bottom: 36rpx;
+  bottom: 38rpx;
 }
-
+.yuan {
+  color: #23ED8D;
+}
 .desc > .group {
   font-size: 20rpx;
   color: #15EC89;
@@ -82,6 +78,11 @@ align-items: center;
   color: #009CFF;
 }
 
+.desc > .starImage {
+  width: 26rpx;
+  height: 24rpx;
+  margin-left: 4rpx;
+}
 
 .gr {
   display: flex;

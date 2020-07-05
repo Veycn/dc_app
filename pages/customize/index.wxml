@@ -34,10 +34,11 @@
   </view>
   <block wx:for="{{descourseList}}" wx:key="{{item.courseId}}">
     <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
-      is-group-open="{{item['isGroupOpen']}}" title="{{item.courseName}}"
+      title="{{item.courseName}}"    
       section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
       teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
       sales="{{item['sales']}}" section="{{item['section']}}"
-      courseImage="{{item.courseAvatar}}"/>
+      courseImage="{{item.courseCoverUrl}}" stars="{{item.courseStars}}"
+      price="{{item.coursePrice}}"/>
   </block>
 </view>

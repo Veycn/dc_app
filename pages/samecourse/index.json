@@ -2,5 +2,5 @@
   "usingComponents": {
     "s-descourse": "/components/descourse/index"
   },
-  "navigationBarTitleText": "购买课程"
+  "navigationBarTitleText": "同类课程"
 }

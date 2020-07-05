@@ -12,10 +12,11 @@ Component({
     teacherImage:String,
     courseImage:String,
     courseStatus: Number,
-    isGroupOpen: Number,
     groupInfo: null,
+    price:Number,
     sales: Number,
-    section: String
+    section: String,
+    stars:Number
   },
 
   attached() {
@@ -45,7 +46,7 @@ Component({
     tobuy(){
       let {courseId} = this.data
       wx.navigateTo({
-        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${this.data.teacherName}&isGroup=${this.data.isGroupOpen}`,
+        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${this.data.teacherName}`
       })
     },
     formatTime(s) {

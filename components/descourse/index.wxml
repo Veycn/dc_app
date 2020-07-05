@@ -4,13 +4,16 @@
   <view class="courseInfo">
     <text class="title">{{title}}</text>
     <view class="desc">
-      <text class="group" wx:if="{{isGroupOpen}}">拼团差{{groupInfo['groupNeedNum']}}人</text>
-      <text class="section" wx:else>{{section}}</text>
+      <text class="section">{{section}}</text>
       <text class="space">|</text>
-      <text class="time" wx:if="{{isGroupOpen}}">团购倒计时: {{timeStr}}</text>
-      <text class="buynum" wx:else>{{sales}}人已购</text>
+      <text class="buynum">{{sales}}人已购</text>
+      <text class="space">|</text>
+      <text class="star">{{stars}}</text>
+      <image src="/assets/icon/star.png" class="starImage"></image>
     </view>
-    <view class="teacher" wx:if="{{isGroupOpen}}">
+
+    <!-- 取消拼团 -->
+    <!-- <view class="teacher" wx:if="{{isGroupOpen}}">
       <view class="gr">
          <block wx:for="{{3}}" wx:key="{{index}}">
           <view class="avatar" wx:if="{{index < groupInfo.groupUserAvatar.length}}"><image class="img" src="{{groupInfo.groupUserAvatar[index]}}"/></view>
@@ -20,13 +23,14 @@
       <view class='buycourse'>
         <text bindtap="tobuy" data-id="{{courseId}}">参团</text>
       </view>
-    </view>
-    <view class="teacher" wx:else>
+    </view> -->
+    <view class="teacher">
       <image  src="{{teacherImage}}" />
       <text class="teacherName">主讲师：{{teacherName}}</text>
       <view class='buycourse'>
         <!-- <text bindtap="tobuy" data-id="{{courseId}}">购买</text> -->
-        <text>购买</text>
+        <text>{{price}}</text>
+        <text class="yuan">￥</text>
       </view>
     </view>
   </view>

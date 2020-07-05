@@ -7,22 +7,66 @@ Page({
    */
   data: {
    courseList:['一元','一元一次','一元一次方程'],
-   hasList:false
+   hasList:false,
+   storageFlag:false,
+   storageList:[],
+   value:''
   },
   keywords(e){
-   let { value } = e.detail
-   request('api/recommendCourse/searchCourse',"get",{
-    courseName:value
-   },res=>{
-     // 判断data length 
      this.setData({
-       hasList: true
+       value:e.detail.value
      })
-   })
+     this.getSearchCourse(e.detail.value)
+  },
+  getSearchCourse(value){
+    request('api/recommendCourse/searchCourse',"get",{
+      courseName:value
+     },res=>{
+       // 判断data length 
+       this.setData({
+         hasList: true,
+         storageFlag:false
+       })
+     })
+  },
+  search(){
+    if(this.data.value){
+      let flag = true
+   this.data.storageList.forEach(item=>{
+           if(item == this.data.value){
+              return flag = false
+           }else {
+             return flag = true
+           }
+      })
+      console.log(flag)
+      if(flag){
+        this.data.storageList.push(this.data.value)
+        wx.setStorage({
+          data:  this.data.storageList,
+          key: 'searchList',
+          success:()=>{
+            console.log('保存成公')
+          }
+        })
+      }
+    }
   },
   showCourse(){
+
     this.setData({
       hasList:false
+    })
+  },
+  clearHistory(){
+    wx.removeStorage({
+      key: 'searchList',
+      success:()=>{
+        this.setData({
+          storageFlag:false,
+          storageList:[]
+        })
+      }
     })
   },
 
@@ -30,6 +74,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.getStorage({
+      key: 'searchList',
+      success:(res)=>{
+        if(res.data.length!==0){
+          this.setData({
+            storageFlag:true,
+            storageList:res.data
+          })
+        }
+      }
+    })
 
   },
 

@@ -1,12 +1,22 @@
 <!--pages/search/index.wxml-->
 <view class="search">
- <input type="text"  focus bindinput="keywords"/>
- <image src='/assets/icon/sousuo.png' />
-</view>
-
-<view class="courseList" wx:if='{{hasList}}'>
-  <view class="listItem"  wx:for='{{courseList}}' wx:key='index' bindtap="showCourse">
-    <image src='/assets/icon/sousuo.png' />
-     <text>{{item}}</text>
-  </view>
-</view>
+  <input type="text"  focus bindinput="keywords"/>
+  <image src='/assets/icon/sousuo.png' bindtap="search" />
+ </view>
+ 
+ <view class="courseList" wx:if='{{hasList}}'>
+   <view class="listItem"  wx:for='{{courseList}}' wx:key='index' bindtap="showCourse">
+     <image src='/assets/icon/sousuo.png' />
+      <text>{{item}}</text>
+   </view>
+ </view>
+ 
+ <!-- 历史记录 -->
+ <view class="history" wx:if="{{storageFlag}}">
+     <text class="tip">历史记录</text>
+     <text class="clear" bindtap="clearHistory">清除历史记录</text>
+     <view class="list">
+       <view class="item" wx:for="{{storageList}}" wx:key="index">{{item}}</view>
+     </view>
+ </view>
+ 
