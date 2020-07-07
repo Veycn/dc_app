@@ -43,9 +43,9 @@
                 <view wx:if="{{type == 'isKnowledge'}}" 
                   class="q btn-item {{ choosedTopicIndex===index?'active' : '' }}" 
                   data-index="{{ index }}" bindtap="getUserAnswer"
-                >{{choosedTopicIndex===index && topicsList[currentTopicIndex]['userAnswer'] === index + 1 && topicsList[currentTopicIndex]['judgeResult'] === 1 ? '√':item}}</view>
+                >{{choosedTopicIndex===index && topicsList[currentTopicIndex]['userAnswer'] === index + 1 && topicsList[currentTopicIndex]['judgeResult'] === 1 ? '✔':item}}</view>
                
-               <view wx:else class="btn-item {{ choosedTopicIndex===index?'active':'abc' }}" data-index="{{ index }}" bindtap="getUserAnswer"> {{choosedTopicIndex===index ? '√':item}} </view>
+               <view wx:else class="btn-item {{ choosedTopicIndex===index?'active':'abc' }}" data-index="{{ index }}" bindtap="getUserAnswer"> {{choosedTopicIndex===index ? '✔':item}} </view>
               </block>
             </view>
           </view>

@@ -64,16 +64,16 @@
 }
 
 .topic-wrap swiper image {
-	width: 96%;
+	width: 98%;
 	display: block;
 	margin: auto;
 }
 
 .topic-img {
-	height: 660rpx;
+	min-height: 660rpx;
   background-color: #fff;
   box-sizing: border-box;
-  padding-top: 40rpx;
+  padding: 20rpx;
 }
 .topic-img image {
   max-height: 700rpx;

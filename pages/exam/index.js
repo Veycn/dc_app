@@ -305,7 +305,7 @@ Page({
         userAnswers,
         currentTopicIndex
       })
-    },200)
+    },300)
     
   },
   // 判断用户是否做完了所有题目
