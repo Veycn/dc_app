@@ -23,7 +23,8 @@ Page({
     vertical: false,
     autoplay: true,
     interval: 2000,
-    duration: 500
+    duration: 500,
+    background: ['url1', 'url2']
   },
 
   /**
@@ -48,6 +49,9 @@ Page({
         })
       }
     })
+  },
+  skip(e) {
+    console.log(e.currentTarget.dataset.url)
   },
   skipPage: function(e) {
     let {

@@ -9,8 +9,8 @@ Component({
       value: true
     },
     seclist: {
-      type: Array,
-      value: []
+      type: Object,
+      value: {}
     },
     first: {
       type: Number,
@@ -23,7 +23,10 @@ Component({
    * 组件的初始数据
    */
   data: {
-    didimg: '../../assets/pic/paper4.png',
+    didimg1: '../../assets/pic/paper1.png',
+    didimg2: '../../assets/pic/paper2.png',
+    didimg3: '../../assets/pic/paper3.png',
+    didimg4: '../../assets/pic/paper4.png',
     nodidimg: '../../assets/pic/paper0.png',
     status: 0
   },

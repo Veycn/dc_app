@@ -2,8 +2,8 @@
   <official-account></official-account>
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{background}}" wx:key="*this">
-      <swiper-item>
-        <view class="swiper-item {{item}}"></view>
+      <swiper-item >
+        <view data-url="{{item}}" bindtap="skip" class="swiper-item">{{item}}</view>
       </swiper-item>
     </block>
   </swiper>
@@ -25,7 +25,7 @@
   </view>
   <view class="section-list">
     <block wx:for="{{seclist}}" wx:key="index">
-      <view class="sec-wrap" data-submitStatus="{{item.exams[index].status}}" data-id="{{item.id}}" data-item="{{item.section}}"  data-examid="{{item.exams[index].id}}">
+      <view class="sec-wraps">
         <s-sectionlist seclist="{{item}}"  first="{{index}}" />
       </view>
     </block>

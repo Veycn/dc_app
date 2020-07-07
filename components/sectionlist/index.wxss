@@ -42,14 +42,19 @@
   margin-left: 30rpx;
   font-size: 20rpx;
 }
-.test-papers {
+.scroll {
   position: absolute;
-  width: 586rpx;
-  height: 74rpx;
   bottom: 36rpx;
   left: 62rpx;
-  display: flex;
-  justify-content: flex-start;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.test-papers {
+  width: 586rpx;
+  height: 74rpx;
   white-space: nowrap;
 }
 .test-item {

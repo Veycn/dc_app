@@ -4,17 +4,28 @@
     <scroll-view scroll-x="true">
       <view class="scroll-view">
         <view class="sec-name">{{seclist.section}}</view>
-        <view class="sec-ratio">完成进度: {{tools.dealData(seclist.exams[0].ratio)*100}}%</view>
       </view>
     </scroll-view>
   </view>
-  <view>
-    <scroll-view class="test-papers" scroll-x="true">
+  <view class="scroll">
+    <scroll-view class="test-papers" style="width: 586rpx;" scroll-x="true">
       <block wx:for="{{seclist.exams}}" wx:for-item="exams" wx:key="index">
         <view class="{{index === 0 ? 'test-item' : 'test-item-nofirst'}}" bindtap="toExam"
           data-knowledgePointId="{{seclist.id}}" data-submitStatus="{{exams.status}}" data-examId="{{exams.id}}">
-          <block wx:if="{{exams.status === 1}}">
-            <image class="image" src="{{didimg}}"></image>
+          <block wx:if="{{exams.status === 1 && exams.ratio < 0.25}}">
+            <image class="image" src="{{didimg1}}"></image>
+            <text class="paper-name">{{exams.exam}}</text>
+          </block>
+          <block wx:elif="{{exams.status === 1 && exams.ratio >= 0.25 &&  exams.ratio < 0.5}}">
+            <image class="image" src="{{didimg2}}"></image>
+            <text class="paper-name">{{exams.exam}}</text>
+          </block>
+          <block wx:elif="{{exams.status === 1 && exams.ratio >= 0.5 &&  exams.ratio < 0.75}}">
+            <image class="image" src="{{didimg3}}"></image>
+            <text class="paper-name">{{exams.exam}}</text>
+          </block>
+          <block wx:elif="{{exams.status === 1 && exams.ratio >= 0.75}}">
+            <image class="image" src="{{didimg4}}"></image>
             <text class="paper-name">{{exams.exam}}</text>
           </block>
           <block wx:else>

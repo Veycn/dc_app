@@ -297,10 +297,16 @@ Page({
       tempSaveAns: submitAnswer
     })
     userAnswers[currentTopicIndex] = choosedTopicIndex
-    this.setData({
-      userAnswers,
-      currentTopicIndex: currentTopicIndex+1
-    })
+    if (currentTopicIndex < this.data.topicsLength - 1) {
+      currentTopicIndex = currentTopicIndex + 1
+    }
+    setTimeout(() => {
+      this.setData({
+        userAnswers,
+        currentTopicIndex
+      })
+    },200)
+    
   },
   // 判断用户是否做完了所有题目
   // isMakeAllTopic() {
@@ -533,7 +539,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(this.data.isKnowledge !== 'isKnowledge') {
+    if (this.data.isKnowledge !== 'isKnowledge') {
       this.autoSave()
     }
   },
@@ -549,7 +555,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    if(this.data.isKnowledge !== 'isKnowledge') {
+    if (this.data.isKnowledge !== 'isKnowledge') {
       clearInterval(this.data.stimer)
       this.clearTimer()
       this.clearForTimer()
