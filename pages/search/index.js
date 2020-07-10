@@ -1,70 +1,157 @@
 // pages/search/index.js
-const {request} = require("../../utils/request")
+const {
+  request
+} = require("../../utils/request")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   courseList:['一元','一元一次','一元一次方程'],
-   hasList:false,
-   storageFlag:false,
-   storageList:[],
-   value:''
+    courseList: null,
+    course: [],
+    hasList: false,
+    storageFlag: false,
+    storageList: [],
+    value: ''
   },
-  keywords(e){
-     this.setData({
-       value:e.detail.value
-     })
-     this.getSearchCourse(e.detail.value)
-  },
-  getSearchCourse(value){
-    request('api/recommendCourse/searchCourse',"get",{
-      courseName:value
-     },res=>{
-       // 判断data length 
-       this.setData({
-         hasList: true,
-         storageFlag:false
-       })
-     })
-  },
-  search(){
-    if(this.data.value){
-      let flag = true
-   this.data.storageList.forEach(item=>{
-           if(item == this.data.value){
-              return flag = false
-           }else {
-             return flag = true
-           }
+  keywords(e) {
+    this.setData({
+      value: e.detail.value
+    })
+    if (e.detail.value === ''){
+      this.setData({
+        hasList:false
       })
-      console.log(flag)
-      if(flag){
-        this.data.storageList.push(this.data.value)
-        wx.setStorage({
-          data:  this.data.storageList,
-          key: 'searchList',
-          success:()=>{
-            console.log('保存成公')
-          }
-        })
-      }
+    }else{
+      this.getSearchCourse(e.detail.value)
     }
   },
-  showCourse(){
-
-    this.setData({
-      hasList:false
+  getSearchCourse(value) {
+    request('api/recommendCourse/searchCourse', "get", {
+      courseName: value
+    }, res => {
+      // 判断data.length 
+      if (res.data.length > 0) {
+        this.setData({
+          hasList: true,
+          storageFlag: false,
+          courseList: res.data
+        })
+      }
     })
   },
-  clearHistory(){
+  search() {
+    // 有相关关键词直接显示课程卡片
+    if (this.data.value) {
+      request('api/recommendCourse/searchCourse', "get", {
+        courseName: this.data.value
+      }, res => {
+        // 判断data.length 
+        if (res.data.length > 0) {
+          this.setData({
+            hasList: false,
+            storageFlag: false,
+            course: res.data
+          })
+        }
+      })
+          let flag = true
+          this.data.storageList.forEach(item => {
+            if (item == this.data.value) {
+              return flag = false
+            }
+          })
+          if (flag) {
+            wx.getStorage({
+              key: 'searchList',
+              success:res=>{
+                if(res.data.length === 6){
+                   res.data.pop()
+                   console.log(res.data)
+                }
+                  res.data.unshift(this.data.value)
+                  wx.setStorage({
+                    data: res.data,
+                    key: 'searchList',
+                    success: () => {
+                      console.log('保存成功')
+                    }
+                  })
+              },
+              fail:()=>{
+                let searchList = []
+                searchList.push(this.data.value)
+                wx.setStorage({
+                  data: searchList,
+                  key: 'searchList',
+                  success: () => {
+                    console.log('保存成功')
+                  }
+                })
+              }
+            })
+          }
+    }
+  },
+  showCourse(e) {
+    let courseName = e.target.dataset.item
+    request('api/recommendCourse/searchCourse', "get", {
+      courseName: courseName
+    }, res => {
+      // 判断data.length 
+      if (res.data.length > 0) {
+        this.setData({
+          hasList: false,
+          storageFlag: false,
+          course: res.data
+        })
+      }
+    })
+          let flag = true
+          this.data.storageList.forEach(item => {
+            if (item == courseName) {
+              return flag = false
+            }
+          })
+          if (flag) {
+            wx.getStorage({
+              key: 'searchList',
+              success:res=>{
+                if(res.data.length === 6){
+                   res.data.pop()
+                   console.log(res.data)
+                }
+                  res.data.unshift(courseName)
+                  wx.setStorage({
+                    data: res.data,
+                    key: 'searchList',
+                    success: () => {
+                      console.log('保存成功')
+                    }
+                  })
+              },
+              fail:()=>{
+                let searchList = []
+                searchList.push(courseName)
+                wx.setStorage({
+                  data: searchList,
+                  key: 'searchList',
+                  success: () => {
+                    console.log('保存成功')
+                  }
+                })
+              }
+            })
+          }
+  },
+  clearHistory() {
     wx.removeStorage({
       key: 'searchList',
-      success:()=>{
+      success: () => {
         this.setData({
-          storageFlag:false,
-          storageList:[]
+          storageFlag: false,
+          storageList: []
         })
       }
     })
@@ -76,16 +163,15 @@ Page({
   onLoad: function (options) {
     wx.getStorage({
       key: 'searchList',
-      success:(res)=>{
-        if(res.data.length!==0){
+      success: (res) => {
+        if (res.data.length !== 0) {
           this.setData({
-            storageFlag:true,
-            storageList:res.data
+            storageFlag: true,
+            storageList: res.data
           })
         }
       }
     })
-
   },
 
   /**
@@ -99,7 +185,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // wx.getStorage({
+    //   key: 'searchList',
+    //   success: (res) => {
+    //     if (res.data.length !== 0) {
+    //       this.setData({
+    //         storageFlag: true,
+    //         storageList: res.data
+    //       })
+    //     }
+    //   }
+    // })
   },
 
   /**

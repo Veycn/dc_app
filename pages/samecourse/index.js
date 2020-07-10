@@ -15,7 +15,14 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    this.setData({sameCourseList:descourse})
+    request('api/recommendCourse/getSimilarCourse',"get",{
+      courseId:options.id
+    },res=>{
+      console.log(res)
+      this.setData({
+        sameCourse:res.data
+      })
+    })
   },
 
   /**

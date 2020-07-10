@@ -22,6 +22,8 @@ Page({
     time: 0,
     timeStr: '',
     courseId:'',
+    sameCourse:[],
+    freeCourse:[]
   },
 
   update (){
@@ -51,40 +53,48 @@ Page({
    */
   onLoad: function(options) {
     console.log(options)
-    this.setData({teacherName: options.teacherName,courseId:options.id,courseInfo:descourse})
+    this.setData({teacherName: options.teacherName,courseId:options.id})
     var videoPlay = wx.createVideoContext("myVideo")
     this.videoContext = videoPlay
+    request('api/recommendCourse/getVideoPlayInfo',"get",{
+      videoPlayId:options.videoId
+    },res=>{
+      this.setData({
+        playInfo:res.data
+      })
+    })
 
-    request("api/recommendCourse/getPublicVideoList", "get", {
+    request("api/recommendCourse/getPrivateCourseInfo", "get", {
       courseId: options.id
     }, res => {
       let {data} = res
+      console.log(data)
       this.setData({
-        videoInfo: data.videoInfoList,
+        courseInfo: data
       })
-      request("api/recommendCourse/getPrivateCourseInfo", "get", {
-        courseId: options.id
-      },
-      res => {
-        this.getTryVideoInfo()
-        this.setData({
-          course: res.data
-        })
-        if (this.data.course.groupInfo) {
-          let {
-            expirationTime
-          } = this.data.course.groupInfo
-          let deadline = new Date(expirationTime).getTime()
-          let curTime = new Date().getTime()
-          let dis = Math.floor((deadline - curTime) / 1000)
-          let timeStr = this.formatTime(dis)
-          this.setData({time: dis, timeStr})
-          this.countDown(dis)
-        }
+      // request("api/recommendCourse/getPrivateCourseInfo", "get", {
+      //   courseId: options.id
+      // },
+      // res => {
+      //   this.getTryVideoInfo()
+      //   this.setData({
+      //     course: res.data
+      //   })
+      //   if (this.data.course.groupInfo) {
+      //     let {
+      //       expirationTime
+      //     } = this.data.course.groupInfo
+      //     let deadline = new Date(expirationTime).getTime()
+      //     let curTime = new Date().getTime()
+      //     let dis = Math.floor((deadline - curTime) / 1000)
+      //     let timeStr = this.formatTime(dis)
+      //     this.setData({time: dis, timeStr})
+      //     this.countDown(dis)
+      //   }
       })
-    })
-    // this.getSimilarCourse()
-    // this.getFreeCourse()
+    // })
+    this.getSimilarCourse()
+    this.getFreeCourse()
     
     
   },
@@ -94,6 +104,12 @@ Page({
       courseId:this.data.courseId
     },res=>{
       console.log(res)
+      let sameCourse = res.data.filter((value,index)=>{
+        return index<=1
+      }) 
+      this.setData({
+        sameCourse:sameCourse
+      })
     })
   },
   getFreeCourse(){
@@ -101,6 +117,12 @@ Page({
       courseId:this.data.courseId
     },res=>{
       console.log(res)
+      let freeCourse = res.data.filter((value,index)=>{
+        return index<=1
+      }) 
+      this.setData({
+        freeCourse:freeCourse
+      })
     })
   },
   videoPlay(){

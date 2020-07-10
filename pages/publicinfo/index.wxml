@@ -24,7 +24,7 @@
   </view>
 </view> -->
 <view class="info">
-  <text class="buynum">{{5}}人已购</text>
+  <text class="buynum">{{courseInfo.courseSales}}人已购</text>
   <view class="star">
     <text class="starnum">{{999}}</text>
     <image src='/assets/icon/star.png' class="img"></image>
@@ -41,16 +41,16 @@
     </view>
     <view class="nameTime">
       <text class="name">讲师： {{teacherName}}</text>
-      <text class="time">{{course['courseDuration']}}</text>
+      <text class="time">{{courseInfo['courseDuration']}}</text>
     </view>
     <view class="courseInfo">
-      <text>{{course.courseIntro}}</text>
+      <text>{{courseInfo.courseIntro}}</text>
     </view>
   </scroll-view>
 </view>
 <view class="courseArea">
   <view class="sameCourse" bindtap="toSameCourse"> 同类课程  》</view>
-  <block wx:for="{{courseInfo}}" wx:key="{{item.id}}">
+  <block wx:for="{{sameCourse}}" wx:key="id">
     <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
     title="{{item.courseName}}"    
     section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
@@ -60,7 +60,7 @@
     price="{{item.coursePrice}}"/>
   </block>
   <view class="freeCourse" bindtap="toFreeCourse"> 免费区  》</view>
-  <block wx:for="{{courseInfo}}" wx:key="{{item.id}}">
+  <block wx:for="{{freeCourse}}" wx:key="id">
     <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
     title="{{item.courseName}}"    
     section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
@@ -72,5 +72,5 @@
 </view>
 
 <view class="p-w">
-  <view class="price" bindtap="toPay" data-type="0">{{course.coursePrice}}元购买</view>
+  <view class="price" bindtap="toPay" data-type="0">{{courseInfo.coursePrice}}元购买</view>
 </view>

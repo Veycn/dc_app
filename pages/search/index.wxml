@@ -5,18 +5,27 @@
  </view>
  
  <view class="courseList" wx:if='{{hasList}}'>
-   <view class="listItem"  wx:for='{{courseList}}' wx:key='index' bindtap="showCourse">
+   <view class="listItem"  wx:for='{{courseList}}' wx:key='index' data-item="{{item.courseName}}" bindtap="showCourse">
      <image src='/assets/icon/sousuo.png' />
-      <text>{{item}}</text>
+     <text catchtap="showCourse" data-item="{{item.courseName}}">{{item.courseName}}</text>
    </view>
  </view>
- 
+ <!-- 课程卡片 -->
+ <block wx:for="{{course}}" wx:key="courseId" wx:if="{{!hasList}}">
+  <s-descourse courseId="{{item.courseId}}"
+    title="{{item.courseName}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
+    teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
+    sales="{{item['sales']}}" section="{{item['section']}}"
+    courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}"
+    price="{{item.coursePrice}}" videoId="{{item.ossVideoId}}"/>
+</block>
+
  <!-- 历史记录 -->
  <view class="history" wx:if="{{storageFlag}}">
      <text class="tip">历史记录</text>
      <text class="clear" bindtap="clearHistory">清除历史记录</text>
      <view class="list">
-       <view class="item" wx:for="{{storageList}}" wx:key="index">{{item}}</view>
+       <view class="item" wx:for="{{storageList}}" wx:key="index" bindtap="showCourse" data-item="{{item}}">{{item}}</view>
      </view>
  </view>
  
