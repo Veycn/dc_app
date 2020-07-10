@@ -1,6 +1,5 @@
 // pages/freecourse/index.js
 const {request} = require("../../utils/request")
-const {descourse} = require("../../utils/course")
 Page({
 
   /**
@@ -9,12 +8,19 @@ Page({
   data: {
     sameCourseList:null
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({sameCourseList:descourse})
+    console.log(options)
+    request('api/recommendCourse/getFreeCourse',"get",{
+      courseId:options.id
+    },res=>{
+      console.log(res)
+      this.setData({
+        freeCourse:res.data
+      })
+    })
   },
 
   /**

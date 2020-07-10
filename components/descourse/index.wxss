@@ -81,7 +81,7 @@ align-items: center;
 .desc > .starImage {
   width: 26rpx;
   height: 24rpx;
-  margin-left: 4rpx;
+  margin-left: 10rpx;
 }
 
 .gr {

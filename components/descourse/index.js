@@ -16,7 +16,8 @@ Component({
     price:Number,
     sales: Number,
     section: String,
-    stars:Number
+    stars:Number,
+    videoId:String
   },
 
   attached() {
@@ -46,7 +47,7 @@ Component({
     tobuy(){
       let {courseId} = this.data
       wx.navigateTo({
-        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${this.data.teacherName}`
+        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${this.data.teacherName}&videoId=${this.data.videoId}`
       })
     },
     formatTime(s) {

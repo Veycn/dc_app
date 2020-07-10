@@ -1,6 +1,6 @@
 <!--pages/samecourse/index.wxml-->
 <view class="container">
-  <block wx:for="{{sameCourseList}}" wx:key="{{item.id}}">
+  <block wx:for="{{sameCourse}}" wx:key="{{item.id}}">
     <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
       title="{{item.courseName}}"    
       section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
