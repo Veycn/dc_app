@@ -1,76 +1,51 @@
 <view class="publicVideo">
-  <video id="myVideo" src="{{playInfo.playURL}}" controls="{{false}}" autoplay="{{false}}" bindtimeupdate="update" bindplay="videoPlay" bindpause="videoPause" object-fit="fill" show-center-play-btn="{{false}}" poster="{{playInfo.coverURL}}" />
+  <video id="myVideo" src="{{playInfo.playURL}}" controls="{{true}}" autoplay="{{false}}" bindtimeupdate="update" bindplay="videoPlay" bindpause="videoPause" object-fit="fill" show-center-play-btn="{{false}}" poster="{{playInfo.coverURL}}" />
   <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="toggleState" wx:if="{{pause}}" />
 </view>
-
-<!-- 拼团已舍弃 -->
-<!-- <view class="produce" wx:if="{{isGroup}}">
-  <text>团购进行中</text>
-</view>
-<view class="group" wx:if="{{isGroup}}">
-  <view class="head">课程开团中</view>
-  <view class="info">
-    <text class="p">拼团缺{{course['groupInfo'].groupNeedNum}}人</text>
-    <text class="o">团购价{{course['groupInfo'].courseGroupPrice}}元</text>
-  </view>
-  <view class="count">
-    <view class="time">团购倒计时 {{timeStr}}</view>
-     <view class="ga">
-        <block wx:for="{{3}}" wx:key="{{index}}">
-          <view class="avatar" wx:if="{{index < course['groupInfo'].groupUserAvatar.length}}"><image class="img" src="{{course['groupInfo'].groupUserAvatar[index]}}"/></view>
-          <view class="avatar" wx:else>?</view>
-        </block>
-      </view>
-  </view>
-</view> -->
 <view class="info">
   <text class="buynum">{{courseInfo.courseSales}}人已购</text>
   <view class="star">
-    <text class="starnum">{{999}}</text>
+    <text class="starnum">{{courseInfo.courseStars}}</text>
     <image src='/assets/icon/star.png' class="img"></image>
   </view>
 </view>
-
 <view class="produce">
   <text>课程介绍</text>
 </view>
 <view class="produceInfo">
-  <scroll-view scroll-y style="height: 600rpx;">
+  <scroll-view scroll-y style="height: 400rpx;">
     <view class="title">
-      <text>{{item.videoTitle}}</text>
+      <text>{{item.videoTitle || courseName}}</text>
     </view>
     <view class="nameTime">
       <text class="name">讲师： {{teacherName}}</text>
       <text class="time">{{courseInfo['courseDuration']}}</text>
     </view>
     <view class="courseInfo">
-      <text>{{courseInfo.courseIntro}}</text>
+      <text>{{courseInfo.courseIntro || courseIntro}}</text>
     </view>
   </scroll-view>
 </view>
-<view class="courseArea">
-  <view class="sameCourse" bindtap="toSameCourse"> 同类课程  》</view>
+<view class="courseArea" wx:if="{{source === ''}}">
+  <view class="sameCourse" bindtap="toSameCourse">同类课程  》</view>
   <block wx:for="{{sameCourse}}" wx:key="id">
-    <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
-    title="{{item.courseName}}"    
-    section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
-    teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
-    sales="{{item['sales']}}" section="{{item['section']}}"
-    courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}"
-    price="{{item.coursePrice}}"/>
+    <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" title="{{item.courseName}}" section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}" teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}" sales="{{item['sales']}}" section="{{item['section']}}" courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}" price="{{item.coursePrice}}" />
   </block>
-  <view class="freeCourse" bindtap="toFreeCourse"> 免费区  》</view>
+  <view class="freeCourse" bindtap="toFreeCourse">免费区  》</view>
   <block wx:for="{{freeCourse}}" wx:key="id">
-    <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" 
-    title="{{item.courseName}}"    
-    section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
-    teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
-    sales="{{item['sales']}}" section="{{item['section']}}"
-    courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}"
-    price="{{0.0}}"/>
+    <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" title="{{item.courseName}}" section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}" teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}" sales="{{item['sales']}}" section="{{item['section']}}" courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}" price="{{0.0}}" />
   </block>
 </view>
-
-<view class="p-w">
-  <view class="price" bindtap="toPay" data-type="0">{{courseInfo.coursePrice}}元购买</view>
+<view class="p-w" wx:if="{{source === ''}}">
+  <view class="price" bindtap="toPay" data-type="0">{{course.coursePrice}}元购买</view>
+</view>
+<view class="content" wx:else>
+  <view class="item" style="background-color: rgb(21,218,127);">
+    <image src="../../assets/icon/book.png" mode="widthFix" class="icon"></image>
+    <text class="txt">本课程总收入: ¥{{Income.totalIncome}}元</text>
+  </view>
+  <view class="item" style="background-color: rgb(58,120,253);">
+    <image src="../../assets/icon/graph.png" mode="widthFix" class="icon"></image>
+    <text class="txt">本课程我的总收入: ¥{{Income.teacherTotalIncome}}元</text>
+  </view>
 </view>

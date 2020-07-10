@@ -9,11 +9,11 @@
     <text>{{bookInfo}}</text>
     <image src="/assets/icon/right.png"></image>
   </view>
-  <view class="common">
+  <button class="common btn" open-type="contact">
     <text>我的客服</text>
     <image src="/assets/icon/right.png"></image>
-  </view>
-  <view class="common">
+  </button>
+  <view class="common" bindtap="tLogin">
     <text>教师中心</text>
     <image src="/assets/icon/right.png"></image>
   </view>

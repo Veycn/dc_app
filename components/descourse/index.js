@@ -17,7 +17,11 @@ Component({
     sales: Number,
     section: String,
     stars:Number,
-    videoId:String
+    videoId:String,
+    source: String, // 组件被哪个页面使用
+    playId: String,  // 视频播放id
+    courseName: String, // 课程名称
+    courseIntro: String // 视频课程介绍
   },
 
   attached() {
@@ -45,9 +49,9 @@ Component({
    */
   methods: {
     tobuy(){
-      let {courseId} = this.data
+      let {courseId,teacherName,source,playId,courseIntro,courseName,videoId} = this.data
       wx.navigateTo({
-        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${this.data.teacherName}&videoId=${this.data.videoId}`
+        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${teacherName}&videoId=${videoId}&source=${source}&playId=${playId}&courseIntro=${courseIntro}&courseName=${courseName}`
       })
     },
     formatTime(s) {

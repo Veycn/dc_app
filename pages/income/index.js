@@ -1,41 +1,38 @@
-// pages/user/index.js
-const {request} = require('../../utils/request')
+// pages/income/index.js
+const {request} = require("../../utils/request")
+const  { descourse, desgrcourse }=require("../../utils/course.js")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   userInfo:{},
-   bookInfo:''
+    courseList: [],
+    Income: {}
+  },
+
+  getData () {
+    request('/api/teacherAccount/getTotalIncome', 'get', {}, res => {
+      console.log(res);
+      this.setData({Income: res.data})
+      wx.setStorageSync('Income', JSON.stringify(res.data))
+    }, 'json', false, 1)
+  },
+  
+  getData2 () {
+    request('/api/teacherAccount/getIncomeByCourse', 'get', {}, res => {
+      console.log(res);
+      this.setData({courseList: res.data})
+    }, 'json', false, 1)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  toGrade(){
-    wx.navigateTo({
-      url: '/pages/index/index',
-    })
-  },
-  tLogin () {
-    wx.navigateTo({
-      url: '/pages/tlogin/index',
-    })
-  },
   onLoad: function (options) {
-    wx.getStorage({
-      key: 'userInfo',
-      success:res=>{
-        this.setData({
-          userInfo:res.data
-        })
-      }
-    })
-    request('api/exam/getUserTextbookInfo','get',{},res=>{
-      console.log(res.data)
-      this.setData({bookInfo:res.data})
-    })
+    this.getData()
+    this.getData2()
   },
 
   /**
@@ -49,10 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    request('api/exam/getUserTextbookInfo','get',{},res=>{
-      console.log(res.data)
-      this.setData({bookInfo:res.data})
-    })
+
   },
 
   /**

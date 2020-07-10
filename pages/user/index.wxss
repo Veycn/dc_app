@@ -19,6 +19,7 @@ page {
 
 .operate {
   padding: 0 62rpx;
+  box-sizing: border-box;
 }
 .common {
   padding: 0 28rpx;
@@ -36,4 +37,11 @@ page {
 .common image {
   width: 25rpx;
   height: 25rpx;
+}
+
+.common.btn{
+  width: 100%;
+}
+.common.btn::after {
+  border: none;
 }

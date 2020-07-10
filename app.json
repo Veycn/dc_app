@@ -18,7 +18,9 @@
     "pages/search/index",
     "pages/knowledgelist/index",
     "pages/samecourse/index",
-    "pages/freecourse/index"
+    "pages/freecourse/index",
+    "pages/tlogin/index",
+    "pages/income/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

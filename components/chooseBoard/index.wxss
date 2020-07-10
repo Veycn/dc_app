@@ -9,7 +9,7 @@
   margin-bottom: 25rpx;
   position: relative;
   box-sizing: border-box;
-  padding: 32rpx 102rpx 0;
+  padding: 32rpx 0rpx 0;
   border: 1px;
 }
 
@@ -21,6 +21,9 @@
   left: -10rpx;
   top: 45rpx;
 }
+.wrapper .title {
+  padding-left: 120rpx;
+}
 .wrapper .title .text {
   font-size: 48rpx;
   font-weight: bold;
@@ -31,7 +34,10 @@
   width: 100%;
   height: auto;
   box-sizing: border-box;
-  padding: 20rpx 0; 
+  padding: 20rpx 50rpx; 
+  display: flex;
+  white-space: normal;
+  flex-wrap: wrap;
 }
 
 
@@ -44,12 +50,11 @@
   box-sizing: border-box;
   font-size: 21rpx;
   line-height: 60rpx;
-  margin-left: 50rpx;
-  margin-bottom: 25rpx;
+  margin: 0 20rpx 25rpx 20rpx;
   border-radius: 4rpx;
   padding: 0 10rpx;
   color: #fff;
 }
-.content .item:nth-child(3n+1){
+/* .content .item:nth-child(3n+1){
   margin-left: 0;
-}
+} */

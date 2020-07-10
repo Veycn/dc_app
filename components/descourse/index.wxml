@@ -12,20 +12,8 @@
       <image src="/assets/icon/star.png" class="starImage"></image>
     </view>
 
-    <!-- 取消拼团 -->
-    <!-- <view class="teacher" wx:if="{{isGroupOpen}}">
-      <view class="gr">
-         <block wx:for="{{3}}" wx:key="{{index}}">
-          <view class="avatar" wx:if="{{index < groupInfo.groupUserAvatar.length}}"><image class="img" src="{{groupInfo.groupUserAvatar[index]}}"/></view>
-          <view class="avatar" wx:else>?</view>
-        </block>
-      </view>
-      <view class='buycourse'>
-        <text bindtap="tobuy" data-id="{{courseId}}">参团</text>
-      </view>
-    </view> -->
     <view class="teacher">
-      <image  src="{{teacherImage}}" />
+      <image class="img" src="{{teacherImage}}" />
       <text class="teacherName">主讲师：{{teacherName}}</text>
       <view class='buycourse'>
         <!-- <text bindtap="tobuy" data-id="{{courseId}}">购买</text> -->

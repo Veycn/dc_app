@@ -2,7 +2,9 @@
 const {
   request
 } = require("../../utils/request.js")
-const  { descourse }=require("../../utils/course.js")
+const {
+  descourse
+} = require("../../utils/course.js")
 Page({
 
   /**
@@ -11,9 +13,9 @@ Page({
   data: {
     pause: true,
     videoInfo: null,
-    courseInfo:null,
-    descourseInfo:[],
-    playInfo:[],
+    courseInfo: null,
+    descourseInfo: [],
+    playInfo: {},
     course: null,
     canPlay: true,
     counter: 0,
@@ -21,15 +23,25 @@ Page({
     isGroup: 0,
     time: 0,
     timeStr: '',
-    courseId:'',
     sameCourse:[],
-    freeCourse:[]
+    freeCourse:[],
+    courseId: '',
+    source: '',
+    courseName: '',
+    courseIntro: '',
+    courseStars: 0,
+    Income: ''
   },
 
-  update (){
-    this.setData({counter: ++this.data.counter})
-    if(this.data.counter > 480){
-      this.setData({pause: true, canPlay: false})
+  update() {
+    this.setData({
+      counter: ++this.data.counter
+    })
+    if (this.data.counter > 480) {
+      this.setData({
+        pause: true,
+        canPlay: false
+      })
       this.videoContext.pause()
       wx.showToast({
         title: '试看结束, 请购买!',
@@ -37,12 +49,12 @@ Page({
       })
     }
   },
-  toSameCourse(){
-     wx.navigateTo({
-       url: `/pages/samecourse/index?id=${this.data.courseId}`,
-     })
+  toSameCourse() {
+    wx.navigateTo({
+      url: `/pages/samecourse/index?id=${this.data.courseId}`,
+    })
   },
-  toFreeCourse(){
+  toFreeCourse() {
     wx.navigateTo({
       url: `/pages/freecourse/index?id=${this.data.courseId}`,
     })
@@ -51,58 +63,53 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     console.log(options)
-    this.setData({teacherName: options.teacherName,courseId:options.id})
+    this.setData({
+      teacherName: options.teacherName,
+      courseId: options.id,
+      courseInfo: descourse,
+      source: options.source || '',
+      playId: options.playId || '',
+      courseIntro: options.courseIntro || '',
+      courseName: options.courseName || '',
+      courseStars: options.courseStars || 0
+    })
+    // 页面加载完成,初始化 video 对象
     var videoPlay = wx.createVideoContext("myVideo")
     this.videoContext = videoPlay
-    request('api/recommendCourse/getVideoPlayInfo',"get",{
-      videoPlayId:options.videoId
-    },res=>{
-      this.setData({
-        playInfo:res.data
-      })
-    })
-
-    request("api/recommendCourse/getPrivateCourseInfo", "get", {
-      courseId: options.id
-    }, res => {
-      let {data} = res
-      console.log(data)
-      this.setData({
-        courseInfo: data
-      })
-      // request("api/recommendCourse/getPrivateCourseInfo", "get", {
-      //   courseId: options.id
-      // },
-      // res => {
-      //   this.getTryVideoInfo()
-      //   this.setData({
-      //     course: res.data
-      //   })
-      //   if (this.data.course.groupInfo) {
-      //     let {
-      //       expirationTime
-      //     } = this.data.course.groupInfo
-      //     let deadline = new Date(expirationTime).getTime()
-      //     let curTime = new Date().getTime()
-      //     let dis = Math.floor((deadline - curTime) / 1000)
-      //     let timeStr = this.formatTime(dis)
-      //     this.setData({time: dis, timeStr})
-      //     this.countDown(dis)
-      //   }
-      })
-    // })
+   
+   
     this.getSimilarCourse()
     this.getFreeCourse()
-    
-    
+    if (options.source === 'teacher') {
+      this.getVideoPlayInfo(options.playId)
+      this.getCourseDetailInfo()
+      this.setData({Income: JSON.parse(wx.getStorageSync('Income'))})
+    } else {
+      request('api/recommendCourse/getVideoPlayInfo',"get",{
+        videoPlayId:options.videoId
+      },res=>{
+        this.setData({
+          playInfo:res.data
+        })
+      })
+      request("api/recommendCourse/getPrivateCourseInfo", "get", {
+        courseId: options.id
+      }, res => {
+        let {data} = res
+        console.log(data)
+        this.setData({
+          courseInfo: data
+        })
+      })
+    }
   },
   // 获取同类课程
-  getSimilarCourse(){
-    request('api/recommendCourse/getSimilarCourse',"get",{
-      courseId:this.data.courseId
-    },res=>{
+  getSimilarCourse() {
+    request('api/recommendCourse/getSimilarCourse', "get", {
+      courseId: this.data.courseId
+    }, res => {
       console.log(res)
       let sameCourse = res.data.filter((value,index)=>{
         return index<=1
@@ -112,10 +119,10 @@ Page({
       })
     })
   },
-  getFreeCourse(){
-    request('api/recommendCourse/getFreeCourse',"get",{
-      courseId:this.data.courseId
-    },res=>{
+  getFreeCourse() {
+    request('api/recommendCourse/getFreeCourse', "get", {
+      courseId: this.data.courseId
+    }, res => {
       console.log(res)
       let freeCourse = res.data.filter((value,index)=>{
         return index<=1
@@ -125,32 +132,56 @@ Page({
       })
     })
   },
-  videoPlay(){
+  // 获取视频播放信息
+  getVideoPlayInfo(playId) {
+    request('api/recommendCourse/getVideoPlayInfo', 'get', {
+      videoPlayId: playId,
+      isTry: false
+    }, res => {
+      console.log(res);
+      this.setData({playInfo: res.data})
+    }, 'json', false, 1)
+  },
+  getCourseDetailInfo(){
+    request('/api/recommendCourse/getPrivateCourseInfo', 'get', {courseId: this.data.courseId}, res => {
+      console.log(res);
+      this.setData({courseInfo: res.data})
+    }, 'json', false, 1)
+  },
+  videoPlay() {
     this.videoContext.play()
-    this.setData({pause: false})
+    this.setData({
+      pause: false
+    })
   },
-  videoPause(){
+  videoPause() {
     this.videoContext.pause()
-    this.setData({pause: true})
+    this.setData({
+      pause: true
+    })
   },
-  toggleState () {
-    if(!this.data.canPlay) {
+  toggleState() {
+    if (!this.data.canPlay) {
       wx.showToast({
         title: '试看结束, 请购买!',
         icon: 'none'
       })
       return
     }
-    let {pause} = this.data
-    if(pause){
+    let {
+      pause
+    } = this.data
+    if (pause) {
       this.videoPlay()
-    }else {
+    } else {
       this.videoPause()
     }
   },
 
-  getTryVideoInfo () {
-    let {videoInfo} = this.data
+  getTryVideoInfo() {
+    let {
+      videoInfo
+    } = this.data
     request("api/recommendCourse/getVideoPlayInfo", "get", {
       videoPlayId: videoInfo[0] && videoInfo[0].videoPlayId,
       isTry: false
@@ -160,11 +191,17 @@ Page({
       })
     })
   },
-  toPay(e){
+  toPay(e) {
     this.videoContext.pause()
-    let { type } = e.currentTarget.dataset
-    let { course } = this.data
-    wx.navigateTo({url: `/pages/pay/index?isGroup=${type}&courseId=${course.courseId}`})
+    let {
+      type
+    } = e.currentTarget.dataset
+    let {
+      course
+    } = this.data
+    wx.navigateTo({
+      url: `/pages/pay/index?isGroup=${type}&courseId=${course.courseId}`
+    })
   },
 
   formatTime(s) {
@@ -174,60 +211,63 @@ Page({
     var s = s - d * 24 * 3600 - h * 3600 - m * 60;
     return `${h < 10 ? '0' + h : h}:${ m < 10 ? '0' + m : m}:${ s < 10 ? '0' + s : s}`
   },
-  countDown(time){
+  countDown(time) {
     var timer = setTimeout(() => {
       clearTimeout(timer)
       let timeStr = this.formatTime(--time)
-      this.setData({timeStr, time})
+      this.setData({
+        timeStr,
+        time
+      })
       this.countDown(time)
     }, 1000)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

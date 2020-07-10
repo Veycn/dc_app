@@ -10,13 +10,16 @@ const header = {
  * @param {object}   data         请求参数, {a:"", b:1} 的形式
  * @param {function} callback     数据返回回调函数
  * @param {string}   type         数据提交类型: 如果需要以form形式提交, 传递参数 'form' 即可, json 格式不需要传递此参数
+ * @param {boolean}  identity     请求标记用户身份, 学生0, 教师为1
  */
 
-function request (url, method, data, callback, type='json', cancelLoading=false) {
+function request (url, method, data, callback, type='json', cancelLoading=false, identity=0) {
+  console.log(arguments);
+  
   if(!cancelLoading){
     wx.showLoading({title: '加载中...', icon: 'none'})
   }
-  getHeader().then(token => {
+  getHeader(identity).then(token => {
     if (token) {
       header.token = token                            
     } else {
@@ -45,21 +48,32 @@ function request (url, method, data, callback, type='json', cancelLoading=false)
       },
       // 防止请求不成功一直 loading
       complete: () => {
-        // wx.hideLoading()
+        wx.hideLoading()
       }
     })
   }) 
 }
 
 
-function getHeader () {
+function getHeader (id) {
   return new Promise((resolve, reject) => {
-    wx.getStorage({
-      key: 'userToken',
-      success: result => {
-        resolve(result.data)
-      }
-    })
+    if(id === 1){
+      console.log(1);
+      
+      wx.getStorage({
+        key: 'teacherToken',
+        success: result => {
+          resolve(result.data)
+        }
+      })
+    }else if(id === 0){
+      wx.getStorage({
+        key: 'userToken',
+        success: result => {
+          resolve(result.data)
+        }
+      })
+    }
   })
 }
 

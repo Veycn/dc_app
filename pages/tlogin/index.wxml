@@ -1,0 +1,22 @@
+
+<view class="p-container">
+  <!-- <image class="bg" mode="widthFix" src="../../assets/pic/login_bg.png"/> -->
+  <view class="logo">
+    <image class="pic" src="../../assets/pic/login_logo.png"/>
+    <text class="title">教师中心</text>
+  </view>
+  <view class="form">
+    <view class="accout item">
+      <image src="../../assets/icon/acc.png" class="icon" mode="widthFix"></image>
+      <input type="text" placeholder="请输入手机号/邮箱" class="ipt" bindinput="onChange" data-type="acc"/>
+    </view>
+    <view class="password item">
+      <image src="../../assets/icon/password.png" class="icon"  mode="widthFix"></image>
+      <input type="password" placeholder="请输入密码" class="ipt"  bindinput="onChange" data-type="pas"/>
+    </view>
+  </view>
+  <view class="login" >
+    <button class="btn" bindtap="teacherLogin"><text class="login-text">登 录</text></button>
+  </view>
+  <!-- <view class="banner"></view> -->
+</view>

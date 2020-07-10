@@ -1,0 +1,81 @@
+/* pages/tlogin/index.wxss */.p-container {
+  width: 100%;
+  height: 100%;
+}
+
+.p-container .bg {
+  width: 750rpx;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.p-container .logo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 280rpx;
+}
+
+.p-container .logo .pic {
+  width: 322rpx;
+  height: 150rpx;
+}
+
+
+.p-container .logo .title {
+  font-size: 30rpx;
+  padding: 20rpx;
+  color:rgba(181,181,181,1);
+}
+
+
+.btn {
+  margin-top: 100rpx;
+  height: 100rpx;
+  width: 394rpx;
+  border-radius: 50rpx;
+  background: #15DA7F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn .login-text {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 48rpx;
+  line-height: 100rpx;
+}
+.btn::after{
+  border: 0;
+}
+
+.form{
+  padding-top: 80rpx;
+}
+.form .icon {
+  width: 33rpx;
+  height: 33rpx;
+}
+.form > .item {
+  width: 496rpx;
+  height: 88rpx;
+  margin: 0 auto;
+  border: 1rpx solid #ccc;
+  border-radius: 44rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40rpx;
+
+}
+
+.form > .item .ipt {
+  font-size: 28rpx;
+  margin-left: 25rpx;
+}

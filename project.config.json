@@ -245,6 +245,19 @@
 					"pathName": "pages/user/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/tlogin/index",
+					"pathName": "pages/tlogin/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/income/index",
+					"pathName": "pages/income/index",
+					"scene": null
 				}
 			]
 		}
