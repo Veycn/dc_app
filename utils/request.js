@@ -25,8 +25,12 @@ function request (url, method, data, callback, type='json', cancelLoading=false,
     } else {
        console.error("token get faild!")
     }
+    console.log(type);
+    
     if(type === 'form'){
       header['content-type'] = 'application/x-www-form-urlencoded'
+    }else if(type === 'json'){
+      header['content-type'] = 'application/json;charset=UTF-8'
     }
     wx.request({
       url: BASE + url,
@@ -55,7 +59,7 @@ function request (url, method, data, callback, type='json', cancelLoading=false,
 }
 
 
-function getHeader (id) {
+function getHeader (id=0) {
   return new Promise((resolve, reject) => {
     if(id === 1){
       console.log(1);

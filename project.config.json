@@ -128,10 +128,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "pages/gotoclass/index",
 					"pathName": "pages/gotoclass/index",
-					"query": "",
+					"query": "courseId=13&name=xxxxxxxsxd&tname=sddaskdhl",
 					"scene": null
 				},
 				{
@@ -257,6 +257,7 @@
 					"id": -1,
 					"name": "pages/income/index",
 					"pathName": "pages/income/index",
+					"query": "",
 					"scene": null
 				}
 			]

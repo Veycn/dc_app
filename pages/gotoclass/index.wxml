@@ -1,25 +1,32 @@
-<video id="myVideo" src="{{course.playURL}}" autoplay="{{false}}" controls bindtimeupdate="update" data-index="{{index}}"
+<video id="myVideo" bindtap="doubleTap"  bindtouchstart="touchStart" bindtouchend="touchEnd" src="{{course.playURL}}" autoplay="{{false}}" controls bindtimeupdate="update" data-index="{{index}}"
   auto-pause-if-navigate objectFit="fill"></video>
+  <view class="info">
+    <text class="buynum">{{courseInfo.courseSales}}人已购</text>
+    <view class="star">
+      <text class="starnum">{{courseInfo.courseStars}}</text>
+      <image src='/assets/icon/star.png' class="img"></image>
+    </view>
+  </view>
 
 <!-- 选集播放 -->
-<view class="produce">
+<!-- <view class="produce">
   <text>选集播放</text>
 </view>-
 <view class="classnum">
   <text class="{{activeIndex === index ? 'active':''}}" wx:for="{{videoInfoList}}" wx:key="{{index}}" data-index="{{index}}" data-item="{{item}}" bindtap="toggleClass">{{index+1}} </text>
-</view>
+</view> -->
 <view class="produce">
   <text>课程介绍</text>
 </view>
 <view class="produceInfo">
   <view class="title">
-    <text>{{courseName}}</text>
+    <text>{{courseInfo.courseName}}</text>
   </view>
   <view class="nameTime">
     <text class="name">讲师： {{teacherName}}</text>
     <text class="time">{{courseDuration}}</text>
   </view>
   <view class="courseInfo">
-    <text>{{courseIntro}}</text>
+    <text>{{courseInfo.courseIntro}}</text>
   </view>
 </view>

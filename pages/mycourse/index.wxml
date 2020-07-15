@@ -4,17 +4,21 @@
 </view>
 <view class="" wx:if="{{courseList.length>0}}">
   <block wx:for="{{courseList}}" wx:key="{{index}}">
-    <s-mycourse percent="{{0}}" course-status="{{item['courseStatus']}}" 
-      teacher-name="{{item['teacherName']}}"
-      teacher-avatar="{{item['teacherAvatar']}}" 
-      course-name="{{item['courseName']}}"
-      data-state="{{item['courseStatus']}}" 
-      data-name="{{item['courseName']}}" 
-      data-tname="{{item['teacherName']}}"
-      data-id="{{item['courseId']}}" 
-      percent="{{item['learningProcess']}}"
-      group-info="{{item['groupInfo']}}"
+    <s-mycourse course-cover-url="{{item.courseCoverUrl}}"
+      course-duration="{{item.courseDuration}}"
+      course-id="{{item.courseId}}"
+      course-name="{{item.courseName}}"
+      course-sales="{{item.courseSales}}"
+      course-stars="{{item.courseStars}}"
+      konwledge-point="{{item.coursePoint}}"
+      learning-process="{{item.learningProcess}}"
+      teacher-avatar="{{item.teacherAvatar}}"
+      teacher-name="{{item.teacherName}}"
       bindbtnTap="onBtnTap"
+      data-id="{{item.courseId}}"
+      data-name="{{item.courseName}}"
+      data-tname="{{item.teacherName}}"
+      data-oss="{{item.ossVideoId}}"
     ></s-mycourse>
   </block>
 </view>

@@ -15,9 +15,9 @@ Page({
   },
 
 
-  toClass (id, name, tname) {
+  toClass (id, name, tname, oss) {
     wx.navigateTo({
-      url: `/pages/gotoclass/index?courseId=${id}&courseName=${name}&teacherName=${tname}`
+      url: `/pages/gotoclass/index?courseId=${id}&courseName=${name}&teacherName=${tname}&oss=${oss}`
     })
   },
   /**
@@ -29,26 +29,9 @@ Page({
 
   onBtnTap (e) {
     console.log(1, e)
-    let {state, id, name, tname} = e.currentTarget.dataset
-    /**
-     * state 
-     * 0 => 取消团购
-     * 1 => 已购买
-     */
-    switch (state){
-      case 0:
-        console.log(1111)
-        this.cancelGroup(id)
-        break;
-      case 1:
-        this.toClass(id, name, tname)
-        break;
-      default: 
-        console.log('unknown')
-    }
+    let {id, name, tname, oss} = e.currentTarget.dataset
+    this.toClass(id, name, tname, oss)
   },
-
-
 
   cancelGroup (id){
     console.log(1111)

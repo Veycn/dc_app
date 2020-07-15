@@ -6,12 +6,17 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    percent: Number,
-    courseStatus: Number,
+    courseCoverUrl: String,
+    courseDuration: Number,
+    courseId: Number,
+    courseName: String,
+    courseSales: Number,
+    courseStars: Number,
+    knowledgePoint: String,
+    learningProcess: String,
     teacherAvatar: String,
     teacherName: String,
-    groupInfo: Object,
-    courseName: String
+    ossVedioId: String
   },
 
   attached() {

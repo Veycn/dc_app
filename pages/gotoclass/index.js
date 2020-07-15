@@ -13,14 +13,19 @@ Page({
     teacherName: '',
     timer: null,
     course: null,
-    courseIntro: '', 
+    courseIntro: '',
+    courseInfo: {}, 
     historyVideoId: 0, 
     historyVideoSecond: 0, 
     videoInfoList: null,
     currentTime: 0,
     duration: 0,
     counter: 0,
-    activeIndex: 0
+    activeIndex: 0,
+    oss: '',
+    touchStartTime: 0,
+    touchEndTime: 0,
+    lastTapTime: ''
   },
 
   update(e) {
@@ -29,13 +34,23 @@ Page({
     this.setData({currentTime, duration, counter: ++counter})
     if(counter % 20 == 0){
       let {currentTime, courseId} = this.data
-      let {videoId} = this.data.videoInfoList[0]
       request('api/userCourse/saveWatchRecord', 'post', {
-        courseId: +courseId, videoId, watchSecond: Math.floor(currentTime)
+        courseId: +courseId, videoId: courseId, watchSecond: Math.floor(currentTime)
       }, () => {}, "form", true)
     }
   },
 
+  updateStar(){
+    let {courseId, oss} = this.data
+    let {courseStars} = this.data.courseInfo
+    request('api/userCourse/updateCourseStars', 'post', {courseId: +courseId, courseStars: courseStars + 1}, res => {
+      console.log(res);
+
+    }, 'from')
+    this.setData({
+      ['courseInfo.courseStars']: courseStars + 1
+    })
+  },
 
   stopTouchMove: function () {
     return false;
@@ -51,16 +66,47 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({courseId: options.courseId, courseName: options.courseName, teacherName: options.teacherName})
+    console.log(options);
+    
+    this.setData({courseId: options.courseId, courseName: options.name, teacherName: options.tname, oss: options.oss})
     this.getPrivateCourseInfo()
-    this.getMyVideoList()
+    this.getVideoPlayInfo()
+    // this.getMyVideoList()
     const video = wx.createVideoContext('myVideo')
     this.videoContext = video
   },
+  /// 按钮触摸开始触发的事件
+  touchStart: function(e) {
+    this.touchStartTime = e.timeStamp
+  },
 
+  /// 按钮触摸结束触发的事件
+  touchEnd: function(e) {
+    this.touchEndTime = e.timeStamp
+  },
+  // 双击
+  doubleTap: function(e) {
+    var that = this
+    // 控制点击事件在350ms内触发，加这层判断是为了防止长按时会触发点击事件
+    if (that.touchEndTime - that.touchStartTime < 350) {
+      // 当前点击的时间
+      var currentTime = e.timeStamp
+      var lastTapTime = that.lastTapTime
+      // 更新最后一次点击时间
+      that.lastTapTime = currentTime
+
+      // 如果两次点击时间在300毫秒内，则认为是双击事件
+      if (currentTime - lastTapTime < 300) {
+        console.log("double tap")
+        this.updateStar()
+        // 成功触发双击事件时，取消单击事件的执行
+        clearTimeout(that.lastTapTimeoutFunc);
+      }
+    }
+  },
   getVideoPlayInfo(){
-    let {videoInfoList, historyVideoSecond, activeIndex} = this.data
-    request('api/recommendCourse/getVideoPlayInfo', 'get', {videoPlayId: videoInfoList[activeIndex].videoPlayId, isTry: false}, res => {
+    let {historyVideoSecond, oss} = this.data
+    request('api/recommendCourse/getVideoPlayInfo', 'get', {videoPlayId: oss, isTry: false}, res => {
       console.log(res)
       this.setData({course: res.data})
       this.videoContext.seek(historyVideoSecond)
@@ -71,7 +117,7 @@ Page({
   getPrivateCourseInfo (){
     let {courseId} = this.data
     request('api/recommendCourse/getPrivateCourseInfo', 'get', {courseId}, res => {
-      this.setData({courseDuration: res.data.courseDuration})
+      this.setData({courseInfo: res.data})
     })
   },
   //api/userCourse/getMyVideoList 获取定制课程视频列表

@@ -11,7 +11,7 @@ Component({
     },
     strokeWidth: {
       type: [Number, String],
-      value: 16
+      value: 6
     },
     activeLineColor: {
       type: Array,
@@ -19,7 +19,7 @@ Component({
     },
     activeColor: {
       type: [String, Array],
-      value: '#ffca49, #ffb262'
+      value: '#15EC89'
     },
     backgroundColor: {
       type: String,
