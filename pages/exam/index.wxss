@@ -70,13 +70,13 @@
 }
 
 .topic-img {
-	min-height: 660rpx;
+	height: 854rpx;
   background-color: #fff;
   box-sizing: border-box;
   padding: 20rpx;
 }
 .topic-img image {
-  max-height: 700rpx;
+  max-height: 834rpx;
 }
 .btn-wrap {
 	width: 640rpx;
