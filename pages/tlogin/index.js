@@ -26,7 +26,7 @@ Page({
     if(!account || !password){
 
     }else{      
-      request('/api/teacherAccount/login', 'post', {email: account, psw: password}, res => {
+      request('api/teacherAccount/login', 'post', {email: account, psw: password}, res => {
         console.log(res);
         if(res.status === 200){
           wx.setStorageSync('teacherToken', res.data.token)

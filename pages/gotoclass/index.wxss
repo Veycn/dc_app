@@ -6,7 +6,19 @@ swiper {
   width: 100%;
   height: 320rrpx;
 }
-
+.info {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  color:#333333;
+  font-size: 28rpx;
+}
+.info .img {
+  margin-left: 8rpx;
+  width: 32rpx;
+  height: 30rpx;
+}
 video {
   width: 100%;
   height: 422rpx;

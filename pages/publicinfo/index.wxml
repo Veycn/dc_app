@@ -37,7 +37,7 @@
   </block>
 </view>
 <view class="p-w" wx:if="{{source === ''}}">
-  <view class="price" bindtap="toPay" data-type="0">{{course.coursePrice}}元购买</view>
+  <view class="price" bindtap="toPay" data-type="0">{{courseInfo.coursePrice}}元购买</view>
 </view>
 <view class="content" wx:else>
   <view class="item" style="background-color: rgb(21,218,127);">

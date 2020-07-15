@@ -2,10 +2,15 @@
 
 .c-wrapper{
   width: 100%;
-  height: 180rpx;
+  min-height: 180rpx;
   box-sizing: border-box;
   padding: 0 42rpx;
   margin-bottom: 20rpx;
+}
+
+._icon{
+  width: 26rpx;
+  height: 26rpx;
 }
 
 .content{
@@ -17,11 +22,32 @@
   padding: 30rpx 40rpx 20rpx;
 }
 
+.ml {
+  padding: 0 10rpx;
+}
+
+.btl{
+  display: flex;
+  flex-direction: row;
+}
 .content > .title {
   font-size: 30rpx;
   color: #1C1B1B;
+  display: flex;
+  flex-direction: row;
 }
-
+.learn {
+  font-size: 20rpx;
+  margin-left: 28rpx;
+  color: #fff;
+  background-color: #15EC89;
+  padding: 10rpx 24rpx 10rpx 24rpx;
+  border-radius: 50rpx;
+}
+.pro{
+  width: 400rpx;
+  align-self: center;margin-top: 10rpx;
+}
 .content > .teacher{
   display: flex;
   margin-top: 10rpx;

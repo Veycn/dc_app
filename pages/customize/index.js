@@ -66,10 +66,6 @@ Page({
   onLoad: function () {
     this.getList()
     console.log(descourse)
-    // this.setData({
-    //   descourseList: descourse,
-    //   desgrcourseList:desgrcourse
-    // })
     wx.showToast({
       title: '正在获取您的检测信息, 请稍后...'
     })
@@ -113,7 +109,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getList()
   },
 
   /**

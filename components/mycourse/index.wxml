@@ -1,29 +1,21 @@
 <!--components/mycourse/index.wxml-->
 <view class="c-wrapper">
   <view class="content">
-    <view class="title">{{courseName}}</view>
-    <view class="teacher" wx:if="{{courseStatus == 1}}">
+    <view class="title">
+      <text class="ml">{{courseName}}</text> | <text class="ml">{{courseSales}}人已购</text> | 
+      <view >
+        <text class="ml">{{courseStars}}</text>
+        <image src="../../assets/icon/star.png" class="_icon"/>
+      </view>
+    </view>
+    <view class="teacher">
       <image src="{{teacherAvatar}}" class="avatar"/>
       <text class="tname">主讲师: {{teacherName}}</text>
-      <text class="percent">学习进度: {{T.Trans(percent)}}%</text>
+      <text class="percent">学习进度: {{T.Trans(learningProcess)}}%</text>
     </view>
-    <view class="groupInfo" wx:if="{{courseStatus == 0}}">
-      <text class="need">拼团缺{{groupInfo.groupNeedNum}}人</text> |
-      <text class="count">团购倒计时：{{timeStr}}</text>
-    </view>
-    <view class="botm">
-      <view class="group" wx:if="{{courseStatus == 0}}">
-        <block wx:for="{{3}}" wx:key="{{index}}">
-          <view class="avatar" wx:if="{{index < groupInfo.groupUserAvatar.length}}"><image class="img" src="{{groupInfo.groupUserAvatar[index]}}"/></view>
-          <view class="avatar" wx:else>?</view>
-        </block>
-      </view>
-      <view class="pro" wx:else>
-        <view class="inner" style="width: {{T.Trans(percent)}}%"></view>
-      </view>
-      <view class="btn" bindtap="onTap" style="background-color: {{courseStatus == 0 ? '#009CFF': courseStatus == 1 ? '': ''}};">
-      {{courseStatus == 0 ? '取消团购' : courseStatus == 1 ? '进入学习' : ''}}
-      </view>
+    <view class="btl">
+      <view class="pro"><s-myprogress percent="{{T.Trans(learningProcess)}}"></s-myprogress></view>
+      <view class="learn" bindtap="onTap">进入学习</view>
     </view>
   </view>
 </view>
@@ -34,7 +26,7 @@
       num *= 100;
       return num.toFixed(2)
     } else {
-      return num
+      return 0
     }
   }
   module.exports = {Trans: Trans}

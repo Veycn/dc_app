@@ -46,9 +46,9 @@ Page({
 
   },
   pay: function (e) {
-    let {courseId, isGroup} = this.data
+    let {courseId} = this.data
     request('api/wxPay/placeOrder', 'post', {
-      courseId: +courseId, isGroup: +isGroup, giverId: 0
+      courseId: +courseId
     }, res => {
       this.doWxPay(res.data, courseId)
     }, 'form')
@@ -71,15 +71,13 @@ Page({
         }, 1500);
       },
       fail: res => {
-        request("api/userCourse/cancelCourse", 'get', {courseId}, res => {
-          wx.showToast({
-            icon: 'none',
-            title: '支付失败, 课程已取消!'
-          })
-          setTimeout(()=>{
-            wx.reLaunch({url: '/pages/customize/index'})
-          }, 1500)
+        wx.showToast({
+          icon: 'none',
+          title: '支付失败, 课程已取消!'
         })
+        setTimeout(()=>{
+          wx.reLaunch({url: '/pages/customize/index'})
+        }, 1500)
       }
     })
   },

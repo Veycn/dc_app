@@ -193,14 +193,10 @@ Page({
   },
   toPay(e) {
     this.videoContext.pause()
-    let {
-      type
-    } = e.currentTarget.dataset
-    let {
-      course
-    } = this.data
+    let {type} = e.currentTarget.dataset
+    let {courseInfo} = this.data
     wx.navigateTo({
-      url: `/pages/pay/index?isGroup=${type}&courseId=${course.courseId}`
+      url: `/pages/pay/index?isGroup=${type}&courseId=${courseInfo.courseId}`
     })
   },
 
