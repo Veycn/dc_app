@@ -24,7 +24,7 @@ Page({
     autoplay: true,
     interval: 2000,
     duration: 500,
-    background: ['url1', 'url2']
+    background: ['../../assets/pic/pic1.png', '../../assets/pic/pic2.png']
   },
 
   /**

@@ -3,7 +3,7 @@
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{background}}" wx:key="*this">
       <swiper-item >
-        <view data-url="{{item}}" bindtap="skip" class="swiper-item">{{item}}</view>
+        <view data-url="{{item}}" bindtap="skip" class="swiper-item"><image class="lbt" src="{{item}}" /></view>
       </swiper-item>
     </block>
   </swiper>
