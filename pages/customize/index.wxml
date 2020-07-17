@@ -40,6 +40,7 @@
       sales="{{item['sales']}}" section="{{item['section']}}"
       courseImage="{{item.courseCoverUrl}}" stars="{{item.courseStars}}"
       price="{{item.coursePrice}}" 
-      videoId="{{item.ossVideoId}}"/>
+      videoId="{{item.ossVideoId}}"
+      isBuy="{{!item.isPurchase}}"/>
   </block>
 </view>

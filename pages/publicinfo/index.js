@@ -30,7 +30,9 @@ Page({
     courseName: '',
     courseIntro: '',
     courseStars: 0,
-    Income: ''
+    Income: '',
+    similarFlag:false,
+    freeFlag:false
   },
 
   update() {
@@ -111,12 +113,15 @@ Page({
       courseId: this.data.courseId
     }, res => {
       console.log(res)
-      let sameCourse = res.data.filter((value,index)=>{
-        return index<=1
-      }) 
-      this.setData({
-        sameCourse:sameCourse
-      })
+      if(res.data.length>0){
+        let sameCourse = res.data.filter((value,index)=>{
+          return index<=1
+        }) 
+        this.setData({
+          sameCourse:sameCourse,
+          similarFlag:true,
+        })
+      }
     })
   },
   getFreeCourse() {
@@ -124,12 +129,15 @@ Page({
       courseId: this.data.courseId
     }, res => {
       console.log(res)
-      let freeCourse = res.data.filter((value,index)=>{
-        return index<=1
-      }) 
-      this.setData({
-        freeCourse:freeCourse
-      })
+      if(res.data.length>0){
+        let freeCourse = res.data.filter((value,index)=>{
+          return index<=1
+        }) 
+        this.setData({
+          freeCourse:freeCourse,
+          freeFlag:true
+        })
+      }
     })
   },
   // 获取视频播放信息
