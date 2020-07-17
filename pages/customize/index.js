@@ -65,7 +65,6 @@ Page({
    */
   onLoad: function () {
     this.getList()
-    console.log(descourse)
     // this.setData({
     //   descourseList: descourse,
     //   desgrcourseList:desgrcourse

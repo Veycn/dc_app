@@ -27,18 +27,25 @@
   </scroll-view>
 </view>
 <view class="courseArea" wx:if="{{source === ''}}">
+  <block wx:if="{{similarFlag}}">
   <view class="sameCourse" bindtap="toSameCourse">同类课程  》</view>
   <block wx:for="{{sameCourse}}" wx:key="id">
     <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" title="{{item.courseName}}" section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}" teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}" sales="{{item['sales']}}" section="{{item['section']}}" courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}" price="{{item.coursePrice}}" />
   </block>
+</block>
+
+<block wx:if="{{freeFlag}}">
   <view class="freeCourse" bindtap="toFreeCourse">免费区  》</view>
   <block wx:for="{{freeCourse}}" wx:key="id">
     <s-descourse courseId="{{item.courseId}}" group-info="{{item['groupInfo']}}" title="{{item.courseName}}" section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}" teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}" sales="{{item['sales']}}" section="{{item['section']}}" courseImage="{{item.courseAvatar}}" stars="{{item.courseStars}}" price="{{0.0}}" />
   </block>
+</block>
 </view>
+
 <view class="p-w" wx:if="{{source === ''}}">
-  <view class="price" bindtap="toPay" data-type="0">{{course.coursePrice}}元购买</view>
+  <view class="price" bindtap="toPay" data-type="0">{{courseInfo.coursePrice}}元购买</view>
 </view>
+
 <view class="content" wx:else>
   <view class="item" style="background-color: rgb(21,218,127);">
     <image src="../../assets/icon/book.png" mode="widthFix" class="icon"></image>

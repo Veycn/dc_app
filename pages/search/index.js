@@ -13,7 +13,8 @@ Page({
     hasList: false,
     storageFlag: false,
     storageList: [],
-    value: ''
+    value: '',
+    searchFlag:false,
   },
   keywords(e) {
     this.setData({
@@ -36,7 +37,8 @@ Page({
         this.setData({
           hasList: true,
           storageFlag: false,
-          courseList: res.data
+          courseList: res.data,
+          searchFlag:false
         })
       }
     })
@@ -53,6 +55,10 @@ Page({
             hasList: false,
             storageFlag: false,
             course: res.data
+          })
+        }else {
+          this.setData({
+            searchFlag:true
           })
         }
       })
@@ -104,7 +110,12 @@ Page({
         this.setData({
           hasList: false,
           storageFlag: false,
-          course: res.data
+          course: res.data,
+          searchFlag:false
+        })
+      }else {
+        this.setData({
+          searchFlag:true
         })
       }
     })

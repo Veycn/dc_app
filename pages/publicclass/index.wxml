@@ -2,7 +2,7 @@
 <!-- video部分 -->
 <view class="publicVideo">
   <video id="myVideo" src="{{videoInfo.playURL}}" object-fit="fill" bindtimeupdate="update" controls show-center-play-btn="{{false}}"
-    poster="{{videoCover}}" />
+    poster="{{videoInfo.coverURL}}" />
   <!-- <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="playVideo" wx:if="{{pause}}" /> -->
 </view>
 
