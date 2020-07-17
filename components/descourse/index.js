@@ -29,7 +29,6 @@ Component({
   },
 
   attached() {
-    console.log(this.data)
     if (this.data.groupInfo) {
       let { expirationTime } = this.data.groupInfo
       let deadline = new Date(expirationTime).getTime()

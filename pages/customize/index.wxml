@@ -39,7 +39,7 @@
       teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
       sales="{{item['sales']}}" section="{{item['section']}}"
       courseImage="{{item.courseCoverUrl}}" stars="{{item.courseStars}}"
-      price="{{item.coursePrice}}" 
+      price="{{item.coursePriceY}}" 
       videoId="{{item.ossVideoId}}"
       isBuy="{{!item.isPurchase}}"/>
   </block>
