@@ -66,6 +66,16 @@ align-items: center;
   right: 0;
   bottom: 38rpx;
 }
+.buycourse_active {
+  font-size: 24rpx;
+  position: absolute;
+  right: 0;
+  bottom: 38rpx;
+  background-color:#23ED8D ;
+  color:white;
+  border-radius: 10rpx;
+  padding: 8rpx;
+}
 .yuan {
   color: #23ED8D;
 }

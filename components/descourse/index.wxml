@@ -15,11 +15,12 @@
     <view class="teacher">
       <image class="img" src="{{teacherImage}}" />
       <text class="teacherName">主讲师：{{teacherName}}</text>
-      <view class='buycourse'>
+      <view class='buycourse' wx:if="{{isBuy}}">
         <!-- <text bindtap="tobuy" data-id="{{courseId}}">购买</text> -->
         <text>{{price}}</text>
         <text class="yuan">￥</text>
       </view>
+      <view class="buycourse_active" wx:else>已购买</view>
     </view>
   </view>
 </view>

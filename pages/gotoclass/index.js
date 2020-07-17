@@ -43,13 +43,16 @@ Page({
   updateStar(){
     let {courseId, oss} = this.data
     let {courseStars} = this.data.courseInfo
-    request('api/userCourse/updateCourseStars', 'post', {courseId: +courseId, courseStars: courseStars + 1}, res => {
+    request('api/userCourse/judgeCourseIsStar', 'post', {courseId: +courseId}, res => {
       console.log(res);
+    }, 'form')
+    // request('api/userCourse/updateCourseStars', 'post', {courseId: +courseId, courseStars: courseStars + 1}, res => {
+    //   console.log(res);
 
-    }, 'from')
-    this.setData({
-      ['courseInfo.courseStars']: courseStars + 1
-    })
+    // }, 'from')
+    // this.setData({
+    //   ['courseInfo.courseStars']: courseStars + 1
+    // })
   },
 
   stopTouchMove: function () {

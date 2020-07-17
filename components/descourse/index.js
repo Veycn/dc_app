@@ -21,11 +21,14 @@ Component({
     source: String, // 组件被哪个页面使用
     playId: String,  // 视频播放id
     courseName: String, // 课程名称
-    courseIntro: String // 视频课程介绍
+    courseIntro: String, // 视频课程介绍,
+    isBuy:{
+      type:Boolean,
+      value:true
+    }, // 是否购买过
   },
 
   attached() {
-    // console.log(this.data)
     if (this.data.groupInfo) {
       let { expirationTime } = this.data.groupInfo
       let deadline = new Date(expirationTime).getTime()

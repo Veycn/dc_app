@@ -2,7 +2,7 @@
 .search {
   width: 550rpx;
   height: 60rpx;
-  border:1rpx solid #15EC89;
+  border: 1rpx solid #15EC89;
   border-radius: 15px;
   margin: 24rpx auto;
   position: relative;
@@ -10,7 +10,7 @@
 
 .search image {
   position: absolute;
-  left:24rpx;
+  left: 24rpx;
   width: 42rpx;
   top: 10rpx;
   height: 42rpx;
@@ -20,7 +20,7 @@
   width: 456rpx;
   position: absolute;
   top: 4rpx;
-  left:94rpx;
+  left: 94rpx;
   font-size: 26rpx;
 }
 
@@ -30,11 +30,11 @@
   z-index: 999em;
 }
 
-.listItem{
+.listItem {
   display: flex;
   align-items: center;
   font-size: 24rpx;
-  border-bottom: 1rpx solid #BFBFBF ;
+  border-bottom: 1rpx solid #BFBFBF;
   height: 72rpx;
 }
 
@@ -46,8 +46,8 @@
 }
 
 .history {
-   margin:20rpx 64rpx 0;
-   position: relative;
+  margin: 20rpx 64rpx 0;
+  position: relative;
 }
 
 .history .tip {
@@ -57,11 +57,11 @@
 }
 
 .history .clear {
-   position: absolute;
-   right: 10rpx;
-   top:15rpx;
-   font-size: 22rpx;
-   color: #333333;
+  position: absolute;
+  right: 10rpx;
+  top: 15rpx;
+  font-size: 22rpx;
+  color: #333333;
 }
 
 .history .list {
@@ -69,16 +69,25 @@
   display: flex;
   flex-wrap: wrap;
 }
-.list > .item {
- padding:10rpx 26rpx;
+
+.list>.item {
+  padding: 10rpx 26rpx;
   height: 44rpx;
   line-height: 44rpx;
   color: #333333;
   background-color: #DCDCDC;
-  font-size:24rpx;
-font-family:PingFang SC;
-font-weight:400;
-border-radius: 34rpx;
-margin-right: 44rpx;
-margin-bottom: 24rpx;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  border-radius: 34rpx;
+  margin-right: 44rpx;
+  margin-bottom: 24rpx;
+}
+
+.noSearchData {
+  font-size: 26rpx;
+  color: #BFBFBF;
+  width: 500rpx;
+  margin: 40rpx auto;
+  text-align: center;
 }

@@ -41,6 +41,7 @@ Page({
   getCourseList (id) {
     id = id ? id : this.data.publicCourseInfo.courseId
     request('api/recommendCourse/getPublicVideoList', 'get', {courseId: id}, res => {
+      console.log(res)
       this.setData({course: res.data})
     })
   },
@@ -50,18 +51,16 @@ Page({
   getCourseInfo (id) {
     request("api/recommendCourse/getPublicCourseInfo", 'get', {courseId: id}, res => {
       this.setData({courseInfo: res.data})
-      this.getPlayInfo(res.data && res.data.playVideoId)
+      this.getPlayInfo(res.data && res.data.ossVideoId)
     })
   },
 
   // 获取播放信息
 
   getPlayInfo (id){
-    id = id ? id : this.data.courseInfo.playVideoId
-    request('api/recommendCourse/getVideoPlayInfo', 'get', {videoPlayId: id, isTry: false}, res => {
-      console.log(res)
+    id = id ? id : this.data.courseInfo.ossVideoId
+    request('api/recommendCourse/getVideoPlayInfo', 'get', {videoPlayId: id}, res => {
       this.setData({videoInfo: res.data})
-      
     })
   },
 
@@ -74,7 +73,7 @@ Page({
   onLoad: function (options) {
     request('/api/recommendCourse/getSimplePublicCourse', 'get', {}, res => {
       this.setData({publicCourseInfo: res.data && res.data[0]})
-      this.getCourseList(res.data && res.data[0].courseId)
+      // this.getCourseList(res.data && res.data[0].courseId)
       this.getCourseInfo(res.data && res.data[0].courseId)
     })
     this.videoContext = wx.createVideoContext('myVideo')
