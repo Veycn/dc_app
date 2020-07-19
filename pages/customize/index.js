@@ -65,7 +65,7 @@ Page({
    */
   onLoad: function () {
     this.getList()
-    console.log(descourse)
+    // console.log(descourse)
     wx.showToast({
       title: '正在获取您的检测信息, 请稍后...'
     })
