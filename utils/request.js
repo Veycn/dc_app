@@ -14,7 +14,6 @@ const header = {
  */
 
 function request (url, method, data, callback, type='json', cancelLoading=false, identity=0) {
-  console.log(arguments);
   
   if(!cancelLoading){
     wx.showLoading({title: '加载中...', icon: 'none'})
@@ -25,7 +24,6 @@ function request (url, method, data, callback, type='json', cancelLoading=false,
     } else {
        console.error("token get faild!")
     }
-    console.log(type);
     
     if(type === 'form'){
       header['content-type'] = 'application/x-www-form-urlencoded'

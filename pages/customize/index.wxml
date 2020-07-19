@@ -37,7 +37,7 @@
       title="{{item.courseName}}"    
       section="{{item.knowledgePoint}}" course-duration="{{item.courseDuration}}" teacherName="{{item.teacherName}}"
       teacherImage="{{item.teacherAvatar?item.teacherAvatar:'/assets/icon/pic.png'}}"
-      sales="{{item['sales']}}" section="{{item['section']}}"
+      sales="{{item['courseSales']}}" section="{{item['section']}}"
       courseImage="{{item.courseCoverUrl}}" stars="{{item.courseStars}}"
       price="{{item.coursePriceY}}" 
       videoId="{{item.ossVideoId}}"

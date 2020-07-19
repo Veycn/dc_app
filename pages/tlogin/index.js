@@ -29,8 +29,11 @@ Page({
       request('api/teacherAccount/login', 'post', {email: account, psw: password}, res => {
         console.log(res);
         if(res.status === 200){
+          wx.showToast({title: "登录成功!", icon: "success"})
           wx.setStorageSync('teacherToken', res.data.token)
-          wx.navigateTo({url: '/pages/income/index'})
+          setTimeout(() => {
+            wx.navigateTo({url: '/pages/income/index'}) 
+          }, 1200);
         }
       }, 'json', false, 1)
     }

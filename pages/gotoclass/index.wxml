@@ -4,17 +4,11 @@
     <text class="buynum">{{courseInfo.courseSales}}人已购</text>
     <view class="star">
       <text class="starnum">{{courseInfo.courseStars}}</text>
-      <image src='/assets/icon/star.png' class="img"></image>
+      <image src='/assets/icon/star.png' wx:if="{{isStar}}" class="img" bindtap="cancelStar"></image>
+      <image src='/assets/icon/star_active.png' wx:else class="img" bindtap="cancelStar"></image>
     </view>
   </view>
 
-<!-- 选集播放 -->
-<!-- <view class="produce">
-  <text>选集播放</text>
-</view>-
-<view class="classnum">
-  <text class="{{activeIndex === index ? 'active':''}}" wx:for="{{videoInfoList}}" wx:key="{{index}}" data-index="{{index}}" data-item="{{item}}" bindtap="toggleClass">{{index+1}} </text>
-</view> -->
 <view class="produce">
   <text>课程介绍</text>
 </view>

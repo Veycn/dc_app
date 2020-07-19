@@ -35,21 +35,12 @@ Page({
     freeFlag:false
   },
 
-  update() {
-    this.setData({
-      counter: ++this.data.counter
+  // 视频播放完毕
+  ended(){
+    wx.showToast({
+      title: '试看结束, 请购买!',
+      icon: 'none'
     })
-    if (this.data.counter > 480) {
-      this.setData({
-        pause: true,
-        canPlay: false
-      })
-      this.videoContext.pause()
-      wx.showToast({
-        title: '试看结束, 请购买!',
-        icon: 'none'
-      })
-    }
   },
   toSameCourse() {
     wx.navigateTo({
@@ -90,7 +81,7 @@ Page({
       this.setData({Income: JSON.parse(wx.getStorageSync('Income'))})
     } else {
       request('api/recommendCourse/getVideoPlayInfo',"get",{
-        videoPlayId:options.videoId
+        videoPlayId:options.videoId, isTry: true
       },res=>{
         this.setData({
           playInfo:res.data

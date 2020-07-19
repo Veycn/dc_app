@@ -1,5 +1,5 @@
 <view class="publicVideo">
-  <video id="myVideo" src="{{playInfo.playURL}}" controls="{{true}}" autoplay="{{false}}" bindtimeupdate="update" bindplay="videoPlay" bindpause="videoPause" object-fit="fill" show-center-play-btn="{{false}}" poster="{{playInfo.coverURL}}" />
+  <video id="myVideo" bindended="ended" src="{{playInfo.playURL}}" controls="{{true}}" autoplay="{{false}}" bindplay="videoPlay" bindpause="videoPause" object-fit="fill" show-center-play-btn="{{false}}" poster="{{playInfo.coverURL}}" />
   <image src="/assets/icon/icon_Play.png" class="playImg" bindtap="toggleState" wx:if="{{pause}}" />
 </view>
 <view class="info">
