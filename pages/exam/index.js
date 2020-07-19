@@ -299,6 +299,10 @@ Page({
     userAnswers[currentTopicIndex] = choosedTopicIndex
     if (currentTopicIndex < this.data.topicsLength - 1) {
       currentTopicIndex = currentTopicIndex + 1
+    } else {
+      setTimeout(() => {
+        this.showAnswerCard()
+      }, 300)
     }
     setTimeout(() => {
       this.setData({
