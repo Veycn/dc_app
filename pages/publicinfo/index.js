@@ -32,7 +32,8 @@ Page({
     courseStars: 0,
     Income: '',
     similarFlag:false,
-    freeFlag:false
+    freeFlag:false,
+    isBuy:false
   },
 
   // 视频播放完毕
@@ -66,7 +67,8 @@ Page({
       playId: options.playId || '',
       courseIntro: options.courseIntro || '',
       courseName: options.courseName || '',
-      courseStars: options.courseStars || 0
+      courseStars: options.courseStars || 0,
+      isBuy:(options.isBuy==='false'?false:true)
     })
     // 页面加载完成,初始化 video 对象
     var videoPlay = wx.createVideoContext("myVideo")

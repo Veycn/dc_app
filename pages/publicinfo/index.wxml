@@ -43,11 +43,11 @@
 </block>
 </view>
 
-<view class="p-w" wx:if="{{source === ''}}">
+<view class="p-w" wx:if="{{source === '' & !isBuy}}">
   <view class="price" bindtap="toPay" data-type="0">{{courseInfo.coursePrice}}元购买</view>
 </view>
 
-<view class="content" wx:else>
+<view class="content" wx:if="{{ source !== ''}}">
   <view class="item" style="background-color: rgb(21,218,127);">
     <image src="../../assets/icon/book.png" mode="widthFix" class="icon"></image>
     <text class="txt">本课程总收入: ¥{{Income.totalIncome}}元</text>

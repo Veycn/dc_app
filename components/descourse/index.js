@@ -24,7 +24,7 @@ Component({
     courseIntro: String, // 视频课程介绍,
     isBuy:{
       type:Boolean,
-      value:true
+      value:false
     }, // 是否购买过
   },
 
@@ -52,9 +52,9 @@ Component({
    */
   methods: {
     tobuy(){
-      let {courseId,teacherName,source,playId,courseIntro,courseName,videoId} = this.data
+      let {courseId,teacherName,source,playId,courseIntro,courseName,videoId,isBuy} = this.data
       wx.navigateTo({
-        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${teacherName}&videoId=${videoId}&source=${source}&playId=${playId}&courseIntro=${courseIntro}&courseName=${courseName}`
+        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${teacherName}&videoId=${videoId}&source=${source}&playId=${playId}&courseIntro=${courseIntro}&courseName=${courseName}&isBuy=${isBuy}`
       })
     },
     formatTime(s) {

@@ -41,6 +41,6 @@
       courseImage="{{item.courseCoverUrl}}" stars="{{item.courseStars}}"
       price="{{item.coursePriceY}}" 
       videoId="{{item.ossVideoId}}"
-      isBuy="{{!item.isPurchase}}"/>
+      isBuy="{{item.isPurchase}}"/>
   </block>
 </view>
