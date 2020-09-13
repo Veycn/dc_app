@@ -19,6 +19,7 @@ function request (url, method, data, callback, type='json', cancelLoading=false,
     wx.showLoading({title: '加载中...', icon: 'none'})
   }
   getHeader(identity).then(token => {
+
     if (token) {
       header.token = token                            
     } else {
@@ -51,6 +52,10 @@ function request (url, method, data, callback, type='json', cancelLoading=false,
       // 防止请求不成功一直 loading
       complete: () => {
         wx.hideLoading()
+      },
+      // 防止请求不成功一直 loading
+      fail: () => {
+        wx.hideLoading()
       }
     })
   }) 
@@ -72,6 +77,7 @@ function getHeader (id=0) {
       wx.getStorage({
         key: 'userToken',
         success: result => {
+          console.log(result);
           resolve(result.data)
         }
       })

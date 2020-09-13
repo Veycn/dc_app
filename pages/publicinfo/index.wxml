@@ -50,10 +50,10 @@
 <view class="content" wx:if="{{ source !== ''}}">
   <view class="item" style="background-color: rgb(21,218,127);">
     <image src="../../assets/icon/book.png" mode="widthFix" class="icon"></image>
-    <text class="txt">本课程总收入: ¥{{Income.totalIncome}}元</text>
+    <text class="txt">本课程总收入: ¥{{_income}}元</text>
   </view>
   <view class="item" style="background-color: rgb(58,120,253);">
     <image src="../../assets/icon/graph.png" mode="widthFix" class="icon"></image>
-    <text class="txt">本课程我的总收入: ¥{{Income.teacherTotalIncome}}元</text>
+    <text class="txt">本课程我的总收入: ¥{{_income}}元</text>
   </view>
 </view>

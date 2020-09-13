@@ -43,10 +43,6 @@ Page({
           chapters: res.data
         })
         this.getSections(res.data && res.data[activeIndex].id)
-      } else {
-        wx.navigateTo({
-          url: '/pages/login/index'
-        })
       }
     })
   },

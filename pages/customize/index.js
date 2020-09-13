@@ -54,7 +54,7 @@ Page({
       wx.navigateTo({url: '/pages/feedback/index'})
     }else if(idx == 0){
       // 公开课
-      wx.navigateTo({url: '/pages/publicclass/index'})
+      // wx.navigateTo({url: '/pages/publicclass/index'})
     }
   },
   toDetect () {

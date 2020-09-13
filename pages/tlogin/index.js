@@ -24,7 +24,7 @@ Page({
   teacherLogin () {
     let {account, password} = this.data
     if(!account || !password){
-
+      wx.showToast({title: "请输入账号和密码!", icon: 'none'})
     }else{      
       request('api/teacherAccount/login', 'post', {email: account, psw: password}, res => {
         console.log(res);
@@ -34,6 +34,8 @@ Page({
           setTimeout(() => {
             wx.navigateTo({url: '/pages/income/index'}) 
           }, 1200);
+        }else{
+          wx.showToast({title: res.msg, icon: "none"})
         }
       }, 'json', false, 1)
     }

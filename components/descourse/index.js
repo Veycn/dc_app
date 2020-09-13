@@ -13,6 +13,7 @@ Component({
     courseImage:String,
     courseStatus: Number,
     groupInfo: null,
+    _income: String,
     price:Number,
     sales: Number,
     section: String,
@@ -52,9 +53,9 @@ Component({
    */
   methods: {
     tobuy(){
-      let {courseId,teacherName,source,playId,courseIntro,courseName,videoId,isBuy} = this.data
+      let {courseId,teacherName,source,playId,courseIntro,courseName,videoId,isBuy, _income} = this.data
       wx.navigateTo({
-        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${teacherName}&videoId=${videoId}&source=${source}&playId=${playId}&courseIntro=${courseIntro}&courseName=${courseName}&isBuy=${isBuy}`
+        url: `/pages/publicinfo/index?id=${courseId}&teacherName=${teacherName}&videoId=${videoId}&source=${source}&playId=${playId}&courseIntro=${courseIntro}&courseName=${courseName}&isBuy=${isBuy}&_income=${_income}`
       })
     },
     formatTime(s) {

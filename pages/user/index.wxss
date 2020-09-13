@@ -45,3 +45,30 @@ page {
 .common.btn::after {
   border: none;
 }
+
+
+.logout{
+  width: 100%;
+  position: absolute;
+  bottom: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout .btn{
+  width: 588rpx;
+  height: 80rpx;
+  text-align: center;
+  color: #434343;
+  background-color: rgb(240, 240, 240);
+  line-height: 80rpx;
+}
+
+.loginbtn {
+  font-weight: bold;
+  width: 300rpx;
+}
+.loginbtn::after{
+  border: none;
+}

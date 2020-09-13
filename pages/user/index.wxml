@@ -1,12 +1,16 @@
 <!--pages/user/index.wxml-->
-<view class="userInfo">
+<view class="userInfo" wx:if="{{isLogin}}">
    <image src='{{userInfo.avatarUrl}}'></image>
    <text class="userName">{{userInfo.nickName}}</text>
+</view>
+<view class="userInfo" wx:else>
+   <image src='/assets/pic/user.png'></image>
+   <button class="userName" bindtap="login" class="loginbtn" open-type="getUserInfo">登录</button>
 </view>
 
 <view class="operate">
   <view class="common" bindtap='toGrade'>
-    <text>{{bookInfo}}</text>
+    <text>{{bookInfo || '暂无记录, 登录后可选择或查看哦.'}}</text>
     <image src="/assets/icon/right.png"></image>
   </view>
   <button class="common btn" open-type="contact">
@@ -17,4 +21,10 @@
     <text>教师中心</text>
     <image src="/assets/icon/right.png"></image>
   </view>
+</view>
+
+
+<view class="logout" wx:if="{{isLogin}}">
+  <!-- <navigator target="miniProgram" open-type="exit"  bindtap="logout"><view class="btn">退出账号</view></navigator> -->
+  <view class="btn"  bindtap="logout">退出账号</view>
 </view>

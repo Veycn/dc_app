@@ -18,6 +18,7 @@
       teacherImage="{{item.teacher_avatar?item.teacher_avatar:'/assets/icon/pic.png'}}"
       sales="{{item['course_sales']}}" section="{{item['course_section']}}"
       courseImage="{{item.course_cover_url}}" stars="{{item.course_stars}}" course-name="{{item.course_name}}"
-      price="{{item.income}}" source="teacher" play-id="{{item.oss_video_id}}" course-intro="{{item.course_intro}}" income="{{Income}}"/>
+      _income="{{item.income}}"
+      price="{{item.course_price}}" source="teacher" play-id="{{item.oss_video_id}}" course-intro="{{item.course_intro}}" income="{{Income}}"/>
   </block>
 </view>

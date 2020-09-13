@@ -68,6 +68,7 @@ Page({
       courseIntro: options.courseIntro || '',
       courseName: options.courseName || '',
       courseStars: options.courseStars || 0,
+      _income: options._income || '0.00',
       isBuy:(options.isBuy==='false'?false:true)
     })
     // 页面加载完成,初始化 video 对象

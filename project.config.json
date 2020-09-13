@@ -259,6 +259,13 @@
 					"pathName": "pages/income/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/index",
+					"pathName": "pages/user/index",
+					"query": "courseId=13&name=xxxxxxxsxd&tname=sddaskdhl",
+					"scene": null
 				}
 			]
 		}
